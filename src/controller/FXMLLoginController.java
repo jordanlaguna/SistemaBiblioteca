@@ -70,8 +70,6 @@ public class FXMLLoginController implements Initializable {
     @FXML
     private Button buttonInicio;
     @FXML
-    private StackPane PaneLogin;
-    @FXML
     private ComboBox cmbBox;
 
     Connection conn = null;
@@ -154,7 +152,7 @@ public class FXMLLoginController implements Initializable {
     private void Login(ActionEvent event) throws IOException {
         conn = ConexionLoginDB.conn();
 
-        String sql = "Select * from usuarios where nombreUsuario = ? and contrasena = ? and tipo =? ";
+        String sql = "Select * from user where userName = ? and password = ? and type =? ";
 
         try {
             ps = conn.prepareStatement(sql);

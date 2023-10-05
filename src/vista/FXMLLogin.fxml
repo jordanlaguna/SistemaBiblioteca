@@ -45,12 +45,12 @@
                         <Image url="@../img/bloquear.png" />
                      </image>
                   </ImageView>
-                  <Label id="olvidoContrasena" fx:id="forgotPassword" layoutX="185.0" layoutY="385.0" prefHeight="40.0" prefWidth="258.0" stylesheets="@../Style/LoginStyleSheet.css" text="Olvidaste tú contraseña?">
+                  <Label id="olvidoContrasena" fx:id="forgotPassword" layoutX="185.0" layoutY="442.0" prefHeight="40.0" prefWidth="258.0" stylesheets="@../Style/LoginStyleSheet.css" text="Olvidaste tú contraseña?">
                      <font>
                         <Font name="Times New Roman" size="26.0" />
                      </font>
                   </Label>
-                  <Button id="buttonInicioSesion" fx:id="buttonInicio" layoutX="242.0" layoutY="460.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 100; -fx-cursor: hand;" stylesheets="@../Style/LoginStyleSheet.css" text="Iniciar Sesión">
+                  <Button id="buttonInicioSesion" fx:id="buttonInicio" layoutX="256.0" layoutY="528.0" mnemonicParsing="false" onAction="#Login" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 100; -fx-cursor: hand;" stylesheets="@../Style/LoginStyleSheet.css" text="Iniciar Sesión">
                      <font>
                         <Font name="Times New Roman" size="28.0" />
                      </font>
@@ -70,11 +70,12 @@
                         <Font name="Times New Roman" size="40.0" />
                      </font>
                   </Label>
-                  <Button id="buttonRegistrarse" fx:id="buttonRegister" layoutX="243.0" layoutY="461.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 100; -fx-cursor: hand;" stylesheets="@../Style/LoginStyleSheet.css" text="Registrarse">
+                  <Button id="buttonRegistrarse" fx:id="buttonRegister" layoutX="256.0" layoutY="455.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 100; -fx-cursor: hand;" stylesheets="@../Style/LoginStyleSheet.css" text="Registrarse">
                      <font>
                         <Font name="Times New Roman" size="28.0" />
                      </font>
                   </Button>
+                  <ComboBox fx:id="cmbBox" layoutX="181.0" layoutY="383.0" prefHeight="40.0" prefWidth="306.0" promptText="Seleccione una opción" style="-fx-background-radius: 100;" />
                </children>
             </AnchorPane>
             <AnchorPane id="paneInfo" fx:id="paneUno" prefHeight="651.0" prefWidth="378.0" stylesheets="@../Style/LoginStyleSheet.css">

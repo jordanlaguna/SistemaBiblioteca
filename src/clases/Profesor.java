@@ -8,9 +8,11 @@ public class Profesor extends Usuario {
 
     private String tipo;
 
-    public Profesor(Date fechaNacimiento, String cedula, String nombre, String pApellido, String sApellido, String idUser, String nombreUsuario, String contrasena, String tipo) {
-        super(fechaNacimiento, cedula, nombre, pApellido, sApellido, idUser, nombreUsuario, contrasena, tipo);
+    public Profesor(String tipo, String idUser, String password, String userName, String type, String fechaNacimiento, String cedula, String nombre, String pApellido, String sApellido) {
+        super(idUser, password, userName, type, fechaNacimiento, cedula, nombre, pApellido, sApellido);
+        this.tipo = tipo;
     }
+
 
   
 

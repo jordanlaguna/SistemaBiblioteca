@@ -15,14 +15,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
-
 public class ConexionLoginDB {
-    
+
     Connection conn;
-    
-    public static Connection conn(){
-        
-         try {
+
+    public static Connection conn() {
+
+        try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca_una", "root", "");
             return conn;
@@ -37,24 +36,25 @@ public class ConexionLoginDB {
 
             return null;
         }
-        
+
     }
-    public static ObservableList <Usuario> getDataUsuario(){
-        
+
+    public static ObservableList<Usuario> getDataUsuario() {
+
         Connection con = conn();
         ObservableList<Usuario> list = FXCollections.observableArrayList();
 
         try {
-            PreparedStatement ps = con.prepareStatement("select * from usuarios");
+            PreparedStatement ps = con.prepareStatement("select * from user");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                list.add(new Usuario(rs.getDate("fechaNacimiento"), 
-                        rs.getString("cedula"), rs.getString("nombre"), 
-                        rs.getString("primerApellido"), 
-                        rs.getString("segundoApellido"),rs.getString("idUser"),
-                        rs.getString("nombreUsuario"), rs.getString("contrasena"),
-                        rs.getString("tipo")));
+                list.add(new Usuario(rs.getString("fechaNacimiento"), 
+                        rs.getString("nombre"),
+                        rs.getString("cedula"), rs.getString("primerApellido"), 
+                        rs.getString("segundoApellido"), rs.getString("idUser"),
+                        rs.getString("userName"), rs.getString("password"),
+                        rs.getString("type")));
             }
 
         } catch (SQLException | NumberFormatException e) {

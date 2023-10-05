@@ -1,32 +1,27 @@
 package clases;
 
-import java.util.Date;
 
 public class Usuario extends Persona {
 
     private String idUser;
 
-    private String contrasena;
+    private String password;
 
-    private String nombreUsuario;
+    private String userName;
 
-    private String tipo;
+    private String type;
 
-    public Usuario(Date fechaNacimiento, String cedula, String nombre, String pApellido, String sApellido, String idUser,
-            String nombreUsuario, String contrasena, String tipo) {
+    public Usuario(String idUser, String password, String userName, String type,
+            String fechaNacimiento, String cedula, String nombre, String pApellido,
+            String sApellido) {
         super(fechaNacimiento, cedula, nombre, pApellido, sApellido);
         this.idUser = idUser;
-        this.nombreUsuario = nombreUsuario;
-        this.contrasena = contrasena;
-        this.tipo = tipo;
+        this.password = password;
+        this.userName = userName;
+        this.type = type;
     }
-
-
-    @Override
-    public String toString() {
-        return "Usuario{" + "idUser=" + idUser + ", contrasena=" + contrasena + ", nombreUsuario=" + nombreUsuario + ", tipo=" + tipo + '}';
-    }
-
+   
+    
     public String getIdUser() {
         return idUser;
     }
@@ -35,30 +30,31 @@ public class Usuario extends Persona {
         this.idUser = idUser;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getType() {
+        return type;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setType(String type) {
+        this.type = type;
     }
-
+    
+ 
     public void verLibros() {
     }
 

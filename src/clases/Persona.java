@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Persona  {
 
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
 
     private String cedula;
 
@@ -16,7 +16,7 @@ public class Persona  {
     private String sApellido;
 
 
-    public Persona(Date fechaNacimiento, String cedula, String nombre, String pApellido, String sApellido) {
+    public Persona(String fechaNacimiento, String cedula, String nombre, String pApellido, String sApellido) {
         this.fechaNacimiento = fechaNacimiento;
         this.cedula = cedula;
         this.nombre = nombre;
@@ -25,11 +25,11 @@ public class Persona  {
        
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
