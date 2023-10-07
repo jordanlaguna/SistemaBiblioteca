@@ -3,11 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jorda/Documents/NetBeansProjects/SistemaBiblioteca/SistemaBiblioteca/src/Activo.java</file>
-            <file>file:/C:/Users/jorda/Documents/NetBeansProjects/SistemaBiblioteca/SistemaBiblioteca/src/Biblioteca.java</file>
-            <file>file:/C:/Users/jorda/Documents/NetBeansProjects/SistemaBiblioteca/SistemaBiblioteca/test/ActivoTest.java</file>
-            <file>file:/C:/Users/jorda/Documents/NetBeansProjects/SistemaBiblioteca/SistemaBiblioteca/src/Computadora.java</file>
-            <file>file:/C:/Users/jorda/Documents/NetBeansProjects/SistemaBiblioteca/SistemaBiblioteca/test/DevolucionTest.java</file>
+            <file>file:/C:/Users/jorda/Documents/NetBeansProjects/SistemaBiblioteca/SistemaBiblioteca/src/conexionDB/ConexionLoginDB.java</file>
         </group>
     </open-files>
 </project-private>
