@@ -99,6 +99,7 @@ public class FXMLLoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cmbType.getItems().addAll("Estudiante", "Profesor");
         cmbBox.getItems().addAll("Admin", "Estudiante");
         labelLogin.setVisible(false);
         emailLogin.setVisible(false);
@@ -247,4 +248,70 @@ public class FXMLLoginController implements Initializable {
         stage.setTitle("Biblioteca Admin");
 
         stage.show();*/
+
+    @FXML
+    private void registrarUser(ActionEvent event) {
+        conn = ConexionLoginDB.conn();
+        String Tipo = (String) cmbType.getSelectionModel().getSelectedItem();
+        
+        String sql = "insert into user(userName, password, type)values(?,?,?)";
+        String sqlDos = "insert into student(type)values(?)";
+        String sqlTres = "insert into teacher(type)values(?)";
+        String sqlCuatro = "insert into person(birth_date, identification, name,"
+                + " lastName, secondName, telephono)values(?,?,?,?,?,?)";
+        
+        try {
+             
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, userName.getText());
+            ps.setString(2, passwordRegis.getText());
+            ps.setString(3, cmbType.getValue().toString());
+            ps.execute();
+            
+            if(Tipo == "Estudiante"){
+                ps = conn.prepareStatement(sqlDos);
+                ps.setString(1, cmbType.getValue().toString());
+                 
+                ps.execute();
+                
+            }else if(Tipo == "Profesor"){
+                ps = conn.prepareStatement(sqlTres);
+                ps.setString(1, cmbType.getValue().toString());
+                 
+                ps.execute();
+                
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("ERROR");
+                alert.setContentText("Tipo usuario no identificado");
+                alert.showAndWait();
+                
+            }
+            
+            ps = conn.prepareStatement(sqlCuatro);
+            ps.setString(1, birthDay.getValue().toString());
+            ps.setString(2, identification.getText());
+            ps.setString(3, name.getText());
+            ps.setString(4, lastName.getText());
+            ps.setString(5, secondName.getText());
+            ps.setString(6, telephone.getText()); 
+            ps.execute();
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Información");
+            alert.setContentText("Usuario agregado con éxito");
+            alert.showAndWait();
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("No se pudo agregar el usuario" + e);
+            alert.showAndWait();
+
+        }
+         
+    }
 }
