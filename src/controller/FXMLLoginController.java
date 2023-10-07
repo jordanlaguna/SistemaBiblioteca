@@ -24,10 +24,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -43,7 +45,6 @@ public class FXMLLoginController implements Initializable {
     private Label label;
     @FXML
     private Label label2;
-    @FXML
     private TextField emailRegis;
     @FXML
     private PasswordField passwordRegis;
@@ -75,6 +76,26 @@ public class FXMLLoginController implements Initializable {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+    @FXML
+    private ImageView iconLogin;
+    @FXML
+    private ImageView iconPass;
+    @FXML
+    private TextField userName;
+    @FXML
+    private TextField identification;
+    @FXML
+    private TextField secondName;
+    @FXML
+    private TextField lastName;
+    @FXML
+    private TextField name;
+    @FXML
+    private DatePicker birthDay;
+    @FXML
+    private ComboBox cmbType;
+    @FXML
+    private TextField telephone;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -86,6 +107,8 @@ public class FXMLLoginController implements Initializable {
         forgotPassword.setVisible(false);
         buttonInicio.setVisible(false);
         cmbBox.setVisible(false);
+        iconLogin.setVisible(false);
+        iconPass.setVisible(false);
     }
 
     @FXML
@@ -108,10 +131,18 @@ public class FXMLLoginController implements Initializable {
         cmbBox.setVisible(true);
 
         label2.setVisible(false);
-        emailRegis.setVisible(false);
         passwordRegis.setVisible(false);
         buttonRegister.setVisible(false);
         buttonRegis.setVisible(false);
+
+        identification.setVisible(false);
+        name.setVisible(false);
+        lastName.setVisible(false);
+        secondName.setVisible(false);
+        birthDay.setVisible(false);
+        telephone.setVisible(false);
+        userName.setVisible(false);
+        cmbType.setVisible(false);
 
         slide.setOnFinished((e -> {
 
@@ -137,11 +168,18 @@ public class FXMLLoginController implements Initializable {
         cmbBox.setVisible(false);
 
         label2.setVisible(true);
-        emailRegis.setVisible(true);
+        userName.setVisible(true);
         passwordRegis.setVisible(true);
         buttonRegister.setVisible(true);
         buttonRegis.setVisible(true);
-        cmbBox.setVisible(true);
+        identification.setVisible(true);
+        name.setVisible(true);
+        lastName.setVisible(true);
+        secondName.setVisible(true);
+        birthDay.setVisible(true);
+        telephone.setVisible(true);
+        userName.setVisible(true);
+        cmbType.setVisible(true);
 
         slide.setOnFinished((e -> {
 
@@ -210,5 +248,3 @@ public class FXMLLoginController implements Initializable {
 
         stage.show();*/
 }
-
-

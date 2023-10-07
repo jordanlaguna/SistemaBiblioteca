@@ -1,69 +1,69 @@
 package clases;
 
 
-import java.util.Date;
-
 public class Persona  {
 
-    private String fechaNacimiento;
+    private String birthDay;
 
-    private String cedula;
+    private String identification;
 
-    private String nombre;
+    private String name;
 
-    private String pApellido;
+    private String firtsName;
 
-    private String sApellido;
+    private String secondName;
 
-
-    public Persona(String fechaNacimiento, String cedula, String nombre, String pApellido, String sApellido) {
-        this.fechaNacimiento = fechaNacimiento;
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.pApellido = pApellido;
-        this.sApellido = sApellido;
-       
+    public Persona(String birthDay, String identification, String name, String firtsName, String secondName) {
+        this.birthDay = birthDay;
+        this.identification = identification;
+        this.name = name;
+        this.firtsName = firtsName;
+        this.secondName = secondName;
     }
 
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
+    public Persona(){
+        
+    }
+    public String getBirthDay() {
+        return birthDay;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setBirthDay(String birthDay) {
+        this.birthDay = birthDay;
     }
 
-    public String getCedula() {
-        return cedula;
+    public String getIdentification() {
+        return identification;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setIdentification(String identification) {
+        this.identification = identification;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getpApellido() {
-        return pApellido;
+    public String getFirtsName() {
+        return firtsName;
     }
 
-    public void setpApellido(String pApellido) {
-        this.pApellido = pApellido;
+    public void setFirtsName(String firtsName) {
+        this.firtsName = firtsName;
     }
 
-    public String getsApellido() {
-        return sApellido;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setsApellido(String sApellido) {
-        this.sApellido = sApellido;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
-    
+
+   
 }

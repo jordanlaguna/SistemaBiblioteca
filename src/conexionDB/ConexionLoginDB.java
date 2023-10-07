@@ -33,7 +33,6 @@ public class ConexionLoginDB {
             alert.setTitle("Error");
             alert.setContentText("No se pudo conectar a la base de datos" + e);
             alert.showAndWait();
-
             return null;
         }
 

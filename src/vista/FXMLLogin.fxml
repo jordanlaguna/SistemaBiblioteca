@@ -15,7 +15,7 @@
          <children>
             <AnchorPane fx:id="paneDos" layoutX="378.0" prefHeight="651.0" prefWidth="673.0" style="-fx-background-color: white;">
                <children>
-                  <Label fx:id="label2" layoutX="241.0" layoutY="19.0" prefHeight="54.0" prefWidth="186.0" text="Registrarse">
+                  <Label fx:id="label2" layoutX="248.0" layoutY="19.0" prefHeight="54.0" prefWidth="186.0" text="Registrarse">
                      <font>
                         <Font name="Times New Roman" size="40.0" />
                      </font>
@@ -25,57 +25,84 @@
                         <Image url="@../img/acceso.png" />
                      </image>
                   </ImageView>
-                  <TextField id="email" fx:id="emailRegis" layoutX="175.0" layoutY="201.0" prefHeight="41.0" prefWidth="318.0" promptText="Email" stylesheets="@../Style/LoginStyleSheet.css">
+                  <TextField id="email" fx:id="identification" layoutX="23.0" layoutY="186.0" prefHeight="27.0" prefWidth="195.0" promptText="Cédula" stylesheets="@../Style/LoginStyleSheet.css">
                      <font>
                         <Font name="Times New Roman" size="22.0" />
                      </font>
                   </TextField>
-                  <PasswordField id="contrasena" fx:id="passwordRegis" layoutX="176.0" layoutY="306.0" prefHeight="39.0" prefWidth="318.0" promptText="Contraseña" stylesheets="@../Style/LoginStyleSheet.css">
+                  <TextField id="email" fx:id="name" layoutX="243.0" layoutY="186.0" prefHeight="27.0" prefWidth="195.0" promptText="Nombre" stylesheets="@../Style/LoginStyleSheet.css">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </TextField>
+                  <TextField id="email" fx:id="lastName" layoutX="456.0" layoutY="185.0" prefHeight="27.0" prefWidth="195.0" promptText="Primer Apellido" stylesheets="@../Style/LoginStyleSheet.css">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </TextField>
+                  <TextField id="email" fx:id="secondName" layoutX="23.0" layoutY="267.0" prefHeight="27.0" prefWidth="195.0" promptText="Segundo Apellido" stylesheets="@../Style/LoginStyleSheet.css">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </TextField>
+                  <DatePicker fx:id="birthDay" layoutX="242.0" layoutY="272.0" prefHeight="39.0" prefWidth="186.0" promptText="00/00/00" style="-fx-background-radius: 10; -fx-border-color: black; -fx-border-radius: 5;" />
+                  <TextField id="email" fx:id="telephone" layoutX="456.0" layoutY="271.0" prefHeight="27.0" prefWidth="195.0" promptText="Teléfono" stylesheets="@../Style/LoginStyleSheet.css">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </TextField>
+                  <TextField id="email" fx:id="userName" layoutX="23.0" layoutY="349.0" prefHeight="27.0" prefWidth="195.0" promptText="Nombre Usuario" stylesheets="@../Style/LoginStyleSheet.css" AnchorPane.topAnchor="349.0">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="cmbType" layoutX="242.0" layoutY="350.0" prefHeight="39.0" prefWidth="186.0" promptText="Seleccione " style="-fx-background-radius: 50; -fx-border-color: black; -fx-border-radius: 17;" />
+                  <PasswordField id="contrasena" fx:id="passwordRegis" layoutX="456.0" layoutY="349.0" prefHeight="43.0" prefWidth="195.0" promptText="Contraseña" stylesheets="@../Style/LoginStyleSheet.css">
                      <font>
                         <Font name="Times New Roman" size="22.0" />
                      </font>
                   </PasswordField>
-                  <ImageView fitHeight="43.0" fitWidth="40.0" layoutX="507.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+                  <Button id="buttonRegistrarse" fx:id="buttonRegister" layoutX="242.0" layoutY="474.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 100; -fx-cursor: hand;" stylesheets="@../Style/LoginStyleSheet.css" text="Registrarse">
+                     <font>
+                        <Font name="Times New Roman" size="28.0" />
+                     </font>
+                  </Button>
+                  <ImageView fx:id="iconLogin" fitHeight="43.0" fitWidth="40.0" layoutX="507.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/email.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="41.0" fitWidth="40.0" layoutX="507.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iconPass" fitHeight="41.0" fitWidth="40.0" layoutX="507.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/bloquear.png" />
                      </image>
                   </ImageView>
-                  <Label id="olvidoContrasena" fx:id="forgotPassword" layoutX="185.0" layoutY="442.0" prefHeight="40.0" prefWidth="258.0" stylesheets="@../Style/LoginStyleSheet.css" text="Olvidaste tú contraseña?">
+                  <Label id="olvidoContrasena" fx:id="forgotPassword" layoutX="190.0" layoutY="434.0" prefHeight="40.0" prefWidth="258.0" stylesheets="@../Style/LoginStyleSheet.css" text="Olvidaste tú contraseña?">
                      <font>
                         <Font name="Times New Roman" size="26.0" />
                      </font>
                   </Label>
-                  <Button id="buttonInicioSesion" fx:id="buttonInicio" layoutX="256.0" layoutY="528.0" mnemonicParsing="false" onAction="#Login" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 100; -fx-cursor: hand;" stylesheets="@../Style/LoginStyleSheet.css" text="Iniciar Sesión">
+                  <Button id="buttonInicioSesion" fx:id="buttonInicio" layoutX="242.0" layoutY="514.0" mnemonicParsing="false" onAction="#Login" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 100; -fx-cursor: hand;" stylesheets="@../Style/LoginStyleSheet.css" text="Iniciar Sesión">
                      <font>
                         <Font name="Times New Roman" size="28.0" />
                      </font>
                   </Button>
-                  <TextField id="email" fx:id="emailLogin" layoutX="175.0" layoutY="201.0" prefHeight="41.0" prefWidth="318.0" promptText="Email" stylesheets="@../Style/LoginStyleSheet.css" visible="false">
-                     <font>
-                        <Font name="Times New Roman" size="22.0" />
-                     </font>
-                  </TextField>
-                  <PasswordField id="contrasena" fx:id="passwordLogin" layoutX="176.0" layoutY="306.0" prefHeight="39.0" prefWidth="318.0" promptText="Contraseña" stylesheets="@../Style/LoginStyleSheet.css">
-                     <font>
-                        <Font name="Times New Roman" size="22.0" />
-                     </font>
-                  </PasswordField>
-                  <Label fx:id="labelLogin" layoutX="241.0" layoutY="19.0" prefHeight="54.0" prefWidth="225.0" text="Iniciar Sesión">
+                  <Label fx:id="labelLogin" layoutX="229.0" layoutY="19.0" prefHeight="54.0" prefWidth="225.0" text="Iniciar Sesión">
                      <font>
                         <Font name="Times New Roman" size="40.0" />
                      </font>
                   </Label>
-                  <Button id="buttonRegistrarse" fx:id="buttonRegister" layoutX="256.0" layoutY="455.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="195.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 100; -fx-cursor: hand;" stylesheets="@../Style/LoginStyleSheet.css" text="Registrarse">
+                  <TextField id="email" fx:id="emailLogin" layoutX="183.0" layoutY="200.0" prefHeight="41.0" prefWidth="318.0" promptText="Email" stylesheets="@../Style/LoginStyleSheet.css">
                      <font>
-                        <Font name="Times New Roman" size="28.0" />
+                        <Font name="Times New Roman" size="22.0" />
                      </font>
-                  </Button>
-                  <ComboBox fx:id="cmbBox" layoutX="181.0" layoutY="383.0" prefHeight="40.0" prefWidth="306.0" promptText="Seleccione una opción" style="-fx-background-radius: 100;" />
+                  </TextField>
+                  <PasswordField id="contrasena" fx:id="passwordLogin" layoutX="180.0" layoutY="306.0" prefHeight="39.0" prefWidth="318.0" promptText="Contraseña" stylesheets="@../Style/LoginStyleSheet.css">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </PasswordField>
+                  <ComboBox fx:id="cmbBox" layoutX="184.0" layoutY="381.0" prefHeight="40.0" prefWidth="306.0" promptText="Seleccione una opción" style="-fx-background-radius: 100;" />
                </children>
             </AnchorPane>
             <AnchorPane id="paneInfo" fx:id="paneUno" prefHeight="651.0" prefWidth="378.0" stylesheets="@../Style/LoginStyleSheet.css">
