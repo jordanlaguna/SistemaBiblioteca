@@ -7,12 +7,16 @@ package controller;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javax.swing.JOptionPane;
@@ -65,6 +69,14 @@ public class FXMLDashboardAdminController implements Initializable {
         for (int i = 0; i < partes.length; i++) {
             System.out.println(partes[i]+" | ");
         }
+    }
+
+    @FXML
+    private void openBook(MouseEvent event) throws IOException {
+        System.out.println("clicked me!");
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/prueba.fxml"));
+        containerMenu.getChildren().clear(); //lipiar
+        containerMenu.getChildren().add(root);
     }
 
     
