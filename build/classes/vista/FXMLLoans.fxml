@@ -1,11 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLoansController">
-    
+<AnchorPane id="AnchorPane" prefHeight="535.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLoansController">
+   <children>
+      <VBox layoutX="74.0" layoutY="249.0" prefHeight="245.0" prefWidth="675.0" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="73.0">
+         <children>
+            <TableView prefHeight="245.0" prefWidth="200.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="822.0" spacing="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label text="Número préstamo">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="16.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="Fecha de préstamo">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="66.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="Fecha de devolución">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="87.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="TOP_CENTER" layoutY="36.0" prefHeight="47.0" prefWidth="822.0" spacing="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="110.0">
+               <HBox.margin>
+                  <Insets left="43.0" top="6.0" />
+               </HBox.margin>
+            </TextField>
+            <DatePicker maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="176.0">
+               <HBox.margin>
+                  <Insets left="85.0" top="6.0" />
+               </HBox.margin>
+            </DatePicker>
+            <DatePicker maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="176.0">
+               <HBox.margin>
+                  <Insets left="47.0" top="6.0" />
+               </HBox.margin>
+            </DatePicker>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutY="83.0" prefHeight="27.0" prefWidth="822.0" spacing="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label text="Nombre">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="16.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="Apellido">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="66.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="Correo">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="87.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="Observaciones">
+               <font>
+                  <Font name="Times New Roman" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="145.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutY="110.0" prefHeight="86.0" prefWidth="822.0" spacing="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TextField maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="124.0">
+               <HBox.margin>
+                  <Insets left="16.0" top="-47.0" />
+               </HBox.margin>
+            </TextField>
+            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
+               <HBox.margin>
+                  <Insets top="-47.0" />
+               </HBox.margin></TextField>
+            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="195.0">
+               <HBox.margin>
+                  <Insets top="-47.0" />
+               </HBox.margin></TextField>
+            <TextArea maxHeight="-Infinity" minHeight="-Infinity" prefHeight="77.0" prefWidth="215.0" />
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>

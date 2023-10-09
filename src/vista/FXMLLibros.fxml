@@ -10,67 +10,60 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLibrosController">
    <children>
-      <HBox prefHeight="23.0" prefWidth="822.0">
+      <HBox layoutY="5.0" prefHeight="74.0" prefWidth="822.0">
+         <HBox.margin>
+            <Insets bottom="20.0" />
+         </HBox.margin>
          <children>
-            <HBox prefHeight="74.0" prefWidth="822.0">
+            <Label text="Digite el ISBN:">
                <HBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets left="10.0" top="25.0" />
                </HBox.margin>
-               <children>
-                  <Label text="Digite el ISBN:">
-                     <HBox.margin>
-                        <Insets left="10.0" top="25.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Times New Roman" size="19.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txt_isbn" prefHeight="10.0" prefWidth="107.0" promptText="ISBN">
-                     <HBox.margin>
-                        <Insets left="10.0" top="15.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Times New Roman" size="22.0" />
-                     </font>
-                  </TextField>
-                  <Label text="Digite el título:">
-                     <HBox.margin>
-                        <Insets left="10.0" top="25.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Times New Roman" size="19.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txt_title" prefHeight="31.0" prefWidth="144.0" promptText="Título">
-                     <HBox.margin>
-                        <Insets left="10.0" top="15.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Times New Roman" size="22.0" />
-                     </font>
-                  </TextField>
-                  <Label text="Digite el autor:">
-                     <HBox.margin>
-                        <Insets left="10.0" top="25.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Times New Roman" size="19.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txt_author" prefHeight="41.0" prefWidth="153.0" promptText="Autor">
-                     <HBox.margin>
-                        <Insets left="10.0" top="15.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Times New Roman" size="22.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </HBox>
+               <font>
+                  <Font name="Times New Roman" size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_isbn" prefHeight="10.0" prefWidth="107.0" promptText="ISBN">
+               <HBox.margin>
+                  <Insets left="10.0" top="15.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Times New Roman" size="22.0" />
+               </font>
+            </TextField>
+            <Label text="Digite el título:">
+               <HBox.margin>
+                  <Insets left="10.0" top="25.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Times New Roman" size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_title" prefHeight="31.0" prefWidth="144.0" promptText="Título">
+               <HBox.margin>
+                  <Insets left="10.0" top="15.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Times New Roman" size="22.0" />
+               </font>
+            </TextField>
+            <Label text="Digite el autor:">
+               <HBox.margin>
+                  <Insets left="10.0" top="25.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Times New Roman" size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_author" prefHeight="41.0" prefWidth="153.0" promptText="Autor">
+               <HBox.margin>
+                  <Insets left="10.0" top="15.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Times New Roman" size="22.0" />
+               </font>
+            </TextField>
          </children>
-         <padding>
-            <Insets top="5.0" />
-         </padding>
       </HBox>
       <HBox layoutY="71.0" prefHeight="68.0" prefWidth="822.0">
          <children>
