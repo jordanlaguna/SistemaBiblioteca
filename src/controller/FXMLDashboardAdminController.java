@@ -66,4 +66,11 @@ public class FXMLDashboardAdminController implements Initializable {
         containerMenu.getChildren().add(root);
     }
 
+    @FXML
+    private void openLoans(MouseEvent event) throws IOException {
+        System.out.println("clicked me!");
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLLoans.fxml"));
+        containerMenu.getChildren().clear(); //lipiar
+        containerMenu.getChildren().add(root);
+    }
 }
