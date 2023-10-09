@@ -46,13 +46,14 @@ public class ConexionLibros {
         try {
             PreparedStatement ps = conn.prepareStatement("select * from book");
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
-                list.add(new Libro(rs.getString("fechaNacimiento"), 
-                        rs.getString("nombre"),
-                        rs.getString("cedula"), rs.getString("primerApellido"), 
-                        rs.getDate("type")));
+                list.add(new Libro(Integer.parseInt(rs.getString("isbn")),
+                        rs.getString("title"),
+                        rs.getString("authorBook"),
+                        rs.getString("editorial"),
+                        rs.getDate("releaseDate")));
             }
+            
 
         } catch (SQLException | NumberFormatException e) {
 

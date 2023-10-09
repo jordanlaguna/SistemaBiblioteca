@@ -92,7 +92,7 @@ public class FXMLLibrosController implements Initializable {
         conn = ConexionLibros.conn();
         
 
-        String sql = "insert into avanceConfig(isbn, title, authorBook,"
+        String sql = "insert into book(isbn, title, authorBook,"
                 + " editorial, releaseDate)values(?,?,?,?,?)";
 
         try {
@@ -128,14 +128,19 @@ public class FXMLLibrosController implements Initializable {
     }
     
     private void cargarDatos() {
-        this.column_isbn.setCellValueFactory(new PropertyValueFactory<Libro, Integer>("isbn"));
-        this.column_title.setCellValueFactory(new PropertyValueFactory<Libro, String>("title"));
-        this.column_author.setCellValueFactory(new PropertyValueFactory<Libro, String>("authorBook"));
-        this.column_editorial.setCellValueFactory(new PropertyValueFactory<Libro, String>("editorial"));
-        this.column_year.setCellValueFactory(new PropertyValueFactory<Libro, DatePicker>("releaseDate"));
+        this.column_isbn.setCellValueFactory(new PropertyValueFactory<Libro,
+                Integer>("isbn"));
+        this.column_title.setCellValueFactory(new PropertyValueFactory<Libro,
+                String>("title"));
+        this.column_author.setCellValueFactory(new PropertyValueFactory<Libro,
+                String>("authorBook"));
+        this.column_editorial.setCellValueFactory(new PropertyValueFactory<Libro,
+                String>("editorial"));
+        this.column_year.setCellValueFactory(new PropertyValueFactory<Libro,
+                DatePicker>("releaseDate"));
         
         Libros = ConexionLibros.getDataBook();
-        tbw_libros.setItems(Libro);
+        tbw_libros.setItems(Libros);
     }
     
 }
