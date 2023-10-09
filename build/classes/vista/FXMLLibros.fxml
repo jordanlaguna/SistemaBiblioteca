@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,32 +8,141 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.FXMLLibrosController">
    <children>
-      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <TableView prefHeight="254.0" prefWidth="472.0" style="-fx-background-color: grey; -fx-text-fill: #333;" styleClass="table-header-background" stylesheets="@../Style/LibrosStyleSheet.css" BorderPane.alignment="CENTER">
+      <HBox prefHeight="23.0" prefWidth="822.0">
+         <children>
+            <HBox prefHeight="74.0" prefWidth="822.0">
+               <HBox.margin>
+                  <Insets bottom="20.0" />
+               </HBox.margin>
+               <children>
+                  <Label text="Digite el ISBN:">
+                     <HBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Times New Roman" size="19.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txt_isbn" prefHeight="10.0" prefWidth="107.0" promptText="ISBN">
+                     <HBox.margin>
+                        <Insets left="10.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Digite el título:">
+                     <HBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Times New Roman" size="19.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txt_title" prefHeight="31.0" prefWidth="144.0" promptText="Título">
+                     <HBox.margin>
+                        <Insets left="10.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </TextField>
+                  <Label text="Digite el autor:">
+                     <HBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Times New Roman" size="19.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txt_author" prefHeight="41.0" prefWidth="153.0" promptText="Autor">
+                     <HBox.margin>
+                        <Insets left="10.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </HBox>
+      <HBox layoutY="71.0" prefHeight="68.0" prefWidth="822.0">
+         <children>
+            <Label text="Digite el editorial:">
+               <HBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Times New Roman" size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_editorial" prefHeight="20.0" prefWidth="139.0" promptText="Editorial">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Times New Roman" size="22.0" />
+               </font>
+            </TextField>
+            <Label text="Año de lanzamiento:">
+               <HBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Times New Roman" size="19.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="datePicker" prefHeight="20.0" prefWidth="139.0" promptText="00/00/00">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </DatePicker>
+         </children>
+         <padding>
+            <Insets bottom="-100.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox layoutY="129.0" prefHeight="61.0" prefWidth="822.0">
+         <children>
+            <Button fx:id="btn_Add" mnemonicParsing="false" onAction="#add" prefHeight="44.0" prefWidth="116.0" text="Agregar">
+               <HBox.margin>
+                  <Insets left="120.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btn_update" mnemonicParsing="false" onAction="#update" prefHeight="44.0" prefWidth="116.0" text="Modificar">
+               <HBox.margin>
+                  <Insets left="120.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btn_delete" mnemonicParsing="false" onAction="#delete" prefHeight="44.0" prefWidth="116.0" text="Eliminar">
+               <HBox.margin>
+                  <Insets left="120.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <TextField fx:id="txt_search" layoutX="55.0" layoutY="197.0" prefHeight="27.0" prefWidth="293.0" promptText="Buscar">
+         <font>
+            <Font name="Times New Roman" size="22.0" />
+         </font></TextField>
+      <VBox layoutX="55.0" layoutY="240.0" prefHeight="274.0" prefWidth="713.0">
+         <children>
+            <TableView fx:id="tbw_libros" layoutX="84.0" layoutY="210.0" prefHeight="290.0" prefWidth="668.0">
               <columns>
-                <TableColumn prefWidth="75.0" style="-fx-background-color: #333; -fx-text-fill: white;" text="ISBN" />
-                <TableColumn prefWidth="75.0" style="-fx-background-color: #333;" text="Title" />
-                  <TableColumn prefWidth="93.0" style="-fx-background-color: #333;" text="Author" />
-                  <TableColumn prefWidth="79.0" style="-fx-background-color: #333;" text="Editorial" />
-                  <TableColumn maxWidth="1.7976931348623157E308" prefWidth="77.0" style="-fx-background-color: #333;" text="Año" />
+                <TableColumn fx:id="column_isbn" prefWidth="75.0" text="ISBN" />
+                <TableColumn fx:id="column_title" prefWidth="143.0" text="Título" />
+                  <TableColumn fx:id="column_author" prefWidth="179.0" text="Autor" />
+                  <TableColumn fx:id="column_editorial" prefWidth="229.0" text="Editorial" />
+                  <TableColumn fx:id="column_year" prefWidth="86.0" text="Año" />
               </columns>
             </TableView>
-         </center>
-         <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </top>
-         <left>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-         </left>
-         <right>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-         </right>
-         <bottom>
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </bottom>
-      </BorderPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
