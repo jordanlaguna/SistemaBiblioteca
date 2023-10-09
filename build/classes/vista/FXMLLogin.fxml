@@ -69,42 +69,6 @@
                         <Font name="Times New Roman" size="28.0" />
                      </font>
                   </Button>
-                  <ImageView fx:id="iconLogin" fitHeight="43.0" fitWidth="40.0" layoutX="435.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/email.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="iconPass" fitHeight="46.0" fitWidth="46.0" layoutX="430.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/bloquear.png" />
-                     </image>
-                  </ImageView>
-                  <Label id="olvidoContrasena" fx:id="forgotPassword" alignment="CENTER_RIGHT" layoutX="166.0" layoutY="437.0" prefHeight="40.0" prefWidth="258.0" stylesheets="@../Style/LoginStyleSheet.css" text="Olvidaste tú contraseña?">
-                     <font>
-                        <Font name="Times New Roman Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="buttonInicio" layoutX="189.0" layoutY="534.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Login" prefHeight="53.0" prefWidth="195.0" styleClass="btnregi" stylesheets="@../Style/LoginStyleSheet.css" text="Iniciar Sesión" textFill="WHITE">
-                     <font>
-                        <Font name="Times New Roman" size="28.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="labelLogin" alignment="CENTER" layoutX="173.0" layoutY="18.0" prefHeight="54.0" prefWidth="225.0" text="Iniciar Sesión" textAlignment="CENTER">
-                     <font>
-                        <Font name="Times New Roman Bold" size="36.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="emailLogin" layoutX="105.0" layoutY="184.0" prefHeight="48.0" prefWidth="318.0" promptText="Email" styleClass="textField" stylesheets="@../Style/LoginStyleSheet.css">
-                     <font>
-                        <Font name="Times New Roman" size="22.0" />
-                     </font>
-                  </TextField>
-                  <PasswordField fx:id="passwordLogin" layoutX="106.0" layoutY="284.0" prefHeight="48.0" prefWidth="318.0" promptText="Contraseña" styleClass="textField" stylesheets="@../Style/LoginStyleSheet.css">
-                     <font>
-                        <Font name="Times New Roman" size="22.0" />
-                     </font>
-                  </PasswordField>
-                  <ComboBox fx:id="cmbBox" editable="true" layoutX="109.0" layoutY="379.0" prefHeight="48.0" prefWidth="318.0" promptText="Seleccione una opción" style="-fx-border-color: #cd1719; -fx-border-radius: 5; -fx-background-radius: 5;" styleClass="textField1" stylesheets="@../Style/LoginStyleSheet.css" />
                   <HBox alignment="CENTER" layoutX="26.0" layoutY="136.0" prefHeight="354.0" prefWidth="520.0">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="406.0" prefWidth="260.0" spacing="20.0">
@@ -176,6 +140,42 @@
                         </VBox>
                      </children>
                   </HBox>
+                  <ImageView fx:id="iconLogin" fitHeight="43.0" fitWidth="40.0" layoutX="435.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/email.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="iconPass" fitHeight="46.0" fitWidth="46.0" layoutX="430.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/bloquear.png" />
+                     </image>
+                  </ImageView>
+                  <Label id="olvidoContrasena" fx:id="forgotPassword" alignment="CENTER_RIGHT" layoutX="166.0" layoutY="437.0" prefHeight="40.0" prefWidth="258.0" stylesheets="@../Style/LoginStyleSheet.css" text="Olvidaste tú contraseña?">
+                     <font>
+                        <Font name="Times New Roman Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="buttonInicio" layoutX="189.0" layoutY="534.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Login" prefHeight="53.0" prefWidth="195.0" styleClass="btnregi" stylesheets="@../Style/LoginStyleSheet.css" text="Iniciar Sesión" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman" size="28.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="labelLogin" alignment="CENTER" layoutX="173.0" layoutY="18.0" prefHeight="54.0" prefWidth="225.0" text="Iniciar Sesión" textAlignment="CENTER">
+                     <font>
+                        <Font name="Times New Roman Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="emailLogin" layoutX="105.0" layoutY="184.0" prefHeight="48.0" prefWidth="318.0" promptText="Email" styleClass="textField" stylesheets="@../Style/LoginStyleSheet.css">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="passwordLogin" layoutX="106.0" layoutY="284.0" prefHeight="48.0" prefWidth="318.0" promptText="Contraseña" styleClass="textField" stylesheets="@../Style/LoginStyleSheet.css">
+                     <font>
+                        <Font name="Times New Roman" size="22.0" />
+                     </font>
+                  </PasswordField>
+                  <ComboBox fx:id="cmbBox" editable="true" layoutX="109.0" layoutY="379.0" prefHeight="48.0" prefWidth="318.0" promptText="Seleccione una opción" style="-fx-border-color: #cd1719; -fx-border-radius: 5; -fx-background-radius: 5;" styleClass="textField1" stylesheets="@../Style/LoginStyleSheet.css" />
                </children>
             </AnchorPane>
          </children>

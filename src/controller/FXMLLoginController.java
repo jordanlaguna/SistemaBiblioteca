@@ -11,6 +11,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -72,10 +73,6 @@ public class FXMLLoginController implements Initializable {
     private Button buttonInicio;
     @FXML
     private ComboBox cmbBox;
-
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
     @FXML
     private ImageView iconLogin;
     @FXML
@@ -96,10 +93,15 @@ public class FXMLLoginController implements Initializable {
     private ComboBox cmbType;
     @FXML
     private TextField telephone;
+
     @FXML
     private Label textRegis;
     @FXML
     private Label textRegis1;
+
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -236,7 +238,7 @@ public class FXMLLoginController implements Initializable {
                 alert.showAndWait();
             }
 
-        } catch (Exception e) {
+        } catch (IOException | SQLException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");

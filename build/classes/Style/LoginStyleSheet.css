@@ -36,6 +36,7 @@ and open the template in the editor.
 }
 .textField1{
     -fx-background-color: transparent;
+    -fx-font-size: 20px;
     -fx-font-family: "Times New Roman";
 }
 

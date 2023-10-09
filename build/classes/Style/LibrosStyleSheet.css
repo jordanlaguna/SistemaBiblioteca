@@ -1,0 +1,35 @@
+/* Estilo para la tabla */
+/* Estilo para la tabla */
+.table-view {
+    -fx-background-color: white; /* Color de fondo de la tabla */
+    -fx-padding: 1; /* Espaciado interior de la tabla */
+}
+
+/* Estilo para las celdas de encabezado */
+.table-view .column-header {
+     -fx-background-color: white; /* Cambiar el color de fondo del encabezado de la columna */
+    -fx-border-color: #ccc; /* Color del borde del encabezado de la columna */
+    -fx-border-width: 0.5; /* Ancho del borde del encabezado de la columna */
+    -fx-font-weight: bold; /* Texto en negrita en el encabezado de la columna */
+    -fx-font-family: "Time New Roman";
+}
+
+/* Estilo para las celdas de datos */
+.table-view .table-row-cell {
+    -fx-background-color: #f9f9f9; /* Color de fondo de las celdas de datos */
+    -fx-border-color: #ccc; /* Color del borde de las celdas de datos */
+    -fx-border-width: 0.5; /* Ancho del borde de las celdas de datos */
+}
+
+/* Estilo para las celdas de datos alternas (para un aspecto de fila intercalada) */
+.table-view .table-row-cell:odd {
+    -fx-background-color: #e0e0e0; /* Color de fondo de las celdas de datos alternas */
+}
+
+/* Estilo para las celdas seleccionadas */
+.table-view .table-row-cell:selected {
+    -fx-background-color: #0078d4; /* Color de fondo de las celdas seleccionadas */
+    -fx-text-fill: white; /* Color del texto en las celdas seleccionadas */
+}
+
+    
