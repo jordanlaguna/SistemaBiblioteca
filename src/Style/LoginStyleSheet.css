@@ -10,18 +10,9 @@ and open the template in the editor.
 #olvidoContrasena{
     -fx-underline: true;
 }
-#email{
-    -fx-border-radius: 25px;
-    -fx-border-color: #000000;
-     -fx-background-radius: 100px;
-}
-#contrasena{
-    -fx-border-radius: 25px;
-    -fx-border-color: #000000;
-     -fx-background-radius: 100px;
-}
+
 #paneInfo{
-   -fx-background-color: linear-gradient(to top left, #000000, #CD1719);
+    -fx-background-color: linear-gradient(to top left, #000000, #CD1719);
 }
 
 #iniciarSesion:hover{
@@ -38,6 +29,17 @@ and open the template in the editor.
     -fx-border-color: #007bff; 
 }
 
+.textField{
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: #cd1719;
+}
+.textField1{
+    -fx-background-color: transparent;
+    -fx-font-size: 20px;
+    -fx-font-family: "Times New Roman";
+}
+
 .sidebarItem{
     -fx-background-color: #F2F2F2;
 }
@@ -49,4 +51,18 @@ and open the template in the editor.
 .border{
     -fx-border-color: #e4e2e2;
     -fx-border-width: 0px 2px 0px 0px;
+}
+.btnregi{
+    -fx-background-radius: 15;
+    -fx-background-color: black;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0, 0, 2);
+
+}
+.btnregi1{
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0, 0, 2);
+    -fx-border-color: white;
+    -fx-border-width: 2px;
 }

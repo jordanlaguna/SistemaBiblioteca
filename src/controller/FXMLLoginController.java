@@ -96,6 +96,10 @@ public class FXMLLoginController implements Initializable {
     private ComboBox cmbType;
     @FXML
     private TextField telephone;
+    @FXML
+    private Label textRegis;
+    @FXML
+    private Label textRegis1;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -119,7 +123,7 @@ public class FXMLLoginController implements Initializable {
         slide.setDuration(Duration.seconds(0.7));
         slide.setNode(paneUno);
 
-        slide.setToX(670);
+        slide.setToX(570);
         slide.play();
 
         paneDos.setTranslateX(-400);
@@ -130,7 +134,11 @@ public class FXMLLoginController implements Initializable {
         forgotPassword.setVisible(true);
         buttonInicio.setVisible(true);
         cmbBox.setVisible(true);
+        iconLogin.setVisible(true);
+        iconPass.setVisible(true);
 
+        textRegis.setVisible(false);
+        textRegis1.setVisible(false);
         label2.setVisible(false);
         passwordRegis.setVisible(false);
         buttonRegister.setVisible(false);
@@ -167,6 +175,8 @@ public class FXMLLoginController implements Initializable {
         forgotPassword.setVisible(false);
         buttonInicio.setVisible(false);
         cmbBox.setVisible(false);
+        iconLogin.setVisible(false);
+        iconPass.setVisible(false);
 
         label2.setVisible(true);
         userName.setVisible(true);
@@ -248,56 +258,55 @@ public class FXMLLoginController implements Initializable {
         stage.setTitle("Biblioteca Admin");
 
         stage.show();*/
-
     @FXML
     private void registrarUser(ActionEvent event) {
         conn = ConexionLoginDB.conn();
         String Tipo = (String) cmbType.getSelectionModel().getSelectedItem();
-        
+
         String sql = "insert into user(userName, password, type)values(?,?,?)";
         String sqlDos = "insert into student(type)values(?)";
         String sqlTres = "insert into teacher(type)values(?)";
         String sqlCuatro = "insert into person(birth_date, identification, name,"
                 + " lastName, secondName, telephono)values(?,?,?,?,?,?)";
-        
+
         try {
-             
+
             ps = conn.prepareStatement(sql);
             ps.setString(1, userName.getText());
             ps.setString(2, passwordRegis.getText());
             ps.setString(3, cmbType.getValue().toString());
             ps.execute();
-            
-            if(Tipo == "Estudiante"){
+
+            if (Tipo == "Estudiante") {
                 ps = conn.prepareStatement(sqlDos);
                 ps.setString(1, cmbType.getValue().toString());
-                 
+
                 ps.execute();
-                
-            }else if(Tipo == "Profesor"){
+
+            } else if (Tipo == "Profesor") {
                 ps = conn.prepareStatement(sqlTres);
                 ps.setString(1, cmbType.getValue().toString());
-                 
+
                 ps.execute();
-                
-            }else{
+
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("ERROR");
                 alert.setContentText("Tipo usuario no identificado");
                 alert.showAndWait();
-                
+
             }
-            
+
             ps = conn.prepareStatement(sqlCuatro);
             ps.setString(1, birthDay.getValue().toString());
             ps.setString(2, identification.getText());
             ps.setString(3, name.getText());
             ps.setString(4, lastName.getText());
             ps.setString(5, secondName.getText());
-            ps.setString(6, telephone.getText()); 
+            ps.setString(6, telephone.getText());
             ps.execute();
-            
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Información");
@@ -312,6 +321,6 @@ public class FXMLLoginController implements Initializable {
             alert.showAndWait();
 
         }
-         
+
     }
 }
