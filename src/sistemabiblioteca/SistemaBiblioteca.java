@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -25,6 +26,7 @@ public class SistemaBiblioteca extends Application {
         Image icon = new Image(getClass().getResourceAsStream("/img/libros-de-texto.png"));
         stage.getIcons().add(icon);
         stage.setTitle("Inicio De Sesión Biblioteca");
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }
