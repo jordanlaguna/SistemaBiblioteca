@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.FXMLLibrosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLibrosController">
    <children>
       <HBox prefHeight="23.0" prefWidth="822.0">
          <children>
@@ -98,7 +98,7 @@
                   <Font name="Times New Roman" size="19.0" />
                </font>
             </Label>
-            <DatePicker fx:id="datePicker" prefHeight="20.0" prefWidth="139.0" promptText="00/00/00">
+            <DatePicker fx:id="datePicker" prefHeight="40.0" prefWidth="134.0" promptText="00/00/00">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
