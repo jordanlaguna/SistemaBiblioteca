@@ -66,3 +66,10 @@ and open the template in the editor.
     -fx-border-color: white;
     -fx-border-width: 2px;
 }
+.card{
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+}
+.label1{
+     -fx-underline: true;
+}

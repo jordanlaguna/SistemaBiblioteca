@@ -23,7 +23,7 @@ public class ConexionLibros {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca", "root", "");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabiblioteca", "root", "");
             return conn;
 
         } catch (ClassNotFoundException | SQLException e) {
