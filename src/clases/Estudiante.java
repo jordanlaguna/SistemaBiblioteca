@@ -1,29 +1,26 @@
 package clases;
 
+/**
+ * The Student class represents a user who is a student in the library
+ * management system. It inherits attributes and methods from the User class
+ */
+public class Estudiante extends Usuario {
 
-import clases.Usuario;
-import java.util.Date;
+    private String type;
 
-public class Estudiante extends Usuario{
-
-    private String tipo;
-
-    public Estudiante(String tipo, String idUser, String password, String userName, String type, String fechaNacimiento, String cedula, String nombre, String pApellido, String sApellido) {
-        super(idUser, password, userName, type, fechaNacimiento, cedula, nombre, pApellido, sApellido);
-        this.tipo = tipo;
+    public Estudiante(String idUser, String password, String userName, String 
+            type, String birthDay, String identification, String name, String 
+                    lastName, String secondName) {
+        super(idUser, password, userName, type, birthDay, identification, name,
+                lastName, secondName);
     }
 
-
-
-    public String getTipo() {
-        return tipo;
+    public String getType() {
+        return type;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipo(String type) {
+        this.type = type;
     }
-    
-   
 
-  
 }

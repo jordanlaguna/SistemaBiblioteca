@@ -3,71 +3,81 @@ package clases;
 import java.util.Date;
 import java.util.List;
 
-/*The return class is used to record returns of items (books or equipment) loaned to users.*/
-public class Devolucion  {
+/**
+ * The return class is used to record returns of items (books or equipment)
+ * loaned to users.
+ */
+public class Devolucion {
 
-    private Date fecha;
+    private Date date;
 
-    private Date fechaEntrega;
+    private Date deliverDate;
 
-    private List unidad;
+    private List unit;
 
-    private List ejemplares;
+    private List copy;
 
-    private List usuario;
+    private List user;
 
-    public Devolucion(Date fecha, Date fechaEntrega, List unidad, List ejemplares, List usuario) {
-        this.fecha = fecha;
-        this.fechaEntrega = fechaEntrega;
-        this.unidad = unidad;
-        this.ejemplares = ejemplares;
-        this.usuario = usuario;
+    /**
+     * @param date //The date on which the return was registered
+     * @param deliverDate //The date on which the items must be returned
+     * @param unit //The list of returned units (books or equipment)
+     * @param copy //The list of individual items returned
+     * @param user //The list of users who have completed the return.
+     */
+    public Devolucion(Date date, Date deliverDate, List unit, List copy, List user) {
+        this.date = date;
+        this.deliverDate = deliverDate;
+        this.unit = unit;
+        this.copy = copy;
+        this.user = user;
     }
 
     public Devolucion() {
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getDate() {
+        return date;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Date getFechaEntrega() {
-        return fechaEntrega;
+    public Date getDeliverDate() {
+        return deliverDate;
     }
 
-    public void setFechaEntrega(Date fechaEntrega) {
-        this.fechaEntrega = fechaEntrega;
+    public void setDeliverDate(Date deliverDate) {
+        this.deliverDate = deliverDate;
     }
 
-    public List getUnidad() {
-        return unidad;
+    public List getUnit() {
+        return unit;
     }
 
-    public void setUnidad(List unidad) {
-        this.unidad = unidad;
+    public void setUnit(List unit) {
+        this.unit = unit;
     }
 
-    public List getEjemplares() {
-        return ejemplares;
+    public List getCopy() {
+        return copy;
     }
 
-    public void setEjemplares(List ejemplares) {
-        this.ejemplares = ejemplares;
+    public void setCopy(List copy) {
+        this.copy = copy;
     }
 
-    public List getUsuario() {
-        return usuario;
+    public List getUser() {
+        return user;
     }
 
-    public void setUsuario(List usuario) {
-        this.usuario = usuario;
+    public void setUser(List user) {
+        this.user = user;
     }
 
     //The search method performs a search for specific evaluations
-    public void buscar() {
+    public void search() {
     }
 }

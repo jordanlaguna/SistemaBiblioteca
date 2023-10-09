@@ -1,46 +1,55 @@
 package clases;
-
+/**
+ * The "Ejemplar" class represents a type of book in the library
+ */
 public class Ejemplar  {
 
-    private int paginas;
+    private int page;
 
-    private String codigo;
+    private String code;
 
-    private Boolean disponible;
-
-    public int getPaginas() {
-        return paginas;
-    }
-
-    public void setPaginas(int paginas) {
-        this.paginas = paginas;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public Boolean getDisponible() {
-        return disponible;
-    }
-
-    public void setDisponible(Boolean disponible) {
-        this.disponible = disponible;
+    private Boolean available;
+      /**
+     * @param page //Number of pages in the exemplar
+     * @param code //Unique identification code the exemplar
+     * @param available //Indicates if the exemplar is available for loan
+     */
+    public Ejemplar(int page, String code, Boolean available) {
+        this.page = page;
+        this.code = code;
+        this.available = available;
     }
 
     public Ejemplar() {
     }
 
-    public Ejemplar(int paginas, String codigo, Boolean disponible) {
-        this.paginas = paginas;
-        this.codigo = codigo;
-        this.disponible = disponible;
+    public int getPage() {
+        return page;
     }
 
-    public void detalles() {
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
+       /**
+     * This method provides additional details (specific information) about the
+     * exemplar
+     */
+    public void details() {
     }
 }

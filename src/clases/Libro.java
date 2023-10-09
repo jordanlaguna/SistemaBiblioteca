@@ -1,24 +1,34 @@
 package clases;
-
+/**
+ * The class Book represents a book within the library
+ */
 import java.util.Date;
 public class Libro {
 
     private String ISBN;
 
-    private String titulo;
+    private String title;
 
-    private String autorLibro;
+    private String author;
 
     private String editorial;
 
-    private Date fechaLanzamiento;
+    private Date releaseDate;
+    /**
+     * @param ISBN // The ISBN number of the book.
+     * @param title //The title of the book.
+     * @param author //The author of the book.
+     * @param editorial //The publisher of the book.
+     * @param releaseDate //The release date of the book.
+     */
+    
 
-    public Libro(String ISBN, String titulo, String autorLibro, String editorial, Date fechaLanzamiento) {
+    public Libro(String ISBN, String title, String author, String editorial, Date releaseDate) {
         this.ISBN = ISBN;
-        this.titulo = titulo;
-        this.autorLibro = autorLibro;
+        this.title = title;
+        this.author = author;
         this.editorial = editorial;
-        this.fechaLanzamiento = fechaLanzamiento;
+        this.releaseDate = releaseDate;
     }
 
     public Libro() {
@@ -32,20 +42,20 @@ public class Libro {
         this.ISBN = ISBN;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getAutorLibro() {
-        return autorLibro;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setAutorLibro(String autorLibro) {
-        this.autorLibro = autorLibro;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getEditorial() {
@@ -56,15 +66,17 @@ public class Libro {
         this.editorial = editorial;
     }
 
-    public Date getFechaLanzamiento() {
-        return fechaLanzamiento;
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setFechaLanzamiento(Date fechaLanzamiento) {
-        this.fechaLanzamiento = fechaLanzamiento;
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
-    
-
-    public void buscar() {
+    /**
+     * Conduct a search related to the book (search by title, author,
+     * availability, etc.).
+     */
+    public void search() {
     }
 }

@@ -1,29 +1,30 @@
 package clases;
 
-
-import clases.Usuario;
-import java.util.Date;
+  /**
+ * The variables are called from the User class
+ * @param tipo = type: A String type attribute that represents the type of 
+ * professor to make the difference if it contains a position at the University 
+ * or not.
+ */
 
 public class Profesor extends Usuario {
 
-    private String tipo;
+    private String type;
 
-    public Profesor(String tipo, String idUser, String password, String userName, String type, String fechaNacimiento, String cedula, String nombre, String pApellido, String sApellido) {
-        super(idUser, password, userName, type, fechaNacimiento, cedula, nombre, pApellido, sApellido);
-        this.tipo = tipo;
+    public Profesor(String idUser, String password, String userName, String 
+            type, String birthDay, String identification, String name, String 
+                    lastName, String secondName) {
+        super(idUser, password, userName, type, birthDay, identification, name,
+                lastName, secondName);
     }
 
-
-  
-
-  
-
-    public String getTipo() {
-        return tipo;
+    @Override
+    public String getType() {
+        return type;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    @Override
+    public void setType(String type) {
+        this.type = type;
     }
-    
 }

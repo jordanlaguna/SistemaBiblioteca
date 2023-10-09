@@ -1,49 +1,68 @@
 package clases;
 
+/**
+ * The Computer class is a type of library equipment, specifically a computer
+ * This class inherits from the Equipment class, which means it shares some
+ * common features with other types of equipment in the library
+ */
+public class Computadora extends Equipo {
 
-import clases.Equipo;
+    private int quantity;
 
-public class Computadora  extends Equipo  {
+    private String trademark;
 
-    private int cantidad;
+    private Boolean available;
 
-    private String marca;
+   /**
+     * @param quantity Indicates the quantity of computers of this type
+     * available in the library
+     *
+     * @param trademark It represents the brand of the computers
+     *
+     * @param available An indicator that signals whether computers of this
+     * type are available for use.
+     * @param quantiy
+     */
 
-    private Boolean disponible;
-
-    public Computadora(int cantidad, String marca, Boolean disponible) {
-        this.cantidad = cantidad;
-        this.marca = marca;
-        this.disponible = disponible;
+    public Computadora(int quantity, String trademark, Boolean available, 
+            int quantiy) {
+        super(quantity);
+        this.quantity = quantity;
+        this.trademark = trademark;
+        this.available = available;
     }
 
-    public Computadora() {
+   
+   
+
+    @Override
+    public int getQuantity() {
+        return quantity;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    @Override
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public String getTrademark() {
+        return trademark;
     }
 
-    public String getMarca() {
-        return marca;
+    public void setTrademark(String trademark) {
+        this.trademark = trademark;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public Boolean getAvailable() {
+        return available;
     }
 
-    public Boolean getDisponible() {
-        return disponible;
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
-
-    public void setDisponible(Boolean disponible) {
-        this.disponible = disponible;
-    }
-
-    public void buscarUnidad() {
+     /**
+     * This method is designed to search for computer drives in the library.
+     */
+    public void unitSearch() {
     }
 }

@@ -1,44 +1,64 @@
 package clases;
 
-public class Tablet extends Equipo  {
+/**
+ *The tablet class is for the purpose of identifying the quantities of tablets
+ * available for the loan and their status.
+ */
+public class Tablet extends Equipo {
 
-    private int cantidad;
+    private int quantity;
 
-    private String marca;
+    private String trademark;
 
-    private Boolean disponible;
+    private Boolean available;
 
+   /**
+     * @param quantity Indicates the quantity of computers of this type
+     * available in the library
+     *
+     * @param trademark It represents the brand of the computers
+     *
+     * @param available An indicator that signals whether computers of this
+     * type are available for use.
+     * @param quantiy
+     */
 
-    public Tablet(int cantidad, String marca, Boolean disponible) {
-        this.cantidad = cantidad;
-        this.marca = marca;
-        this.disponible = disponible;
+    public Tablet(int quantity, String trademark, Boolean available, 
+            int quantiy) {
+        super(quantity);
+        this.quantity = quantity;
+        this.trademark = trademark;
+        this.available = available;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    @Override
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    @Override
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public String getMarca() {
-        return marca;
+    public String getTrademark() {
+        return trademark;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setTrademark(String trademark) {
+        this.trademark = trademark;
     }
 
-    public Boolean getDisponible() {
-        return disponible;
+    public Boolean getAvailable() {
+        return available;
     }
 
-    public void setDisponible(Boolean disponible) {
-        this.disponible = disponible;
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
-
-    public void buscarUnidad() {
+     /**
+     * This method is designed to search for computer drives in the library.
+     */
+    public void unitSearch() {
     }
 }

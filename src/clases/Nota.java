@@ -1,58 +1,85 @@
 package clases;
-
-
+/**
+ *
+ * The Note class is a representation of a note entity in a system. in order to
+ * add notes, referring to the loan.
+ */
 import java.util.Date;
 
 public class Nota  {
 
-    private Date fecha;
+    private Date date;
 
-    private int numNotas;
+    private int numNotes;
 
-    private String nota;
+    private String note;
+     /**
+     *
+     * @param date = A Date attribute that stores the date the note was
+     * created.
+     * @param numNotes = An integer (int) attribute that stores a number related
+     * to the note. A unique identifier or simply a number associated with the
+     * note.
+     * @param note = A String attribute that stores the content or text of the
+     * note itself.
+     */
 
-    public Nota(Date fecha, int numNotas, String nota) {
-        this.fecha = fecha;
-        this.numNotas = numNotas;
-        this.nota = nota;
+    public Nota(Date date, int numNotes, String note) {
+        this.date = date;
+        this.numNotes = numNotes;
+        this.note = note;
     }
+
+    
 
     public Nota() {
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getDate() {
+        return date;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public int getNumNotas() {
-        return numNotas;
+    public int getNumNotes() {
+        return numNotes;
     }
 
-    public void setNumNotas(int numNotas) {
-        this.numNotas = numNotas;
+    public void setNumNotes(int numNotes) {
+        this.numNotes = numNotes;
     }
 
-    public String getNota() {
-        return nota;
+    public String getNote() {
+        return note;
     }
 
-    public void setNota(String nota) {
-        this.nota = nota;
+    public void setNote(String note) {
+        this.note = note;
     }
-
-    public void agregar() {
+    
+    /**
+     * This function is probably used to add new notes.
+     *
+     */
+    public void add() {
     }
-
-    public void buscar() {
+     /**
+     * This function could be used to search for relevant notes of information
+     * in the system.
+     */
+    public void search() {
     }
-
-    public void modificar() {
+    /**
+     * This function is used to modify existing notes in the record or existing
+     * data in the system.
+     */
+    public void update() {
     }
-
-    public void eliminar() {
+     /**
+     * This function is used to delete system notes.
+     */
+    public void delete() {
     }
 }

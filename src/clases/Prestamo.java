@@ -1,84 +1,129 @@
 package clases;
 
-
 import java.util.Date;
 import java.util.List;
 
-public class Prestamo  {
+/**
+ * The Loan class represents the loans in the system, related to the library. In
+ * order to manage the loans
+ */
+public class Prestamo {
 
-    private Date fechaPrestamo;
+    private Date dateLoan;
 
-    private List ejemplares;
+    private List copy;
 
-    private Date fechaDevolucion;
+    private Date dateReturn;
 
-    private List unidad;
+    private List unit;
 
-    private int numPrestamo;
+    private int numLoan;
 
-    public Prestamo(Date fechaPrestamo, List ejemplares, Date fechaDevolucion, List unidad, int numPrestamo) {
-        this.fechaPrestamo = fechaPrestamo;
-        this.ejemplares = ejemplares;
-        this.fechaDevolucion = fechaDevolucion;
-        this.unidad = unidad;
-        this.numPrestamo = numPrestamo;
+    /**
+     *
+     * @param dateLoan = A Date type attribute that stores the date the
+     * loan was made.
+     * @param copy= An attribute of type List (list) that stores items
+     * related to the loan.
+     * @param dateReturn = An attribute of type Date that stores the date
+     * on which the loaned items are expected to be returned.
+     * @param unit = unit: An attribute of type List (list) that is related to
+     * units.
+     * @param numLoan = An integer (int) type attribute that stores a loan
+     * number, to uniquely identify this loan in the system.
+     */
+    
+    
+
+    public Prestamo(Date dateLoan, List copy, Date dateReturn, List unit, int numLoan) {
+        this.dateLoan = dateLoan;
+        this.copy = copy;
+        this.dateReturn = dateReturn;
+        this.unit = unit;
+        this.numLoan = numLoan;
     }
 
-    public Date getFechaPrestamo() {
-        return fechaPrestamo;
+    public Prestamo() {
     }
 
-    public void setFechaPrestamo(Date fechaPrestamo) {
-        this.fechaPrestamo = fechaPrestamo;
+    public Date getDateLoan() {
+        return dateLoan;
     }
 
-    public List getEjemplares() {
-        return ejemplares;
+    public void setDateLoan(Date dateLoan) {
+        this.dateLoan = dateLoan;
     }
 
-    public void setEjemplares(List ejemplares) {
-        this.ejemplares = ejemplares;
+    public List getCopy() {
+        return copy;
     }
 
-    public Date getFechaDevolucion() {
-        return fechaDevolucion;
+    public void setCopy(List copy) {
+        this.copy = copy;
     }
 
-    public void setFechaDevolucion(Date fechaDevolucion) {
-        this.fechaDevolucion = fechaDevolucion;
+    public Date getDateReturn() {
+        return dateReturn;
     }
 
-    public List getUnidad() {
-        return unidad;
+    public void setDateReturn(Date dateReturn) {
+        this.dateReturn = dateReturn;
     }
 
-    public void setUnidad(List unidad) {
-        this.unidad = unidad;
+    public List getUnit() {
+        return unit;
     }
 
-    public int getNumPrestamo() {
-        return numPrestamo;
+    public void setUnit(List unit) {
+        this.unit = unit;
     }
 
-    public void setNumPrestamo(int numPrestamo) {
-        this.numPrestamo = numPrestamo;
+    public int getNumLoan() {
+        return numLoan;
     }
 
-    public void verPrestamoActivos() {
+    public void setNumLoan(int numLoan) {
+        this.numLoan = numLoan;
     }
 
-    public void agregar() {
+   
+    /**
+     * This function is used to display a list of active loans in the system.
+     * Active loans are those that have not yet been repaid or are pending.
+     */
+    public void seeActiveLoan() {
     }
 
-    public void buscar() {
+    /**
+     * This function is used to add new elements or records to the system.
+     */
+    public void add() {
     }
 
-    public void verDevoluciones() {
+    /**
+     * This function is used to search for information in the system. The search
+     * could be based on some specific criteria and return relevant results.
+     */
+    public void search() {
     }
 
-    public void notas() {
+    /**
+     * This function is used to search for information in the system. The search
+     * could be based on some specific criteria and return relevant results.
+     */
+    public void seeReturns() {
     }
 
-    public void usuarios() {
+    /**
+     * This function is to display the notes made at the time of the loan
+     */
+    public void notes() {
+    }
+
+    /**
+     * This function is related to the management of users in the system, such
+     * as creating, editing or deleting users.
+     */
+    public void users() {
     }
 }
