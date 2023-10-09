@@ -13,19 +13,25 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -73,7 +79,7 @@ public class FXMLLibrosController implements Initializable {
 
     private ObservableList<Libro> Libros;
     
-    
+    Integer index;
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -121,10 +127,89 @@ public class FXMLLibrosController implements Initializable {
 
     @FXML
     private void update(ActionEvent event) {
+        try {
+            conn = ConexionLibros.conn();
+            String value1 = txt_isbn.getText();
+            String value2 = txt_title.getText();
+            String value3 = txt_author.getText();
+            String value4 = txt_editorial.getText();
+            String value5 = datePicker.getTypeSelector();
+            
+
+            String sql = "update book set isbn= '" + value1 + "',title= '" 
+                    + value2 + "',authorBook= '" + value3 + "',editorial= '" 
+                    + value4 + "' where releaseDate= '" + value5 + "' ";
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("CONFIRMACIÓN");
+            alert.setContentText("¿Desea modificar los datos?");
+            Optional<ButtonType> opcion = alert.showAndWait();
+
+            if (opcion.get().equals(ButtonType.OK)) {
+                ps = conn.prepareStatement(sql);
+                ps.execute();
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("INFORMACIÓN");
+                alert.setContentText("Datos modificados con éxito.");
+                alert.showAndWait();
+
+            }
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("No se pudo modificar el usuario. " + e);
+            alert.showAndWait();
+
+        }
+        cargarDatos();
+        limpiarDatos();
+    }
+    private void limpiarDatos() {
+        txt_isbn.clear();
+        txt_title.clear();
+        txt_author.clear();
+        txt_editorial.clear();
+        txt_cantidad.clear();
     }
 
     @FXML
     private void delete(ActionEvent event) {
+        String sql = "delete from book where isbn = ? ";
+
+        try {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("CONFIRMACIÓN");
+            alert.setContentText("¿Desea eliminar los datos?");
+            Optional<ButtonType> opcion = alert.showAndWait();
+
+            if (opcion.get().equals(ButtonType.OK)) {
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, txt_isbn.getText());
+                ps.execute();
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("INFORMACIÓN");
+                alert.setContentText("Datos eliminados con éxito.");
+                alert.showAndWait();
+
+            }
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Los datos no se pudieron eliminar. " + e);
+            alert.showAndWait();
+        }
+        cargarDatos();
+        limpiarDatos();
+
     }
     
     private void cargarDatos() {
@@ -142,5 +227,53 @@ public class FXMLLibrosController implements Initializable {
         Libros = ConexionLibros.getDataBook();
         tbw_libros.setItems(Libros);
     }
+
+    @FXML
+    private void buscar(KeyEvent ke) {
+        FilteredList<Libro> filterData = new FilteredList<>(Libro, p -> true);
+        txt_search.textProperty().addListener((obsevable, oldvalue, newvalue)->{
+        filterData.setPredicate(Book ->{
+           if(newvalue == null || newvalue.isEmpty()){
+               return true;
+           }
+           String tipoTexto = newvalue.toLowerCase();
+           if(Book.getTitle().toLowerCase().indexOf(tipoTexto)!= -1){
+               
+               return true;
+           }
+            if(Book.getAuthorBook().toLowerCase().indexOf(tipoTexto)!= -1){
+               
+               return true;
+           }
+           
+            if(Book.getEditorial().toLowerCase().indexOf(tipoTexto)!= -1){
+               
+               return true;
+           }
+           return false;
+        });
+            SortedList<Libro> sortedList = new SortedList<>(filterData);
+            sortedList.comparatorProperty().bind(tbw_libros.comparatorProperty());
+            tbw_libros.setItems(sortedList);
+        });
+    }
+
+    @FXML
+    private void Items(MouseEvent event) {
+        index = tbw_libros.getSelectionModel().getSelectedIndex();
+
+        if (index <= -1) {
+            return;
+        }
+
+        txt_isbn.setText(column_isbn.getCellData(index).toString());
+        txt_title.setText(column_title.getCellData(index).toString());
+        txt_author.setText(column_author.getCellData(index).toString());
+        txt_editorial.setText(column_editorial.getCellData(index).toString());
+         
+        
+    }
+
+     
     
 }
