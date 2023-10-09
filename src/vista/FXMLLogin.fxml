@@ -176,6 +176,24 @@
                      </font>
                   </PasswordField>
                   <ComboBox fx:id="cmbBox" editable="true" layoutX="109.0" layoutY="379.0" prefHeight="48.0" prefWidth="318.0" promptText="Seleccione una opción" style="-fx-border-color: #cd1719; -fx-border-radius: 5; -fx-background-radius: 5;" styleClass="textField1" stylesheets="@../Style/LoginStyleSheet.css" />
+                  <Button fx:id="btn_exit" layoutX="520.0" layoutY="6.0" mnemonicParsing="false" onAction="#exit" prefHeight="39.0" prefWidth="26.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/boton.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_exit1" layoutX="26.0" layoutY="6.0" mnemonicParsing="false" onAction="#exit" prefHeight="39.0" prefWidth="26.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/boton.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
          </children>

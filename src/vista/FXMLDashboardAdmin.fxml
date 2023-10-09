@@ -27,10 +27,7 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <StackPane fx:id="containerMenu" layoutX="62.0" layoutY="29.0" prefHeight="535.0" prefWidth="822.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Button fx:id="btPedir" mnemonicParsing="false" onAction="#Pedir" text="Pedir" />
-                     </children></StackPane>
+                  <StackPane fx:id="containerMenu" layoutX="62.0" layoutY="29.0" prefHeight="535.0" prefWidth="822.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </center>
@@ -66,7 +63,7 @@
                               <Insets />
                            </VBox.margin>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Computadoras">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openComputer" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Computadoras">
                            <font>
                               <Font name="Times New Roman Bold" size="17.0" />
                            </font>
@@ -78,7 +75,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Tablets">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openTablet" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Tablets">
                            <font>
                               <Font name="Times New Roman Bold" size="17.0" />
                            </font>

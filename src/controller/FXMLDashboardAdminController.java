@@ -32,49 +32,37 @@ public class FXMLDashboardAdminController implements Initializable {
     private AnchorPane slider;
     @FXML
     private StackPane containerMenu;
-    @FXML
-    private Button btPedir;
-    
-    private BufferedReader lector;
-    private String linea;
-    private String partes[] = null;
+ 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    @FXML
-    private void Pedir(ActionEvent event) {
-        String nombreArchivo = "C:\\Users\\jorda\\Documents\\Documentos\\DatosLibros.csv";
-        //"C:\\Users\\gatov\\OneDrive\\Documentos\\Biblioteca\\DatosParadigma.xlsx"
-        try {
-            lector = new BufferedReader(new FileReader(nombreArchivo));
-            System.out.println("-------------------------------------------");
-            while ((linea = lector.readLine()) != null){
-                partes = linea.split("------");
-                imprimirLinea();
-                System.out.println();
-            }
-            lector.close();
-            linea = null;
-            partes=null;
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, e);
-        }
     }
-    
-    void imprimirLinea(){
-        for (int i = 0; i < partes.length; i++) {
-            System.out.println(partes[i]+" | ");
-        }
+
+   
+    @FXML
+    private void openBook(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/"
+                + "FXMLLibros.fxml"));
+        containerMenu.getChildren().clear(); //limpiar
+        containerMenu.getChildren().add(root);
     }
 
     @FXML
-    private void openBook(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLLibros.fxml"));
-        containerMenu.getChildren().clear(); //lipiar
+    private void openComputer(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/"
+                + "FXMLComputadora.fxml"));
+        containerMenu.getChildren().clear(); //limpiar
+        containerMenu.getChildren().add(root);
+    }
+
+    @FXML
+    private void openTablet(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLTablet"
+                + ".fxml"));
+        containerMenu.getChildren().clear(); //limpiar
         containerMenu.getChildren().add(root);
     }
 
@@ -85,6 +73,4 @@ public class FXMLDashboardAdminController implements Initializable {
         containerMenu.getChildren().clear(); //lipiar
         containerMenu.getChildren().add(root);
     }
-
-    
 }

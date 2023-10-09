@@ -98,7 +98,12 @@ public class FXMLLoginController implements Initializable {
     private Label textRegis;
     @FXML
     private Label textRegis1;
-
+    @FXML
+    private Button btn_exit;
+    @FXML
+    private Button btn_exit1;
+    
+    
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -116,13 +121,14 @@ public class FXMLLoginController implements Initializable {
         cmbBox.setVisible(false);
         iconLogin.setVisible(false);
         iconPass.setVisible(false);
+        btn_exit1.setVisible(false);
     }
 
     @FXML
     private void iniciarSesion(MouseEvent event) {
 
         TranslateTransition slide = new TranslateTransition();
-        slide.setDuration(Duration.seconds(0.7));
+        slide.setDuration(Duration.seconds(0.5));
         slide.setNode(paneUno);
 
         slide.setToX(570);
@@ -138,6 +144,8 @@ public class FXMLLoginController implements Initializable {
         cmbBox.setVisible(true);
         iconLogin.setVisible(true);
         iconPass.setVisible(true);
+        btn_exit1.setVisible(true);
+        
 
         textRegis.setVisible(false);
         textRegis1.setVisible(false);
@@ -154,6 +162,7 @@ public class FXMLLoginController implements Initializable {
         telephone.setVisible(false);
         userName.setVisible(false);
         cmbType.setVisible(false);
+        btn_exit.setVisible(false);
 
         slide.setOnFinished((e -> {
 
@@ -163,7 +172,7 @@ public class FXMLLoginController implements Initializable {
     @FXML
     private void registrarUsuario(MouseEvent event) {
         TranslateTransition slide = new TranslateTransition();
-        slide.setDuration(Duration.seconds(0.7));
+        slide.setDuration(Duration.seconds(0.5));
         slide.setNode(paneUno);
 
         slide.setToX(0);
@@ -179,6 +188,7 @@ public class FXMLLoginController implements Initializable {
         cmbBox.setVisible(false);
         iconLogin.setVisible(false);
         iconPass.setVisible(false);
+        btn_exit1.setVisible(false);
 
         label2.setVisible(true);
         userName.setVisible(true);
@@ -193,6 +203,7 @@ public class FXMLLoginController implements Initializable {
         telephone.setVisible(true);
         userName.setVisible(true);
         cmbType.setVisible(true);
+        btn_exit.setVisible(true);
 
         slide.setOnFinished((e -> {
 
@@ -324,5 +335,10 @@ public class FXMLLoginController implements Initializable {
 
         }
 
+    }
+
+    @FXML
+    private void exit(ActionEvent event) {
+        System.exit(0);
     }
 }
