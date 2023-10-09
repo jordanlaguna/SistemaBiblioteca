@@ -123,6 +123,8 @@ public class FXMLLibrosController implements Initializable {
             alert.setContentText("No se pudo guardar los libros. " + e);
             alert.showAndWait();
         }
+        cargarDatos();
+        limpiarDatos();
     }
 
     @FXML
@@ -138,7 +140,8 @@ public class FXMLLibrosController implements Initializable {
 
             String sql = "update book set isbn= '" + value1 + "',title= '" 
                     + value2 + "',authorBook= '" + value3 + "',editorial= '" 
-                    + value4 + "' where releaseDate= '" + value5 + "' ";
+                    + value4 + "',releaseDate= '" + value5 + "' where isbn= '" 
+                    + value1 + "' ";
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText(null);
@@ -174,6 +177,7 @@ public class FXMLLibrosController implements Initializable {
         txt_author.clear();
         txt_editorial.clear();
         txt_cantidad.clear();
+        datePicker.setValue(null);
     }
 
     @FXML
@@ -237,16 +241,16 @@ public class FXMLLibrosController implements Initializable {
                return true;
            }
            String tipoTexto = newvalue.toLowerCase();
-           if(Book.getTitle().toLowerCase().indexOf(tipoTexto)!= -1){
+           if(Book.getTitle().toLowerCase().contains(tipoTexto)){
                
                return true;
            }
-            if(Book.getAuthorBook().toLowerCase().indexOf(tipoTexto)!= -1){
+            if(Book.getAuthorBook().toLowerCase().contains(tipoTexto)){
                
                return true;
            }
            
-            if(Book.getEditorial().toLowerCase().indexOf(tipoTexto)!= -1){
+            if(Book.getEditorial().toLowerCase().contains(tipoTexto)){
                
                return true;
            }
