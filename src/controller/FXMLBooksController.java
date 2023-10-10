@@ -38,7 +38,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author jorda
  */
-public class FXMLLibrosController implements Initializable {
+public class FXMLBooksController implements Initializable {
 
     @FXML
     private TextField txt_isbn;
@@ -272,7 +272,4 @@ public class FXMLLibrosController implements Initializable {
         txt_editorial.setText(column_editorial.getCellData(index));         
         
     }
-
-     
-    
 }

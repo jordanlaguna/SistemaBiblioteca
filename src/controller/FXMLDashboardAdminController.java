@@ -15,7 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javax.swing.JOptionPane;
+
 
 /**
  * FXML Controller class
@@ -36,7 +36,8 @@ public class FXMLDashboardAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             // Cargar la vista del dashboard al inicio
-            Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLInicio.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/vista"
+                    + "/FXMLDashboard.fxml"));
             containerMenu.getChildren().clear(); // Limpiar el contenido actual
             containerMenu.getChildren().add(root); // Mostrar la vista del dashboard
         } catch (IOException ex) {
@@ -56,7 +57,7 @@ public class FXMLDashboardAdminController implements Initializable {
     @FXML
     private void openComputer(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/"
-                + "FXMLComputadora.fxml"));
+                + "FXMLComputer.fxml"));
         containerMenu.getChildren().clear(); //limpiar
         containerMenu.getChildren().add(root);
     }
@@ -79,7 +80,16 @@ public class FXMLDashboardAdminController implements Initializable {
 
     @FXML
     private void openDash(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLInicio.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/"
+                + "FXMLDashboard.fxml"));
+        containerMenu.getChildren().clear(); //limpiar
+        containerMenu.getChildren().add(root);
+    }
+
+    @FXML
+    private void openUser(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/"
+                + "FXMLUsers.fxml"));
         containerMenu.getChildren().clear(); //limpiar
         containerMenu.getChildren().add(root);
     }

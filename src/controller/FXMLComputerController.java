@@ -37,7 +37,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author jorda
  */
-public class FXMLComputadoraController implements Initializable {
+public class FXMLComputerController implements Initializable {
 
     @FXML
     private Button btn_Add;
