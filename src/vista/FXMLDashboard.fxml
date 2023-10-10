@@ -43,7 +43,7 @@
                               <Insets left="33.0" top="15.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label text="12">
+                        <Label fx:id="label_users" text="20">
                            <font>
                               <Font name="Times New Roman Bold" size="36.0" />
                            </font>
@@ -82,7 +82,7 @@
                               <Insets left="50.0" top="15.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label text="120">
+                        <Label fx:id="label_books" text="120">
                            <font>
                               <Font name="Times New Roman Bold" size="36.0" />
                            </font>
@@ -121,7 +121,7 @@
                               <Insets left="50.0" top="15.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label text="60">
+                        <Label fx:id="label_laptos" text="60">
                            <font>
                               <Font name="Times New Roman Bold" size="36.0" />
                            </font>
@@ -160,7 +160,7 @@
                               <Insets left="50.0" top="15.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label text="60">
+                        <Label fx:id="label_tablets" text="60">
                            <font>
                               <Font name="Times New Roman Bold" size="36.0" />
                            </font>
@@ -213,7 +213,7 @@
                         <Insets left="50.0" top="15.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label text="60">
+                  <Label fx:id="label_Ptablets" text="60">
                      <font>
                         <Font name="Times New Roman Bold" size="36.0" />
                      </font>
@@ -252,7 +252,7 @@
                         <Insets left="50.0" top="15.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label text="60">
+                  <Label fx:id="label_Plaptos" text="60">
                      <font>
                         <Font name="Times New Roman Bold" size="36.0" />
                      </font>
@@ -291,7 +291,7 @@
                         <Insets left="50.0" top="15.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label text="120">
+                  <Label fx:id="label_Pbooks" text="120">
                      <font>
                         <Font name="Times New Roman Bold" size="36.0" />
                      </font>

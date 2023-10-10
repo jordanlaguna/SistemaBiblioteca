@@ -7,7 +7,9 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -15,6 +17,21 @@ import javafx.fxml.Initializable;
  * @author jorda
  */
 public class FXMLDashboardController implements Initializable {
+
+    @FXML
+    private Label label_users;
+    @FXML
+    private Label label_books;
+    @FXML
+    private Label label_laptos;
+    @FXML
+    private Label label_tablets;
+    @FXML
+    private Label label_Ptablets;
+    @FXML
+    private Label label_Plaptos;
+    @FXML
+    private Label label_Pbooks;
 
     /**
      * Initializes the controller class.
