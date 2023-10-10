@@ -5,6 +5,7 @@
  */
 package conexionDB;
 
+import clases.Computadora;
 import clases.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,8 +24,9 @@ public class ConexionLoginDB {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
+            //Jordan
             //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabiblioteca", "root", "");
-            
+            //Tony
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca", "root", "");
             return conn;
 
@@ -66,4 +68,6 @@ public class ConexionLoginDB {
 
         return list;
     }
+    
+    
 }

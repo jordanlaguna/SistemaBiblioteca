@@ -63,9 +63,7 @@ public class Libro {
         this.releaseDate = releaseDate;
     }
 
-    public Object getReleaseData() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+     
     /**
      * @param ISBN // The ISBN number of the book.
      * @param title //The title of the book.

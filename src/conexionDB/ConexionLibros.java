@@ -5,6 +5,7 @@
  */
 package conexionDB;
 
+import clases.Computadora;
 import clases.Libro;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,6 +17,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
 public class ConexionLibros {
+
+     
 
     Connection conn;
 
@@ -57,6 +60,31 @@ public class ConexionLibros {
                         rs.getDate("releaseDate")));
             }
             
+
+        } catch (SQLException | NumberFormatException e) {
+
+            System.out.println(e);
+
+        }
+
+        return list;
+    }
+    public static ObservableList<Computadora> getDataComputer() {
+
+        Connection conn = conn();
+        ObservableList<Computadora> list = FXCollections.observableArrayList();
+
+        try {
+            PreparedStatement ps = conn.prepareStatement("select * from computer");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Computadora(Integer.parseInt(rs.getString("id")),
+                        rs.getString("trademark"),
+                        rs.getString("ubication"),
+                        rs.getString("available")));
+                 
+            }
 
         } catch (SQLException | NumberFormatException e) {
 
