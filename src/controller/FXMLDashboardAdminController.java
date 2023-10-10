@@ -48,7 +48,7 @@ public class FXMLDashboardAdminController implements Initializable {
     @FXML
     private void openBook(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/"
-                + "FXMLLibros.fxml"));
+                + "FXMLBooks.fxml"));
         containerMenu.getChildren().clear(); //limpiar
         containerMenu.getChildren().add(root);
     }

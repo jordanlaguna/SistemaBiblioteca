@@ -93,7 +93,7 @@
             <TextField fx:id="id" editable="false" prefHeight="31.0" prefWidth="30.0" style="-fx-background-color: transparent;" visible="false" />
          </children>
       </HBox>
-      <TextField fx:id="txt_search" layoutX="55.0" layoutY="193.0" prefHeight="27.0" prefWidth="293.0" promptText="Buscar">
+      <TextField fx:id="txt_search" layoutX="55.0" layoutY="193.0" onKeyTyped="#buscarComputer" prefHeight="27.0" prefWidth="293.0" promptText="Buscar">
          <font>
             <Font name="Times New Roman" size="22.0" />
          </font></TextField>

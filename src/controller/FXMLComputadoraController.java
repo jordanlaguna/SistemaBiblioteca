@@ -6,6 +6,7 @@
 package controller;
 
 import clases.Computadora;
+import clases.Libro;
 import conexionDB.ConexionLibros;
 import java.net.URL;
 import java.sql.Connection;
@@ -15,6 +16,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -217,13 +221,43 @@ public class FXMLComputadoraController implements Initializable {
 
         if (index <= -1) {
             return;
-        }
+        } 
 
         Integer idValue = column_id.getCellData(index);
         id.setText(String.valueOf(idValue));
         txt_brand.setText(column_brand.getCellData(index));
         txt_quantity.setText(column_quantity.getCellData(index));
         cmbBox.setValue(column_available.getCellData(index));
+    }
+
+    @FXML
+    private void buscarComputer(KeyEvent ke) {
+        FilteredList<Computadora> filterData = new FilteredList<>(Compus, p -> true);
+        txt_search.textProperty().addListener((obsevable, oldvalue, newvalue)->{
+        filterData.setPredicate(Book ->{
+           if(newvalue == null || newvalue.isEmpty()){
+               return true;
+           }
+           String tipoTexto = newvalue.toLowerCase();
+           if(Book.getUbication().toLowerCase().contains(tipoTexto)){
+               
+               return true;
+           }
+            if(Book.getTrademark().toLowerCase().contains(tipoTexto)){
+               
+               return true; 
+           }
+           
+            if(Book.getAvailable().toLowerCase().contains(tipoTexto)){
+               
+               return true;
+           }
+           return false;
+        });
+            SortedList<Computadora> sortedList = new SortedList<>(filterData);
+            sortedList.comparatorProperty().bind(tbw_computer.comparatorProperty());
+            tbw_computer.setItems(sortedList);
+        });
     }
 
 }
