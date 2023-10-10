@@ -11,7 +11,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLInicioController">
    <children>
       <Label layoutX="35.0" layoutY="13.0" styleClass="label1" stylesheets="@../Style/LoginStyleSheet.css" text="Información">
@@ -219,7 +218,7 @@
                         <Font name="Times New Roman Bold" size="36.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="-150.0" top="60.0" />
+                        <Insets left="-155.0" top="60.0" />
                      </HBox.margin>
                   </Label>
                   <Label text="Activos">

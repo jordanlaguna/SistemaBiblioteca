@@ -271,10 +271,9 @@ public class FXMLLibrosController implements Initializable {
         }
 
         txt_isbn.setText(column_isbn.getCellData(index).toString());
-        txt_title.setText(column_title.getCellData(index).toString());
-        txt_author.setText(column_author.getCellData(index).toString());
-        txt_editorial.setText(column_editorial.getCellData(index).toString());
-         
+        txt_title.setText(column_title.getCellData(index));
+        txt_author.setText(column_author.getCellData(index));
+        txt_editorial.setText(column_editorial.getCellData(index));         
         
     }
 
