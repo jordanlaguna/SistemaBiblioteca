@@ -70,10 +70,7 @@ public class FXMLLibrosController implements Initializable {
     private TableColumn<Libro, DatePicker> column_year;
     @FXML
     private TextField txt_search;
-    @FXML
     private TextField txt_cantidad;
-    @FXML
-    private TableColumn<Libro, Integer> column_cantidad;
     
      private ObservableList<Libro> Libro = FXCollections.observableArrayList();
 
@@ -135,12 +132,12 @@ public class FXMLLibrosController implements Initializable {
             String value2 = txt_title.getText();
             String value3 = txt_author.getText();
             String value4 = txt_editorial.getText();
-            String value5 = datePicker.getTypeSelector();
+
             
 
             String sql = "update book set isbn= '" + value1 + "',title= '" 
                     + value2 + "',authorBook= '" + value3 + "',editorial= '" 
-                    + value4 + "',releaseDate= '" + value5 + "' where isbn= '" 
+                    + value4 + "' where isbn= '" 
                     + value1 + "' ";
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -176,7 +173,6 @@ public class FXMLLibrosController implements Initializable {
         txt_title.clear();
         txt_author.clear();
         txt_editorial.clear();
-        txt_cantidad.clear();
         datePicker.setValue(null);
     }
 
