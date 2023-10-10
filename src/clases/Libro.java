@@ -5,41 +5,30 @@ package clases;
 import java.util.Date;
 public class Libro {
 
-    private String ISBN;
+    private Integer isbn;
 
     private String title;
 
-    private String author;
+    private String authorBook;
 
     private String editorial;
 
     private Date releaseDate;
-    /**
-     * @param ISBN // The ISBN number of the book.
-     * @param title //The title of the book.
-     * @param author //The author of the book.
-     * @param editorial //The publisher of the book.
-     * @param releaseDate //The release date of the book.
-     */
-    
 
-    public Libro(String ISBN, String title, String author, String editorial, Date releaseDate) {
-        this.ISBN = ISBN;
+    public Libro(Integer isbn, String title, String authorBook, String editorial, Date releaseDate) {
+        this.isbn = isbn;
         this.title = title;
-        this.author = author;
+        this.authorBook = authorBook;
         this.editorial = editorial;
         this.releaseDate = releaseDate;
     }
 
-    public Libro() {
+    public Integer getIsbn() {
+        return isbn;
     }
 
-    public String getISBN() {
-        return ISBN;
-    }
-
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setIsbn(Integer isbn) {
+        this.isbn = isbn;
     }
 
     public String getTitle() {
@@ -50,12 +39,12 @@ public class Libro {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorBook() {
+        return authorBook;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthorBook(String authorBook) {
+        this.authorBook = authorBook;
     }
 
     public String getEditorial() {
@@ -73,10 +62,18 @@ public class Libro {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
-    /**
-     * Conduct a search related to the book (search by title, author,
-     * availability, etc.).
-     */
-    public void search() {
+
+    public Object getReleaseData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    /**
+     * @param ISBN // The ISBN number of the book.
+     * @param title //The title of the book.
+     * @param author //The author of the book.
+     * @param editorial //The publisher of the book.
+     * @param releaseDate //The release date of the book.
+     */
+    
+
+     
 }

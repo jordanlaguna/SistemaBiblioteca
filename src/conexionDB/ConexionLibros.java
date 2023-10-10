@@ -5,7 +5,7 @@
  */
 package conexionDB;
 
-import clases.Usuario;
+import clases.Libro;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
-public class ConexionLoginDB {
+public class ConexionLibros {
 
     Connection conn;
 
@@ -23,8 +23,9 @@ public class ConexionLoginDB {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
+            //Jordan
             //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabiblioteca", "root", "");
-            
+            //Tony
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca", "root", "");
             return conn;
 
@@ -40,23 +41,22 @@ public class ConexionLoginDB {
 
     }
 
-    public static ObservableList<Usuario> getDataUsuario() {
+    public static ObservableList<Libro> getDataBook() {
 
-        Connection con = conn();
-        ObservableList<Usuario> list = FXCollections.observableArrayList();
+        Connection conn = conn();
+        ObservableList<Libro> list = FXCollections.observableArrayList();
 
         try {
-            PreparedStatement ps = con.prepareStatement("select * from user");
+            PreparedStatement ps = conn.prepareStatement("select * from book");
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
-                list.add(new Usuario(rs.getString("fechaNacimiento"), 
-                        rs.getString("nombre"),
-                        rs.getString("cedula"), rs.getString("primerApellido"), 
-                        rs.getString("segundoApellido"), rs.getString("idUser"),
-                        rs.getString("userName"), rs.getString("password"),
-                        rs.getString("type")));
+                list.add(new Libro(Integer.parseInt(rs.getString("isbn")),
+                        rs.getString("title"),
+                        rs.getString("authorBook"),
+                        rs.getString("editorial"),
+                        rs.getDate("releaseDate")));
             }
+            
 
         } catch (SQLException | NumberFormatException e) {
 

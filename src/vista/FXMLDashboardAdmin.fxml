@@ -36,7 +36,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="-19.0" layoutY="-7.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #F2F2F2;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Dashboard">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openDash" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Dashboard">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
