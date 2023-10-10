@@ -234,7 +234,7 @@ public class FXMLLibrosController implements Initializable {
 
     @FXML
     private void buscar(KeyEvent ke) {
-        FilteredList<Libro> filterData = new FilteredList<>(Libro, p -> true);
+        FilteredList<Libro> filterData = new FilteredList<>(Libros, p -> true);
         txt_search.textProperty().addListener((obsevable, oldvalue, newvalue)->{
         filterData.setPredicate(Book ->{
            if(newvalue == null || newvalue.isEmpty()){
