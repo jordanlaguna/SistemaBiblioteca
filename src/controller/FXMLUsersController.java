@@ -99,7 +99,7 @@ public class FXMLUsersController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cmbType.getItems().addAll("Admin", "Profesor", "Estudiante");
-        cargarDatos();
+        loadData();
     }
 
     @FXML
@@ -153,7 +153,7 @@ public class FXMLUsersController implements Initializable {
 
         }
 
-        cargarDatos();
+        loadData();
     }
 
     @FXML
@@ -185,7 +185,7 @@ public class FXMLUsersController implements Initializable {
 
     }
 
-    private void cargarDatos() {
+    private void loadData() {
 
         conn = ConexionUsuarios.getConnection();
         column_birthDay.setCellValueFactory(new PropertyValueFactory<Usuario, 

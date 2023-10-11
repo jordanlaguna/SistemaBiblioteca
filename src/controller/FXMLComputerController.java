@@ -91,7 +91,6 @@ public class FXMLComputerController implements Initializable {
         this.column_id.setCellValueFactory(new PropertyValueFactory<Computadora, Integer>("id"));
         this.column_brand.setCellValueFactory(new PropertyValueFactory<Computadora, String>("trademark"));
         this.column_quantity.setCellValueFactory(new PropertyValueFactory<Computadora, String>("ubication"));
-
         this.column_available.setCellValueFactory(new PropertyValueFactory<Computadora, String>("available"));
 
         Compus = ConexionLibros.getDataComputer();

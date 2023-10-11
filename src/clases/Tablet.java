@@ -6,28 +6,41 @@ package clases;
  */
 public class Tablet {
 
-    private int quantity;
-
+    private int id_tab;
+    
     private String trademark;
-
+    
     private String ubication;
 
+    private String available;
+
    /**
-     * @param quantity Indicates the quantity of computers of this type
-     * available in the library
+     * @param id_tab Indicates the id of computers
      *
      * @param trademark It represents the brand of the computers
      *
      * @param ubication An indicator that signals whether computers of this
      * type are available for use.
+     * @param available An indicator that signals whether computers of this
+     * type are available for use.
      */
-
-    public Tablet(int quantity, String trademark, String ubication) {
-        this.quantity = quantity;
+    public Tablet(int id_tab, String trademark, String ubication, String available) {
+        this.id_tab = id_tab;
         this.trademark = trademark;
         this.ubication = ubication;
+        this.available = available;
     }
 
+    public Tablet() {
+    }
+
+    public int getId_tab() {
+        return id_tab;
+    }
+
+    public void setId_tab(int id_tab) {
+        this.id_tab = id_tab;
+    }
 
     public String getTrademark() {
         return trademark;
@@ -35,14 +48,6 @@ public class Tablet {
 
     public void setTrademark(String trademark) {
         this.trademark = trademark;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public String getUbication() {
@@ -53,7 +58,16 @@ public class Tablet {
         this.ubication = ubication;
     }
 
-     /**
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
+    }
+    
+    
+    /**
      * This method is designed to search for computer drives in the library.
      */
     public void unitSearch() {
