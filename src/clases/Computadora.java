@@ -5,49 +5,44 @@ package clases;
  * This class inherits from the Equipment class, which means it shares some
  * common features with other types of equipment in the library
  */
-public class Computadora  {
-    private int id;
-    
-    private String trademark;
-    
-    private String ubication;
+public class Computadora extends Equipo {
 
-    private String available;
+    private int quantity;
+
+    private String trademark;
+
+    private Boolean available;
 
    /**
-     * @param id Indicates the identifier of computers of this type.
-     *available in the library
-     * 
-     * @param ubication Indicates the location of computers of this type.
-     *available in the library
+     * @param quantity Indicates the quantity of computers of this type
+     * available in the library
      *
      * @param trademark It represents the brand of the computers
      *
      * @param available An indicator that signals whether computers of this
      * type are available for use.
-     * 
+     * @param quantiy
      */
-    public Computadora(Integer id, String trademark, String ubication, String available) {     
-        this.id = id;
+
+    public Computadora(int quantity, String trademark, Boolean available, 
+            int quantiy) {
+        super(quantity);
+        this.quantity = quantity;
         this.trademark = trademark;
-        this.ubication = ubication;
         this.available = available;
     }
 
-    public int getId() {
-        return id;
+   
+   
+
+    @Override
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUbication() {
-        return ubication;
-    }
-
-    public void setUbication(String ubication) {
-        this.ubication = ubication;
+    @Override
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getTrademark() {
@@ -58,15 +53,14 @@ public class Computadora  {
         this.trademark = trademark;
     }
 
-    public String getAvailable() {
+    public Boolean getAvailable() {
         return available;
     }
 
-    public void setAvailable(String available) {
+    public void setAvailable(Boolean available) {
         this.available = available;
     }
-
-    /**
+     /**
      * This method is designed to search for computer drives in the library.
      */
     public void unitSearch() {

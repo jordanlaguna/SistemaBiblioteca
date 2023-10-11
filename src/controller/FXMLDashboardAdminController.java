@@ -15,7 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -36,8 +36,7 @@ public class FXMLDashboardAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             // Cargar la vista del dashboard al inicio
-            Parent root = FXMLLoader.load(getClass().getResource("/vista"
-                    + "/FXMLDashboard.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLInicio.fxml"));
             containerMenu.getChildren().clear(); // Limpiar el contenido actual
             containerMenu.getChildren().add(root); // Mostrar la vista del dashboard
         } catch (IOException ex) {
@@ -49,7 +48,7 @@ public class FXMLDashboardAdminController implements Initializable {
     @FXML
     private void openBook(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/"
-                + "FXMLBooks.fxml"));
+                + "FXMLLibros.fxml"));
         containerMenu.getChildren().clear(); //limpiar
         containerMenu.getChildren().add(root);
     }
@@ -57,7 +56,7 @@ public class FXMLDashboardAdminController implements Initializable {
     @FXML
     private void openComputer(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/"
-                + "FXMLComputer.fxml"));
+                + "FXMLComputadora.fxml"));
         containerMenu.getChildren().clear(); //limpiar
         containerMenu.getChildren().add(root);
     }
@@ -80,16 +79,7 @@ public class FXMLDashboardAdminController implements Initializable {
 
     @FXML
     private void openDash(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/"
-                + "FXMLDashboard.fxml"));
-        containerMenu.getChildren().clear(); //limpiar
-        containerMenu.getChildren().add(root);
-    }
-
-    @FXML
-    private void openUser(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/"
-                + "FXMLUsers.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLInicio.fxml"));
         containerMenu.getChildren().clear(); //limpiar
         containerMenu.getChildren().add(root);
     }
