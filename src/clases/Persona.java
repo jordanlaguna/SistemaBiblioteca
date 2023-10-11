@@ -1,4 +1,7 @@
 package clases;
+
+import java.util.Date;
+
 /**
  * The person class is designed in order to identify the types of people,
  * whether teacher or student, and has its variables that are inherited in both
@@ -7,7 +10,7 @@ package clases;
 
 public class Persona  {
 
-    private String birthDay;
+    private Date birth_date;
 
     private String identification;
 
@@ -16,10 +19,12 @@ public class Persona  {
     private String lastName;
 
     private String secondName;
+    
+    private int telephone;
      
     /**
      *
-     * @param birthDay = dateBirth: An attribute of type Date that stores
+     * @param birth_date = dateBirth: An attribute of type Date that stores
      * the date of birth of the person.
      * @param identification = A String type attribute that stores the person's ID
      * number
@@ -28,25 +33,38 @@ public class Persona  {
      * name.
      * @param secondName = A String attribute that stores the person's second
      * last name.
+     * @param telephone = A String attribute that stores the person's second
+     * last name.
      */
 
-    public Persona(String birthDay, String identification, String name, String lastName, String secondName) {
-        this.birthDay = birthDay;
+    public Persona(Date birth_date, String identification, String name, 
+            String lastName, String secondName, int telephone) {
+        this.birth_date = birth_date;
         this.identification = identification;
         this.name = name;
         this.lastName = lastName;
         this.secondName = secondName;
+        this.telephone = telephone;
     }
 
     public Persona(){
         
     }
-    public String getBirthDay() {
-        return birthDay;
+
+    public int getTelephone() {
+        return telephone;
     }
 
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
+    public void setTelephone(int telephone) {
+        this.telephone = telephone;
+    }
+    
+    public Date getBirth_date() {
+        return birth_date;
+    }
+
+    public void setBirth_date(Date birth_date) {
+        this.birth_date = birth_date;
     }
 
     public String getIdentification() {
