@@ -78,15 +78,12 @@ public class ConexionLibros {
         try {
             PreparedStatement ps = conn.prepareStatement("select * from computer");
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 list.add(new Computadora(Integer.parseInt(rs.getString("id")),
                         rs.getString("trademark"),
                         rs.getString("ubication"),
                         rs.getString("available")));
-                 
             }
-
         } catch (SQLException | NumberFormatException e) {
 
             System.out.println(e);

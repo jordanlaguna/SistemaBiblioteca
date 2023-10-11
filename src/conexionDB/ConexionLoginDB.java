@@ -5,6 +5,7 @@
  */
 package conexionDB;
 
+import clases.Computadora;
 import clases.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,10 +25,7 @@ public class ConexionLoginDB {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabiblioteca", "root", "");
-            
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca", "root", "");
             return conn;
-
         } catch (ClassNotFoundException | SQLException e) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -50,11 +48,13 @@ public class ConexionLoginDB {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                list.add(new Usuario(rs.getString("fechaNacimiento"), 
-                        rs.getString("nombre"),
-                        rs.getString("cedula"), rs.getString("primerApellido"), 
-                        rs.getString("segundoApellido"), rs.getString("idUser"),
-                        rs.getString("userName"), rs.getString("password"),
+                list.add(new Usuario(rs.getDate("birth_date"),
+                        rs.getString("identification"),
+                        rs.getString("name"),
+                        rs.getString("lastName"),
+                        rs.getString("secondName"),
+                        Integer.parseInt(rs.getString("telephone")),
+                        rs.getString("correo"), rs.getString("password"),
                         rs.getString("type")));
             }
 
@@ -66,4 +66,5 @@ public class ConexionLoginDB {
 
         return list;
     }
+
 }

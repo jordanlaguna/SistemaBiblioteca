@@ -16,8 +16,17 @@ public class Libro {
     private String available;
 
     private Date releaseDate;
+         
+    /**
+     * @param isbn // The ISBN number of the book.
+     * @param title //The title of the book.
+     * @param authorBook //The author of the book.
+     * @param editorial //The publisher of the book.
+     * @param releaseDate //The release date of the book.
+     */
 
-    public Libro(Integer isbn, String title, String authorBook, String editorial, String available, Date releaseDate) {
+    public Libro(Integer isbn, String title, String authorBook, String editorial
+            , String available, Date releaseDate) {
         this.isbn = isbn;
         this.title = title;
         this.authorBook = authorBook;
@@ -74,17 +83,5 @@ public class Libro {
 
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
-    }
-
-     
-    /**
-     * @param ISBN // The ISBN number of the book.
-     * @param title //The title of the book.
-     * @param author //The author of the book.
-     * @param editorial //The publisher of the book.
-     * @param releaseDate //The release date of the book.
-     */
-    
-
-     
+    }     
 }
