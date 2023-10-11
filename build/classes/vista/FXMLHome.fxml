@@ -11,7 +11,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDashboardController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLHomeController">
    <children>
       <Label layoutX="35.0" layoutY="13.0" styleClass="label1" stylesheets="@../Style/LoginStyleSheet.css" text="Información">
          <font>
@@ -92,7 +92,7 @@
                         </Label>
                         <Label text="Disponibles">
                            <HBox.margin>
-                              <Insets left="-60.0" top="100.0" />
+                              <Insets left="-50.0" top="100.0" />
                            </HBox.margin>
                            <font>
                               <Font name="Times New Roman Bold" size="22.0" />
@@ -304,7 +304,7 @@
                         <Font name="Times New Roman Bold" size="24.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="-60.0" top="110.0" />
+                        <Insets left="-50.0" top="110.0" />
                      </HBox.margin>
                   </Label>
                </children>

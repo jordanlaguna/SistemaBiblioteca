@@ -21,7 +21,7 @@ import javafx.scene.control.Label;
  *
  * @author jorda
  */
-public class FXMLDashboardController implements Initializable {
+public class FXMLHomeController implements Initializable {
 
     @FXML
     private Label label_users;

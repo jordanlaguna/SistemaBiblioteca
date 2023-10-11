@@ -4,13 +4,13 @@ package clases;
  *The tablet class is for the purpose of identifying the quantities of tablets
  * available for the loan and their status.
  */
-public class Tablet extends Equipo {
+public class Tablet {
 
     private int quantity;
 
     private String trademark;
 
-    private Boolean available;
+    private String ubication;
 
    /**
      * @param quantity Indicates the quantity of computers of this type
@@ -18,28 +18,16 @@ public class Tablet extends Equipo {
      *
      * @param trademark It represents the brand of the computers
      *
-     * @param available An indicator that signals whether computers of this
+     * @param ubication An indicator that signals whether computers of this
      * type are available for use.
-     * @param quantiy
      */
 
-    public Tablet(int quantity, String trademark, Boolean available, 
-            int quantiy) {
-        super(quantity);
+    public Tablet(int quantity, String trademark, String ubication) {
         this.quantity = quantity;
         this.trademark = trademark;
-        this.available = available;
+        this.ubication = ubication;
     }
 
-    @Override
-    public int getQuantity() {
-        return quantity;
-    }
-
-    @Override
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
     public String getTrademark() {
         return trademark;
@@ -49,13 +37,22 @@ public class Tablet extends Equipo {
         this.trademark = trademark;
     }
 
-    public Boolean getAvailable() {
-        return available;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setAvailable(Boolean available) {
-        this.available = available;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
+
+    public String getUbication() {
+        return ubication;
+    }
+
+    public void setUbication(String ubication) {
+        this.ubication = ubication;
+    }
+
      /**
      * This method is designed to search for computer drives in the library.
      */

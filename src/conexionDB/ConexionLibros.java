@@ -5,6 +5,7 @@
  */
 package conexionDB;
 
+import clases.Computadora;
 import clases.Libro;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -56,6 +57,7 @@ public class ConexionLibros {
                         rs.getString("title"),
                         rs.getString("authorBook"),
                         rs.getString("editorial"),
+                        rs.getString("available"),
                         rs.getDate("releaseDate")));
             }
 
@@ -65,7 +67,7 @@ public class ConexionLibros {
 
         }
 
-        return list;
+        return list;    
     }
 
     public static ObservableList<Computadora> getDataComputer() {

@@ -217,8 +217,8 @@
                   <TableColumn fx:id="column_secondName" prefWidth="84.0" text="Apellido" />
                   <TableColumn fx:id="column_phone" prefWidth="87.0" text="Teléfono" />
                   <TableColumn fx:id="column_correo" prefWidth="120.0" text="Correo" />
-                  <TableColumn fx:id="column_password" prefWidth="105.0" text="Contraseña" />
-                  <TableColumn fx:id="column_type" prefWidth="52.0" text="Tipo" />
+                  <TableColumn fx:id="column_password" prefWidth="103.0" text="Contraseña" />
+                  <TableColumn fx:id="column_type" prefWidth="54.0" text="Tipo" />
                  
               </columns>
             </TableView>

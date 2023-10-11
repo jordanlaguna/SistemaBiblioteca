@@ -214,7 +214,7 @@ public class FXMLLoginController implements Initializable {
     private void Login(ActionEvent event) throws IOException {
         conn = ConexionLoginDB.conn();
 
-        String sql = "Select * from user where userName = ? and password = ? and type =? ";
+        String sql = "Select * from user where email = ? and password = ? and type =? ";
 
         try {
             ps = conn.prepareStatement(sql);
