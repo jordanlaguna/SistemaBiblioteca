@@ -52,6 +52,10 @@ public class FXMLDashboardController implements Initializable {
         cargarBooks();
         cargarComputers();
         cargarTablets();
+        
+        cargarBooksNot();
+        cargarComputersNot();
+        cargarTabletsNot();
     }    
     
     public int cargarUsers(){
@@ -136,7 +140,7 @@ public class FXMLDashboardController implements Initializable {
     
     public int cargarComputers(){
         // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
-       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = 'available'";
+       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = 'Disponible'";
          
 
         try {
@@ -155,8 +159,10 @@ public class FXMLDashboardController implements Initializable {
                 int cantidadFilas = resultSet.getInt(1);
                 if(cantidadFilas < 10){
                    label_laptos.setText("0"+cantidadFilas); 
+                }else if(cantidadFilas < 100 && cantidadFilas > 9){
+                   label_laptos.setText(" "+cantidadFilas);
                 }else{
-                   label_laptos.setText(""+cantidadFilas);
+                    label_laptos.setText(""+cantidadFilas);
                 }
                 
                 return cantidadFilas;
@@ -175,7 +181,7 @@ public class FXMLDashboardController implements Initializable {
     }
     public int cargarTablets(){
         // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
-       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = 'available'";
+       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = 'Disponible'";
          
 
         try {
@@ -196,6 +202,128 @@ public class FXMLDashboardController implements Initializable {
                    label_tablets.setText("0"+cantidadFilas); 
                 }else{
                    label_tablets.setText(""+cantidadFilas);
+                }
+                
+                return cantidadFilas;
+            }
+            
+            // Cerrar la conexión y liberar recursos
+            resultSet.close();
+            preparedStatement.close();
+            conexion.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1; // Retorna -1 si hay algún error
+    }
+    public int cargarBooksNot(){
+        // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
+         
+        String consultaDos = "SELECT COUNT(*) FROM book WHERE available = 'No disponible'";
+
+        try {
+            // Establecer la conexión
+            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+            
+            // Crear una declaración preparada
+            PreparedStatement preparedStatement = conexion.prepareStatement(consultaDos);
+
+            // Ejecutar la consulta
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            // Leer el resultado
+            if (resultSet.next()) {
+                // Obtener la cantidad de filas
+                int cantidadFilas = resultSet.getInt(1);
+                if(cantidadFilas < 10){
+                   label_Pbooks.setText("0"+cantidadFilas); 
+                }else if(cantidadFilas < 100 && cantidadFilas > 9){
+                   label_Pbooks.setText(" "+cantidadFilas);
+                }else{
+                    label_Pbooks.setText(""+cantidadFilas);
+                }
+                
+                return cantidadFilas;
+            }
+            
+            // Cerrar la conexión y liberar recursos
+            resultSet.close();
+            preparedStatement.close();
+            conexion.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1; // Retorna -1 si hay algún error
+    }
+    
+    public int cargarComputersNot(){
+        // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
+       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = 'No disponible'";
+         
+
+        try {
+            // Establecer la conexión
+            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+            
+            // Crear una declaración preparada
+            PreparedStatement preparedStatement = conexion.prepareStatement(consultaDos);
+
+            // Ejecutar la consulta
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            // Leer el resultado
+            if (resultSet.next()) {
+                // Obtener la cantidad de filas
+                int cantidadFilas = resultSet.getInt(1);
+                
+                if(cantidadFilas < 10){
+                   label_Plaptos.setText("0"+cantidadFilas); 
+                }else{
+                   label_Plaptos.setText(""+cantidadFilas);
+                }
+                
+                
+                return cantidadFilas;
+            }
+            
+            // Cerrar la conexión y liberar recursos
+            resultSet.close();
+            preparedStatement.close();
+            conexion.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1; // Retorna -1 si hay algún error
+    }
+    public int cargarTabletsNot(){
+        // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
+       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = 'No disponible'";
+         
+
+        try {
+            // Establecer la conexión
+            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+            
+            // Crear una declaración preparada
+            PreparedStatement preparedStatement = conexion.prepareStatement(consultaDos);
+
+            // Ejecutar la consulta
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+            // Leer el resultado
+            if (resultSet.next()) {
+                // Obtener la cantidad de filas
+                int cantidadFilas = resultSet.getInt(1);
+                if(cantidadFilas < 10){
+                   label_Ptablets.setText("0"+cantidadFilas); 
+                }else{
+                   label_Ptablets.setText(""+cantidadFilas);
                 }
                 
                 return cantidadFilas;
