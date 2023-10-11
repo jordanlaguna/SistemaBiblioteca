@@ -12,16 +12,29 @@ public class Libro {
     private String authorBook;
 
     private String editorial;
+    
+    private String available;
 
     private Date releaseDate;
 
-    public Libro(Integer isbn, String title, String authorBook, String editorial, Date releaseDate) {
+    public Libro(Integer isbn, String title, String authorBook, String editorial, String available, Date releaseDate) {
         this.isbn = isbn;
         this.title = title;
         this.authorBook = authorBook;
         this.editorial = editorial;
+        this.available = available;
         this.releaseDate = releaseDate;
     }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
+    }
+
+    
 
     public Integer getIsbn() {
         return isbn;

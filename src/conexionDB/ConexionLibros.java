@@ -57,6 +57,7 @@ public class ConexionLibros {
                         rs.getString("title"),
                         rs.getString("authorBook"),
                         rs.getString("editorial"),
+                        rs.getString("available"),
                         rs.getDate("releaseDate")));
             }
             

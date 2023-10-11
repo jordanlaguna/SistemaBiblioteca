@@ -80,6 +80,8 @@ public class FXMLBooksController implements Initializable {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+    @FXML
+    private TableColumn<Libro, String> column_available;
 
     /**
      * Initializes the controller class.
@@ -96,7 +98,7 @@ public class FXMLBooksController implements Initializable {
         
 
         String sql = "insert into book(isbn, title, authorBook,"
-                + " editorial, releaseDate)values(?,?,?,?,?)";
+                + " editorial, available, releaseDate)values(?,?,?,?,?,?)";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -104,7 +106,8 @@ public class FXMLBooksController implements Initializable {
             ps.setString(2, txt_title.getText());
             ps.setString(3, txt_author.getText());
             ps.setString(4, txt_editorial.getText());
-            ps.setString(5, datePicker.getValue().toString());
+            ps.setString(5, "Disponible");
+            ps.setString(6, datePicker.getValue().toString());
             ps.execute();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -223,6 +226,8 @@ public class FXMLBooksController implements Initializable {
                 String>("editorial"));
         this.column_year.setCellValueFactory(new PropertyValueFactory<Libro,
                 DatePicker>("releaseDate"));
+        this.column_available.setCellValueFactory(new PropertyValueFactory<Libro,
+                String>("available"));
         
         Libros = ConexionLibros.getDataBook();
         tbw_libros.setItems(Libros);
@@ -245,8 +250,11 @@ public class FXMLBooksController implements Initializable {
                
                return true;
            }
-           
             if(Book.getEditorial().toLowerCase().contains(tipoTexto)){
+               
+               return true;
+           }
+            if(Book.getAvailable().toLowerCase().contains(tipoTexto)){
                
                return true;
            }
@@ -269,7 +277,8 @@ public class FXMLBooksController implements Initializable {
         txt_isbn.setText(column_isbn.getCellData(index).toString());
         txt_title.setText(column_title.getCellData(index));
         txt_author.setText(column_author.getCellData(index));
-        txt_editorial.setText(column_editorial.getCellData(index));         
+        txt_editorial.setText(column_editorial.getCellData(index));
+         
         
     }
 }
