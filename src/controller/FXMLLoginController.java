@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -34,6 +33,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -102,7 +102,8 @@ public class FXMLLoginController implements Initializable {
     private Button btn_exit;
     @FXML
     private Button btn_exit1;
-
+    
+    
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -144,6 +145,7 @@ public class FXMLLoginController implements Initializable {
         iconLogin.setVisible(true);
         iconPass.setVisible(true);
         btn_exit1.setVisible(true);
+        
 
         textRegis.setVisible(false);
         textRegis1.setVisible(false);
@@ -212,7 +214,7 @@ public class FXMLLoginController implements Initializable {
     private void Login(ActionEvent event) throws IOException {
         conn = ConexionLoginDB.conn();
 
-        String sql = "Select * from user where email = ? and password = ? and type =? ";
+        String sql = "Select * from user where userName = ? and password = ? and type =? ";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -271,95 +273,72 @@ public class FXMLLoginController implements Initializable {
         stage.show();*/
     @FXML
     private void registrarUser(ActionEvent event) {
-        Connection conn = null;
-        PreparedStatement ps1 = null;
-        PreparedStatement ps2 = null;
+        conn = ConexionLoginDB.conn();
+        String Tipo = (String) cmbType.getSelectionModel().getSelectedItem();
+
+        String sql = "insert into user(userName, password, type)values(?,?,?)";
+        String sqlDos = "insert into student(type)values(?)";
+        String sqlTres = "insert into teacher(type)values(?)";
+        String sqlCuatro = "insert into person(birth_date, identification, name,"
+                + " lastName, secondName, telephono)values(?,?,?,?,?,?)";
 
         try {
-            conn = ConexionLoginDB.conn();
-            conn.setAutoCommit(false);
 
-            // Insertar en la tabla "person"
-            String sqlPerson = "INSERT INTO person (birth_date, identification, name, lastName, secondName, telephone) VALUES (?, ?, ?, ?, ?, ?)";
-            ps1 = conn.prepareStatement(sqlPerson, Statement.RETURN_GENERATED_KEYS);
-            ps1.setString(1, birthDay.getValue().toString());
-            ps1.setString(2, identification.getText());
-            ps1.setString(3, name.getText());
-            ps1.setString(4, lastName.getText());
-            ps1.setString(5, secondName.getText());
-            ps1.setString(6, telephone.getText());
-            ps1.executeUpdate();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, userName.getText());
+            ps.setString(2, passwordRegis.getText());
+            ps.setString(3, cmbType.getValue().toString());
+            ps.execute();
 
-            ResultSet generatedKeys = ps1.getGeneratedKeys();
-            int idPerson = -1;
-            if (generatedKeys.next()) {
-                idPerson = generatedKeys.getInt(1);
+            if (Tipo == "Estudiante") {
+                ps = conn.prepareStatement(sqlDos);
+                ps.setString(1, cmbType.getValue().toString());
+
+                ps.execute();
+
+            } else if (Tipo == "Profesor") {
+                ps = conn.prepareStatement(sqlTres);
+                ps.setString(1, cmbType.getValue().toString());
+
+                ps.execute();
+
             } else {
-                throw new SQLException("No se pudo obtener el ID de persona generado.");
-            }
-            // Insertar en la tabla "user"
-            String sqlUser = "INSERT INTO user (id_user, email, password, type) VALUES (?, ?, ?, ?)";
-            ps2 = conn.prepareStatement(sqlUser);
-            ps2.setInt(1, idPerson);  // Usar el ID de persona como ID de usuario
-            ps2.setString(2, userName.getText());
-            ps2.setString(3, passwordRegis.getText());
-            ps2.setString(4, cmbType.getValue().toString());
-            ps2.executeUpdate();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("ERROR");
+                alert.setContentText("Tipo usuario no identificado");
+                alert.showAndWait();
 
-            conn.commit();
+            }
+
+            ps = conn.prepareStatement(sqlCuatro);
+            ps.setString(1, birthDay.getValue().toString());
+            ps.setString(2, identification.getText());
+            ps.setString(3, name.getText());
+            ps.setString(4, lastName.getText());
+            ps.setString(5, secondName.getText());
+            ps.setString(6, telephone.getText());
+            ps.execute();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("Información");
             alert.setContentText("Usuario agregado con éxito");
             alert.showAndWait();
-        } catch (Exception e) {
-            try {
-                if (conn != null) {
-                    conn.rollback();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
 
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
-            alert.setContentText("No se pudo agregar el usuario: " + e.getMessage());
+            alert.setContentText("No se pudo agregar el usuario" + e);
             alert.showAndWait();
-        } finally {
-            try {
-                if (ps1 != null) {
-                    ps1.close();
-                }
-                if (ps2 != null) {
-                    ps2.close();
-                }
-                if (conn != null) {
-                    conn.setAutoCommit(true);
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+
         }
-        cleanTextFields();
+
     }
 
     @FXML
     private void exit(ActionEvent event) {
         System.exit(0);
-    }
-    private void cleanTextFields(){
-        birthDay.setValue(null);
-        identification.clear();
-        name.clear();
-        lastName.clear();
-        secondName.clear();
-        telephone.clear();
-        userName.clear();
-        passwordRegis.clear();
-        cmbType.setValue(null);
-        
     }
 }

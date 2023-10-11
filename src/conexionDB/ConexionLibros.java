@@ -5,7 +5,6 @@
  */
 package conexionDB;
 
-import clases.Computadora;
 import clases.Libro;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,18 +17,18 @@ import javafx.scene.control.Alert;
 
 public class ConexionLibros {
 
-     
-
     Connection conn;
 
     public static Connection conn() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            //Jordan
+            // Jordan
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabiblioteca", "root", "");
-            //Tony
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca", "root", "");
+            // Tony
+            // Connection conn =
+            // DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca", "root",
+            // "");
             return conn;
 
         } catch (ClassNotFoundException | SQLException e) {
@@ -57,10 +56,8 @@ public class ConexionLibros {
                         rs.getString("title"),
                         rs.getString("authorBook"),
                         rs.getString("editorial"),
-                        rs.getString("available"),
                         rs.getDate("releaseDate")));
             }
-            
 
         } catch (SQLException | NumberFormatException e) {
 
@@ -70,6 +67,7 @@ public class ConexionLibros {
 
         return list;
     }
+
     public static ObservableList<Computadora> getDataComputer() {
 
         Connection conn = conn();
