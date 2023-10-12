@@ -1,7 +1,6 @@
 package clases;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * The Loan class represents the loans in the system, related to the library. In
@@ -11,11 +10,11 @@ public class Prestamo {
 
     private Date dateLoan;
 
-    private List copy;
+   private String exemplars;
 
     private Date dateReturn;
 
-    private List unit;
+   // private List unit;
 
     private int numLoan;
 
@@ -35,11 +34,11 @@ public class Prestamo {
     
     
 
-    public Prestamo(Date dateLoan, List copy, Date dateReturn, List unit, int numLoan) {
+    public Prestamo(Date dateLoan, String exemplars,  Date dateReturn, int numLoan) {//List copy, List unit,
         this.dateLoan = dateLoan;
-        this.copy = copy;
+        this.exemplars = exemplars;
         this.dateReturn = dateReturn;
-        this.unit = unit;
+        //this.unit = unit;
         this.numLoan = numLoan;
     }
 
@@ -54,12 +53,12 @@ public class Prestamo {
         this.dateLoan = dateLoan;
     }
 
-    public List getCopy() {
-        return copy;
+    public String getExemplars() {
+        return exemplars;
     }
 
-    public void setCopy(List copy) {
-        this.copy = copy;
+    public void setExemplars(String exemplars) {
+        this.exemplars = exemplars;
     }
 
     public Date getDateReturn() {
@@ -70,13 +69,13 @@ public class Prestamo {
         this.dateReturn = dateReturn;
     }
 
-    public List getUnit() {
+    /*public List getUnit() {
         return unit;
     }
 
     public void setUnit(List unit) {
         this.unit = unit;
-    }
+    }*/
 
     public int getNumLoan() {
         return numLoan;

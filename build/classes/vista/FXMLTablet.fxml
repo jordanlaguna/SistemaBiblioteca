@@ -57,7 +57,7 @@
                         <Font name="Times New Roman" size="19.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cmbBox" prefHeight="45.0" prefWidth="150.0" promptText="Seleccione">
+                  <ComboBox fx:id="cmbBox" prefHeight="45.0" prefWidth="149.0" promptText="Seleccione">
                      <HBox.margin>
                         <Insets left="5.0" top="15.0" />
                      </HBox.margin>
