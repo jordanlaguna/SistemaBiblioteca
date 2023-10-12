@@ -92,6 +92,10 @@ public class FXMLUsersController implements Initializable {
     PreparedStatement ps = null;
     PreparedStatement ps1 = null;
     ResultSet rs = null;
+    @FXML
+    private TextField txt_idPerson;
+    @FXML
+    private TextField txt_idUser;
 
     /**
      * Initializes the controller class.
@@ -121,8 +125,8 @@ public class FXMLUsersController implements Initializable {
                     + ", secondName= '" + value4 + "', telephone= '" + value5
                     + "' where identification= '" + value1 + "'";
 
-            String sql2 = "update user set email= '" + value6 + "',password='" 
-                    + value7+ "',type='" + value8 + "'where email='" 
+            String sql2 = "update user set email= '" + value6 + "',password='"
+                    + value7 + "',type='" + value8 + "'where email='"
                     + value6 + "' ";
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -158,6 +162,43 @@ public class FXMLUsersController implements Initializable {
 
     @FXML
     private void delete(ActionEvent event) {
+        String sqlDeletePerson = "DELETE FROM person WHERE id_person = ?";
+        String sqlDeleteUser = "DELETE FROM user WHERE id_user = ?";
+        conn = ConexionUsuarios.getConnection();
+
+        try {
+            ps = conn.prepareStatement(sqlDeleteUser);
+            ps.setString(1, txt_idUser.getText());
+            ps.executeUpdate();
+
+            // Eliminar de la tabla 'person'
+            ps1 = conn.prepareStatement(sqlDeletePerson);
+            ps1.setString(1, txt_idPerson.getText());
+            ps1.executeUpdate();
+
+            // Verificar si se eliminaron filas en ambas tablas
+          
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("INFORMACIÓN");
+                alert.setContentText("Usuario eliminado con éxito.");
+                alert.showAndWait();       
+
+            // Limpiar los campos de ID después de la eliminación
+            txt_idPerson.clear();
+            txt_idUser.clear();
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Los datos no se pudieron eliminar. " + e);
+            alert.showAndWait();
+        }
+
+        // Recargar los datos en la tabla después de la eliminación
+        loadData();
+
     }
 
     @FXML
@@ -194,13 +235,13 @@ public class FXMLUsersController implements Initializable {
                 Usuario, String>("identification"));
         column_name.setCellValueFactory(new PropertyValueFactory<Usuario, 
                 String>("name"));
-        column_lastName.setCellValueFactory(new PropertyValueFactory<Usuario, 
+        column_lastName.setCellValueFactory(new PropertyValueFactory<Usuario,
                 String>("lastName"));
         column_secondName.setCellValueFactory(new PropertyValueFactory<Usuario,
                 String>("secondName"));
-        column_phone.setCellValueFactory(new PropertyValueFactory<Usuario, 
+        column_phone.setCellValueFactory(new PropertyValueFactory<Usuario,
                 Integer>("telephone"));
-        column_correo.setCellValueFactory(new PropertyValueFactory<Usuario, 
+        column_correo.setCellValueFactory(new PropertyValueFactory<Usuario,
                 String>("email"));
         column_password.setCellValueFactory(new PropertyValueFactory<Usuario, 
                 String>("password"));
@@ -224,7 +265,7 @@ public class FXMLUsersController implements Initializable {
 
                     return true;
                 }
-                if (User.getIdentification().toLowerCase().indexOf(tipoTexto) 
+                if (User.getIdentification().toLowerCase().indexOf(tipoTexto)
                         != -1) {
 
                     return true;
@@ -238,7 +279,7 @@ public class FXMLUsersController implements Initializable {
 
                     return true;
                 }
-                if (User.getSecondName().toLowerCase().indexOf(tipoTexto) 
+                if (User.getSecondName().toLowerCase().indexOf(tipoTexto)
                         != -1) {
 
                     return true;

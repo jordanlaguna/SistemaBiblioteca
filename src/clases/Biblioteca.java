@@ -1,5 +1,11 @@
 package clases;
 
+import conexionDB.ConexionTabletDB;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javafx.scene.control.Alert;
+
 /**
  * The Library class represents the library that contains books and equipment.
  */
@@ -10,6 +16,7 @@ public class Biblioteca {
     private int equipmentQuantity;
 
     private String name;
+
     /**
      * @param booksQuantity //The number of books available in the library
      * @param equipmentQuantity //The quantity of equipments available in the
@@ -21,7 +28,6 @@ public class Biblioteca {
         this.equipmentQuantity = equipmentQuantity;
         this.name = name;
     }
-
 
     public Biblioteca() {
     }
@@ -48,12 +54,13 @@ public class Biblioteca {
 
     public void setName(String name) {
         this.name = name;
-    } 
+    }
 
     /**
      * Method to handle equipment registration in the library.
      */
     public void equipment() {
+        
     }
 
     /**

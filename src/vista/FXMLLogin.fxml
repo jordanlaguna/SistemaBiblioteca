@@ -122,7 +122,7 @@
                                     <Insets bottom="-5.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="userName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="260.0" promptText="Nombre Usuario" styleClass="textField" stylesheets="@../Style/LoginStyleSheet.css">
+                              <TextField fx:id="userName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="260.0" promptText="Email" styleClass="textField" stylesheets="@../Style/LoginStyleSheet.css">
                                  <font>
                                     <Font name="Times New Roman" size="22.0" />
                                  </font>

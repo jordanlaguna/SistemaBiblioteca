@@ -5,13 +5,17 @@
  */
 package controller;
 
+import clases.Usuario;
 import conexionDB.ConexionLoginDB;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -102,8 +106,7 @@ public class FXMLLoginController implements Initializable {
     private Button btn_exit;
     @FXML
     private Button btn_exit1;
-    
-    
+
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -145,7 +148,6 @@ public class FXMLLoginController implements Initializable {
         iconLogin.setVisible(true);
         iconPass.setVisible(true);
         btn_exit1.setVisible(true);
-        
 
         textRegis.setVisible(false);
         textRegis1.setVisible(false);
@@ -214,7 +216,8 @@ public class FXMLLoginController implements Initializable {
     private void Login(ActionEvent event) throws IOException {
         conn = ConexionLoginDB.conn();
 
-        String sql = "Select * from user where email = ? and password = ? and type =? ";
+        String sql = "Select * from user where email = ? and password = ? "
+                + "and type =? ";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -228,14 +231,17 @@ public class FXMLLoginController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText(null);
                     alert.setTitle("INFORMACIÓN");
-                    alert.setContentText("Bienvenido administrador " + emailLogin.getText());
+                    alert.setContentText("Bienvenido administrador " 
+                            + emailLogin.getText());
                     alert.showAndWait();
                     buttonInicio.getScene().getWindow().hide();
-                    Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLDashboardAdmin.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource(""
+                            + "/vista/FXMLDashboardAdmin.fxml"));
                     Stage mainStage = new Stage();
                     Scene scene = new Scene(root);
                     mainStage.setScene(scene);
-                    Image icon = new Image(getClass().getResourceAsStream("/img/bibliotecaenlinea.png"));
+                    Image icon = new Image(getClass().getResourceAsStream(""
+                            + "/img/bibliotecaenlinea.png"));
                     mainStage.getIcons().add(icon);
                     mainStage.setTitle("Biblioteca Admin");
                     mainStage.show();
@@ -253,92 +259,38 @@ public class FXMLLoginController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
-            alert.setContentText("No se puede iniciar sesión, ingrese los datos en la caja de texto. " + e);
+            alert.setContentText("No se puede iniciar sesión, "
+                    + "ingrese los datos en la caja de texto. " + e);
             alert.showAndWait();
         }
 
     }
-
-    /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/FXMLDashboardAdmin.fxml"));
-        Parent root = loader.load();
-        Stage app_stage;
-        app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        app_stage.hide();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        Image icon = new Image(getClass().getResourceAsStream("/img/bibliotecaenlinea.png"));
-        stage.getIcons().add(icon);
-        stage.setTitle("Biblioteca Admin");
-
-        stage.show();*/
+    
     @FXML
-    private void registrarUser(ActionEvent event) {
-        conn = ConexionLoginDB.conn();
-        String Tipo = (String) cmbType.getSelectionModel().getSelectedItem();
-
-        String sql = "insert into user(userName, password, type)values(?,?,?)";
-        String sqlDos = "insert into student(type)values(?)";
-        String sqlTres = "insert into teacher(type)values(?)";
-        String sqlCuatro = "insert into person(birth_date, identification, name,"
-                + " lastName, secondName, telephono)values(?,?,?,?,?,?)";
-
-        try {
-
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, userName.getText());
-            ps.setString(2, passwordRegis.getText());
-            ps.setString(3, cmbType.getValue().toString());
-            ps.execute();
-
-            if (Tipo == "Estudiante") {
-                ps = conn.prepareStatement(sqlDos);
-                ps.setString(1, cmbType.getValue().toString());
-
-                ps.execute();
-
-            } else if (Tipo == "Profesor") {
-                ps = conn.prepareStatement(sqlTres);
-                ps.setString(1, cmbType.getValue().toString());
-
-                ps.execute();
-
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("ERROR");
-                alert.setContentText("Tipo usuario no identificado");
-                alert.showAndWait();
-
-            }
-
-            ps = conn.prepareStatement(sqlCuatro);
-            ps.setString(1, birthDay.getValue().toString());
-            ps.setString(2, identification.getText());
-            ps.setString(3, name.getText());
-            ps.setString(4, lastName.getText());
-            ps.setString(5, secondName.getText());
-            ps.setString(6, telephone.getText());
-            ps.execute();
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Información");
-            alert.setContentText("Usuario agregado con éxito");
-            alert.showAndWait();
-
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("No se pudo agregar el usuario" + e);
-            alert.showAndWait();
-
-        }
-
+    private void registrarUser(ActionEvent event) throws SQLException {
+        LocalDate localDate = birthDay.getValue();
+        Date dateOfBirth = Date.valueOf(localDate);
+        Usuario usuario = new Usuario(dateOfBirth, identification.getText(), 
+                name.getText(), lastName.getText(), secondName.getText(), 
+                Integer.parseInt(telephone.getText()), userName.getText(), 
+                passwordRegis.getText(), cmbType.getValue().toString());
+        usuario.registatrarse();
+        cleanData();
     }
 
     @FXML
     private void exit(ActionEvent event) {
         System.exit(0);
+    }
+    private void cleanData(){
+        birthDay.setValue(null);
+        identification.clear();
+        name.clear();
+        lastName.clear();
+        secondName.clear();
+        telephone.clear();
+        userName.clear();
+        passwordRegis.clear();
+        cmbType.setValue(null);
     }
 }

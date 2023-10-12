@@ -218,11 +218,13 @@
                   <TableColumn fx:id="column_phone" prefWidth="87.0" text="Teléfono" />
                   <TableColumn fx:id="column_correo" prefWidth="120.0" text="Correo" />
                   <TableColumn fx:id="column_password" prefWidth="103.0" text="Contraseña" />
-                  <TableColumn fx:id="column_type" prefWidth="54.0" text="Tipo" />
+                  <TableColumn fx:id="column_type" prefWidth="53.0" text="Tipo" />
                  
               </columns>
             </TableView>
          </children>
       </VBox>
+      <TextField fx:id="txt_idPerson" editable="false" layoutX="19.0" layoutY="213.0" prefHeight="0.0" prefWidth="25.0" visible="false" />
+      <TextField fx:id="txt_idUser" editable="false" layoutX="44.0" layoutY="213.0" prefHeight="0.0" prefWidth="25.0" visible="false" />
    </children>
 </AnchorPane>

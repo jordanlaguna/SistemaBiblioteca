@@ -1,6 +1,13 @@
 package clases;
 
+import conexionDB.ConexionLoginDB;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -88,10 +95,85 @@ public class Usuario extends Persona {
      * The function to be able to log into the system and enter the systems
      */
     public void login() {
+        
     }
       /**
      * The function to register as a user, whether a person or student
      */
-    public void registatrarse() {
+    public void registatrarse() throws SQLException {
+        Connection conn = null;
+        PreparedStatement ps1 = null;
+        PreparedStatement ps2 = null;
+
+        try {
+            conn = ConexionLoginDB.conn();
+            conn.setAutoCommit(false);
+
+            // Insertar en la tabla "person"
+            String sqlPerson = "INSERT INTO person (birth_date, identification, "
+                    + "name, lastName, secondName, telephone) "
+                    + "VALUES (?, ?, ?, ?, ?, ?)";
+            ps1 = conn.prepareStatement(sqlPerson, Statement.RETURN_GENERATED_KEYS);
+            ps1.setString(1, this.getBirth_date().toString());
+            ps1.setString(2, this.getIdentification());
+            ps1.setString(3, this.getName());
+            ps1.setString(4, this.getLastName());
+            ps1.setString(5, this.getSecondName());
+            ps1.setString(6, String.valueOf(this.getTelephone()));
+            ps1.executeUpdate();
+
+            ResultSet generatedKeys = ps1.getGeneratedKeys();
+            int idPerson = -1;
+            if (generatedKeys.next()) {
+                idPerson = generatedKeys.getInt(1);
+            } else {
+                throw new SQLException("No se pudo obtener el ID de persona generado.");
+            }
+
+            // Insertar en la tabla "user"
+            String sqlUser = "INSERT INTO user (id_user, email, password, type)"
+                    + " VALUES (?, ?, ?, ?)";
+            ps2 = conn.prepareStatement(sqlUser);
+            ps2.setInt(1, idPerson);  // Usar el ID de persona como ID de usuario
+            ps2.setString(2, this.getEmail());
+            ps2.setString(3, this.getPassword());
+            ps2.setString(4, this.getType());
+            ps2.executeUpdate();
+
+            conn.commit();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Información");
+            alert.setContentText("Usuario agregado con éxito");
+            alert.showAndWait();
+        } catch (Exception e) {
+            if (conn != null) {
+                conn.rollback();
+            }
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("No se pudo agregar el usuario: " 
+                    + e.getMessage());
+            alert.showAndWait();
+        } finally {
+            try {
+                if (ps1 != null) {
+                    ps1.close();
+                }
+                if (ps2 != null) {
+                    ps2.close();
+                }
+                if (conn != null) {
+                    conn.setAutoCommit(true);
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+    
     }
 }
