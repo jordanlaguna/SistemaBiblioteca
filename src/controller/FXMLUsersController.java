@@ -162,29 +162,26 @@ public class FXMLUsersController implements Initializable {
 
     @FXML
     private void delete(ActionEvent event) {
-        String sqlDeletePerson = "DELETE FROM person WHERE id_person = ?";
-        String sqlDeleteUser = "DELETE FROM user WHERE id_user = ?";
+        String sqlDeletePerson = "delete from person where identification = ?";
+        String sqlDeleteUser = "delete from user where email = ?";
         conn = ConexionUsuarios.getConnection();
 
         try {
             ps = conn.prepareStatement(sqlDeleteUser);
-            ps.setString(1, txt_idUser.getText());
+            ps.setString(1, txt_identification.getText());
             ps.executeUpdate();
 
             // Eliminar de la tabla 'person'
             ps1 = conn.prepareStatement(sqlDeletePerson);
-            ps1.setString(1, txt_idPerson.getText());
+            ps1.setString(1, txt_email.getText());
             ps1.executeUpdate();
-
-            // Verificar si se eliminaron filas en ambas tablas
-          
+            
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
                 alert.setTitle("INFORMACIÓN");
                 alert.setContentText("Usuario eliminado con éxito.");
                 alert.showAndWait();       
 
-            // Limpiar los campos de ID después de la eliminación
             txt_idPerson.clear();
             txt_idUser.clear();
 
@@ -195,8 +192,6 @@ public class FXMLUsersController implements Initializable {
             alert.setContentText("Los datos no se pudieron eliminar. " + e);
             alert.showAndWait();
         }
-
-        // Recargar los datos en la tabla después de la eliminación
         loadData();
 
     }

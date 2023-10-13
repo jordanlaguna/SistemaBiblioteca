@@ -50,7 +50,6 @@ public class FXMLLoginController implements Initializable {
     private Label label;
     @FXML
     private Label label2;
-    private TextField emailRegis;
     @FXML
     private PasswordField passwordRegis;
     @FXML
@@ -214,27 +213,16 @@ public class FXMLLoginController implements Initializable {
 
     @FXML
     private void Login(ActionEvent event) throws IOException {
-        conn = ConexionLoginDB.conn();
-
-        String sql = "Select * from user where email = ? and password = ? "
-                + "and type =? ";
-
-        try {
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, emailLogin.getText());
-            ps.setString(2, passwordLogin.getText());
-            ps.setString(3, cmbBox.getValue().toString());
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                if ("Admin".equals(cmbBox.getValue().toString())) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText(null);
-                    alert.setTitle("INFORMACIÓN");
-                    alert.setContentText("Bienvenido administrador " 
-                            + emailLogin.getText());
-                    alert.showAndWait();
-                    buttonInicio.getScene().getWindow().hide();
+        String email = emailLogin.getText();
+        String password = passwordLogin.getText();
+        String type = (String) cmbBox.getValue();
+        
+        Usuario usuario = new Usuario(null, null, null, null, null, 0, email, 
+                password, type);
+        boolean loginSuccessful = usuario.login(email, password, type);
+        try{
+        if (loginSuccessful) {
+             buttonInicio.getScene().getWindow().hide();
                     Parent root = FXMLLoader.load(getClass().getResource(""
                             + "/vista/FXMLDashboardAdmin.fxml"));
                     Stage mainStage = new Stage();
@@ -245,17 +233,14 @@ public class FXMLLoginController implements Initializable {
                     mainStage.getIcons().add(icon);
                     mainStage.setTitle("Biblioteca Admin");
                     mainStage.show();
-                }
-
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("ERROR");
-                alert.setContentText("Usuario/Contraseña incorrectos");
-                alert.showAndWait();
-            }
-
-        } catch (IOException | SQLException e) {
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Usuario/Contraseña incorrectos");
+            alert.showAndWait();
+        }
+        } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
@@ -263,16 +248,16 @@ public class FXMLLoginController implements Initializable {
                     + "ingrese los datos en la caja de texto. " + e);
             alert.showAndWait();
         }
-
+        
     }
-    
+
     @FXML
     private void registrarUser(ActionEvent event) throws SQLException {
         LocalDate localDate = birthDay.getValue();
         Date dateOfBirth = Date.valueOf(localDate);
-        Usuario usuario = new Usuario(dateOfBirth, identification.getText(), 
-                name.getText(), lastName.getText(), secondName.getText(), 
-                Integer.parseInt(telephone.getText()), userName.getText(), 
+        Usuario usuario = new Usuario(dateOfBirth, identification.getText(),
+                name.getText(), lastName.getText(), secondName.getText(),
+                Integer.parseInt(telephone.getText()), userName.getText(),
                 passwordRegis.getText(), cmbType.getValue().toString());
         usuario.registatrarse();
         cleanData();
@@ -282,7 +267,8 @@ public class FXMLLoginController implements Initializable {
     private void exit(ActionEvent event) {
         System.exit(0);
     }
-    private void cleanData(){
+
+    private void cleanData() {
         birthDay.setValue(null);
         identification.clear();
         name.clear();
