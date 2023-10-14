@@ -5,14 +5,14 @@
  */
 package controller;
 
- 
 import clases.Libro;
 import conexionDB.ConexionLibros;
- 
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -67,15 +67,15 @@ public class FXMLBooksController implements Initializable {
     @FXML
     private TableColumn<Libro, String> column_editorial;
     @FXML
-    private TableColumn<Libro, DatePicker> column_year;
+    private TableColumn<Libro, java.sql.Date> column_year;
     @FXML
     private TextField txt_search;
     private TextField txt_cantidad;
-    
-     private ObservableList<Libro> Libro = FXCollections.observableArrayList();
+
+    private ObservableList<Libro> Libro = FXCollections.observableArrayList();
 
     private ObservableList<Libro> Libros;
-    
+
     Integer index;
     Connection conn = null;
     PreparedStatement ps = null;
@@ -90,12 +90,11 @@ public class FXMLBooksController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         cargarDatos();
-    }    
+    }
 
     @FXML
     private void add(ActionEvent event) {
         conn = ConexionLibros.conn();
-        
 
         String sql = "insert into book(isbn, title, authorBook,"
                 + " editorial, available, releaseDate)values(?,?,?,?,?,?)";
@@ -115,7 +114,7 @@ public class FXMLBooksController implements Initializable {
             alert.setTitle("INFORMACIÓN");
             alert.setContentText("Libros guardados correctamente.");
             alert.showAndWait();
-            
+
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -136,11 +135,9 @@ public class FXMLBooksController implements Initializable {
             String value3 = txt_author.getText();
             String value4 = txt_editorial.getText();
 
-            
-
-            String sql = "update book set isbn= '" + value1 + "',title= '" 
-                    + value2 + "',authorBook= '" + value3 + "',editorial= '" 
-                    + value4 + "' where isbn= '" 
+            String sql = "update book set isbn= '" + value1 + "',title= '"
+                    + value2 + "',authorBook= '" + value3 + "',editorial= '"
+                    + value4 + "' where isbn= '"
                     + value1 + "' ";
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -171,6 +168,7 @@ public class FXMLBooksController implements Initializable {
         cargarDatos();
         limpiarDatos();
     }
+
     private void limpiarDatos() {
         txt_isbn.clear();
         txt_title.clear();
@@ -214,7 +212,7 @@ public class FXMLBooksController implements Initializable {
         limpiarDatos();
 
     }
-    
+
     private void cargarDatos() {
         this.column_isbn.setCellValueFactory(new PropertyValueFactory<Libro,
                 Integer>("isbn"));
@@ -225,10 +223,10 @@ public class FXMLBooksController implements Initializable {
         this.column_editorial.setCellValueFactory(new PropertyValueFactory<Libro,
                 String>("editorial"));
         this.column_year.setCellValueFactory(new PropertyValueFactory<Libro,
-                DatePicker>("releaseDate"));
+                java.sql.Date>("releaseDate"));
         this.column_available.setCellValueFactory(new PropertyValueFactory<Libro,
                 String>("available"));
-        
+
         Libros = ConexionLibros.getDataBook();
         tbw_libros.setItems(Libros);
     }
@@ -236,30 +234,30 @@ public class FXMLBooksController implements Initializable {
     @FXML
     private void buscar(KeyEvent ke) {
         FilteredList<Libro> filterData = new FilteredList<>(Libros, p -> true);
-        txt_search.textProperty().addListener((obsevable, oldvalue, newvalue)->{
-        filterData.setPredicate(Book ->{
-           if(newvalue == null || newvalue.isEmpty()){
-               return true;
-           }
-           String tipoTexto = newvalue.toLowerCase();
-           if(Book.getTitle().toLowerCase().contains(tipoTexto)){
-               
-               return true;
-           }
-            if(Book.getAuthorBook().toLowerCase().contains(tipoTexto)){
-               
-               return true;
-           }
-            if(Book.getEditorial().toLowerCase().contains(tipoTexto)){
-               
-               return true;
-           }
-            if(Book.getAvailable().toLowerCase().contains(tipoTexto)){
-               
-               return true;
-           }
-           return false;
-        });
+        txt_search.textProperty().addListener((obsevable, oldvalue, newvalue) -> {
+            filterData.setPredicate(Book -> {
+                if (newvalue == null || newvalue.isEmpty()) {
+                    return true;
+                }
+                String tipoTexto = newvalue.toLowerCase();
+                if (Book.getTitle().toLowerCase().contains(tipoTexto)) {
+
+                    return true;
+                }
+                if (Book.getAuthorBook().toLowerCase().contains(tipoTexto)) {
+
+                    return true;
+                }
+                if (Book.getEditorial().toLowerCase().contains(tipoTexto)) {
+
+                    return true;
+                }
+                if (Book.getAvailable().toLowerCase().contains(tipoTexto)) {
+
+                    return true;
+                }
+                return false;
+            });
             SortedList<Libro> sortedList = new SortedList<>(filterData);
             sortedList.comparatorProperty().bind(tbw_libros.comparatorProperty());
             tbw_libros.setItems(sortedList);
@@ -273,12 +271,16 @@ public class FXMLBooksController implements Initializable {
         if (index <= -1) {
             return;
         }
-
+        java.sql.Date sqlDate = (java.sql.Date) column_year.
+                getCellData(index);
+        // Convierte java.sql.Date a LocalDate
+        LocalDate dateValue = sqlDate.toLocalDate();
+        // Establece la fecha en el DatePicker
+        datePicker.setValue(dateValue);
         txt_isbn.setText(column_isbn.getCellData(index).toString());
         txt_title.setText(column_title.getCellData(index));
         txt_author.setText(column_author.getCellData(index));
         txt_editorial.setText(column_editorial.getCellData(index));
-         
-        
+
     }
 }

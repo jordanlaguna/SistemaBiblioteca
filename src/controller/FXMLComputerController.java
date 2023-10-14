@@ -74,6 +74,7 @@ public class FXMLComputerController implements Initializable {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+    
     @FXML
     private TextField id;
 
@@ -82,12 +83,11 @@ public class FXMLComputerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cargarDatos();
+        LoadDate();
         cmbBox.getItems().addAll("Disponible", "No disponible");
-        
     }
 
-    private void cargarDatos() {
+    private void LoadDate() {
         this.column_id.setCellValueFactory(new PropertyValueFactory<Computadora, Integer>("id"));
         this.column_brand.setCellValueFactory(new PropertyValueFactory<Computadora, String>("trademark"));
         this.column_quantity.setCellValueFactory(new PropertyValueFactory<Computadora, String>("ubication"));
@@ -99,37 +99,16 @@ public class FXMLComputerController implements Initializable {
 
     @FXML
     private void add(ActionEvent event) {
-        conn = ConexionLibros.conn();
-
-        String sql = "insert into computer(trademark, ubication,"
-                + " available)values(?,?,?)";
-
-        try {
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, txt_brand.getText());
-            ps.setString(2, txt_quantity.getText());
-            ps.setString(3, cmbBox.getValue().toString());
-
-            ps.execute();
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("INFORMACIÓN");
-            alert.setContentText("Libros guardados correctamente.");
-            alert.showAndWait();
-
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("ERROR");
-            alert.setContentText("No se pudo guardar los libros. " + e);
-            alert.showAndWait();
-        }
-        cargarDatos();
-        limpiarDatos();
+        Computadora computer = new Computadora();
+        computer.setTrademark(txt_brand.getText());
+        computer.setUbication(txt_quantity.getText());
+        computer.setAvailable((String) cmbBox.getValue());
+        computer.add();
+        LoadDate();
+        CleanData();
     }
 
-    private void limpiarDatos() {
+    private void CleanData() {
         txt_brand.clear();
         txt_quantity.clear();
         cmbBox.setValue(null);
@@ -137,81 +116,23 @@ public class FXMLComputerController implements Initializable {
 
     @FXML
     private void update(ActionEvent event) {
-         
-        try {
-            conn = ConexionLibros.conn();
-            String value1 = id.getText();
-            String value2 = txt_brand.getText();
-            String value3 = txt_quantity.getText();
-            String value4 = (String) cmbBox.getValue();
-
-            String sql = "update computer set trademark= '"
-                    + value2 + "',ubication= '" + value3 + "',available= '"
-                    + value4 + "' where id= '"
-                    + value1 + "' ";
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("CONFIRMACIÓN");
-            alert.setContentText("¿Desea modificar los datos?");
-            Optional<ButtonType> opcion = alert.showAndWait();
-
-            if (opcion.get().equals(ButtonType.OK)) {
-                ps = conn.prepareStatement(sql);
-                ps.execute();
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("INFORMACIÓN");
-                alert.setContentText("Datos modificados con éxito.");
-                alert.showAndWait();
-
-            }
-
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("ERROR");
-            alert.setContentText("No se pudo modificar el usuario. " + e);
-            alert.showAndWait();
-
-        }
-        cargarDatos();
-        limpiarDatos();
+        Computadora computer = new Computadora();
+        computer.setId(Integer.parseInt(id.getText()));
+        computer.setTrademark(txt_brand.getText());
+        computer.setUbication(txt_quantity.getText());
+        computer.setAvailable((String) cmbBox.getValue());
+        computer.update();
+        LoadDate();
+        CleanData();
     }
 
     @FXML
     private void delete(ActionEvent event) {
-         String sql = "delete from computer where id = ? ";
-
-        try {
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("CONFIRMACIÓN");
-            alert.setContentText("¿Desea eliminar los datos?");
-            Optional<ButtonType> opcion = alert.showAndWait();
-
-            if (opcion.get().equals(ButtonType.OK)) {
-                ps = conn.prepareStatement(sql);
-                ps.setString(1, id.getText());
-                ps.execute();
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("INFORMACIÓN");
-                alert.setContentText("Datos eliminados con éxito.");
-                alert.showAndWait();
-
-            }
-
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("ERROR");
-            alert.setContentText("Los datos no se pudieron eliminar. " + e);
-            alert.showAndWait();
-        }
-        cargarDatos();
-        limpiarDatos();
+        Computadora computer = new Computadora();
+        computer.setId(Integer.parseInt(id.getText()));
+        computer.delete();
+        LoadDate();
+        CleanData();
     }
 
     @FXML
@@ -231,32 +152,8 @@ public class FXMLComputerController implements Initializable {
 
     @FXML
     private void buscarComputer(KeyEvent ke) {
-        FilteredList<Computadora> filterData = new FilteredList<>(Compus, p -> true);
-        txt_search.textProperty().addListener((obsevable, oldvalue, newvalue)->{
-        filterData.setPredicate(Book ->{
-           if(newvalue == null || newvalue.isEmpty()){
-               return true;
-           }
-           String tipoTexto = newvalue.toLowerCase();
-           if(Book.getUbication().toLowerCase().contains(tipoTexto)){
-               
-               return true;
-           }
-            if(Book.getTrademark().toLowerCase().contains(tipoTexto)){
-               
-               return true; 
-           }
-           
-            if(Book.getAvailable().toLowerCase().contains(tipoTexto)){
-               
-               return true;
-           }
-           return false;
-        });
-            SortedList<Computadora> sortedList = new SortedList<>(filterData);
-            sortedList.comparatorProperty().bind(tbw_computer.comparatorProperty());
-            tbw_computer.setItems(sortedList);
-        });
+        Computadora computer = new Computadora();
+        computer.unitSearch(txt_search, tbw_computer);
     }
 
 }

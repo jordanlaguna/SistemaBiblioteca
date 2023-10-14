@@ -20,7 +20,8 @@ import javafx.collections.ObservableList;
  */
 public class ConexionTabletDB {
 
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/sistemabiblioteca";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/"
+            + "sistemabiblioteca";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
 
@@ -29,7 +30,8 @@ public class ConexionTabletDB {
         try {
             conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
         } catch (SQLException e) {
-            System.err.println("Error al conectar a la base de datos: " + e.getMessage());
+            System.err.println("Error al conectar a la base de"
+                    + " datos: " + e.getMessage());
         }
         return conn;
     }
@@ -40,7 +42,8 @@ public class ConexionTabletDB {
                 connection.close();
                 System.out.println("Conexión cerrada.");
             } catch (SQLException e) {
-                System.err.println("Error al cerrar la conexión: " + e.getMessage());
+                System.err.println("Error al cerrar la"
+                        + " conexión: " + e.getMessage());
             }
         }
     }

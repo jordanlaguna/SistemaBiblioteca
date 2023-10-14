@@ -24,7 +24,8 @@ public class ConexionLoginDB {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabiblioteca", "root", "");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://"
+                    + "localhost:3306/sistemabiblioteca", "root", "");
             return conn;
         } catch (ClassNotFoundException | SQLException e) {
 

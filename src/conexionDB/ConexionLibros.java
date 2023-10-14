@@ -25,7 +25,8 @@ public class ConexionLibros {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             // Jordan
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabiblioteca", "root", "");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://"
+                    + "localhost:3306/sistemabiblioteca", "root", "");
             // Tony
             // Connection conn =
             // DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca", "root",
@@ -76,7 +77,8 @@ public class ConexionLibros {
         ObservableList<Computadora> list = FXCollections.observableArrayList();
 
         try {
-            PreparedStatement ps = conn.prepareStatement("select * from computer");
+            PreparedStatement ps = conn.prepareStatement("select * "
+                    + "from computer");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Computadora(Integer.parseInt(rs.getString("id")),

@@ -279,4 +279,14 @@ public class FXMLLoginController implements Initializable {
         passwordRegis.clear();
         cmbType.setValue(null);
     }
+
+    @FXML
+    private void lb_olvidar(MouseEvent event) throws IOException {
+        // Regresa al inicio LOGIN 
+                Parent Regreso = FXMLLoader.load(getClass().getResource("/vista/FXMLForgetPassword.fxml"));
+        Scene windowScene = new Scene(Regreso);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(windowScene);
+        window.show();
+    }
 }

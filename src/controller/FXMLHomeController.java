@@ -181,7 +181,7 @@ public class FXMLHomeController implements Initializable {
     }
     public int cargarTablets(){
         // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
-       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = 'Disponible'";
+       String consultaDos = "SELECT COUNT(*) FROM tablet WHERE available = 'Disponible'";
          
 
         try {
@@ -303,7 +303,7 @@ public class FXMLHomeController implements Initializable {
     }
     public int cargarTabletsNot(){
         // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
-       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = 'No disponible'";
+       String consultaDos = "SELECT COUNT(*) FROM tablet WHERE available = 'No disponible'";
          
 
         try {

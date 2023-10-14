@@ -1,6 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.ConextionLoans to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt
+    to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.ConextionLoans
+    to edit this template
  */
 package conexionDB;
 
@@ -28,7 +30,8 @@ public class ConextionLoans {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemabiblioteca", "root", "");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://"
+                    + "localhost:3306/sistemabiblioteca", "root", "");
             return conn;
 
         } catch (ClassNotFoundException | SQLException e) {

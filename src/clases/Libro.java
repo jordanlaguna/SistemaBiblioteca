@@ -28,12 +28,13 @@ public class Libro {
      * @param releaseDate //The release date of the book.
      */
    
-    public Libro(Integer isbn, String title, String authorBook, String editorial
-            ,String available, Date releaseDate) {
+ 
+    public Libro(Integer isbn, String title, String authorBook, String editorial, String available, Date releaseDate) {
         this.isbn = isbn;
         this.title = title;
         this.authorBook = authorBook;
         this.editorial = editorial;
+        this.available = available;
         this.releaseDate = releaseDate;
     }
 
@@ -84,6 +85,8 @@ public class Libro {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
 
-    }     
+    }
+    
+    
 
 }
