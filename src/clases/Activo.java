@@ -73,7 +73,9 @@ public class Activo  {
     }
      /**
      * This method is used to search for information in the system. 
-     * Depending on the implementation, this method might accept search parameters that specify what is being searched and how it should be searched.
+     * Depending on the implementation, this method might accept search 
+     * parameters that specify what is being searched and 
+     * how it should be searched.
      */ 
     public void search() {
     }

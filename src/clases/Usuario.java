@@ -78,6 +78,7 @@ public class Usuario extends Persona {
      * book
      */
     public void verLibros() {
+        
     }
 
     /**
@@ -85,6 +86,7 @@ public class Usuario extends Persona {
      * book
      */
     public void pedirPrestamo() {
+        
     }
 
     /**

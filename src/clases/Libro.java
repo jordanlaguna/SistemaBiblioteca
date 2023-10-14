@@ -36,6 +36,7 @@ public class Libro {
         this.editorial = editorial;
         this.available = available;
         this.releaseDate = releaseDate;
+        this.available = available;
     }
 
     public String getAvailable() {

@@ -38,7 +38,8 @@ public class FXMLHomeController implements Initializable {
     @FXML
     private Label label_Pbooks;
     
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/sistemabiblioteca";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306"
+            + "/sistemabiblioteca";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
 
@@ -52,7 +53,6 @@ public class FXMLHomeController implements Initializable {
         cargarBooks();
         cargarComputers();
         cargarTablets();
-        
         cargarBooksNot();
         cargarComputersNot();
         cargarTabletsNot();
@@ -65,10 +65,12 @@ public class FXMLHomeController implements Initializable {
 
         try {
             // Establecer la conexión
-            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
+                    DB_PASSWORD);
             
             // Crear una declaración preparada
-            PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
+            PreparedStatement preparedStatement = conexion.
+                    prepareStatement(consulta);
 
             // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -101,14 +103,17 @@ public class FXMLHomeController implements Initializable {
     public int cargarBooks(){
         // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
          
-        String consultaDos = "SELECT COUNT(*) FROM book WHERE available = 'Disponible'";
+        String consultaDos = "SELECT COUNT(*) FROM book WHERE available = "
+                + "'Disponible'";
 
         try {
             // Establecer la conexión
-            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
+                    DB_PASSWORD);
             
             // Crear una declaración preparada
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaDos);
+            PreparedStatement preparedStatement = 
+                    conexion.prepareStatement(consultaDos);
 
             // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -140,15 +145,18 @@ public class FXMLHomeController implements Initializable {
     
     public int cargarComputers(){
         // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
-       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = 'Disponible'";
+       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = "
+               + "'Disponible'";
          
 
         try {
             // Establecer la conexión
-            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
+                    DB_PASSWORD);
             
             // Crear una declaración preparada
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaDos);
+            PreparedStatement preparedStatement = 
+                    conexion.prepareStatement(consultaDos);
 
             // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -181,15 +189,18 @@ public class FXMLHomeController implements Initializable {
     }
     public int cargarTablets(){
         // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
-       String consultaDos = "SELECT COUNT(*) FROM tablet WHERE available = 'Disponible'";
+       String consultaDos = "SELECT COUNT(*) FROM tablet WHERE available = "
+               + "'Disponible'";
          
 
         try {
             // Establecer la conexión
-            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
+                    DB_PASSWORD);
             
             // Crear una declaración preparada
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaDos);
+            PreparedStatement preparedStatement = 
+                    conexion.prepareStatement(consultaDos);
 
             // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -221,14 +232,17 @@ public class FXMLHomeController implements Initializable {
     public int cargarBooksNot(){
         // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
          
-        String consultaDos = "SELECT COUNT(*) FROM book WHERE available = 'No disponible'";
+        String consultaDos = "SELECT COUNT(*) FROM book WHERE available = "
+                + "'No disponible'";
 
         try {
             // Establecer la conexión
-            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
+                    DB_PASSWORD);
             
             // Crear una declaración preparada
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaDos);
+            PreparedStatement preparedStatement = 
+                    conexion.prepareStatement(consultaDos);
 
             // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -262,15 +276,18 @@ public class FXMLHomeController implements Initializable {
     
     public int cargarComputersNot(){
         // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
-       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = 'No disponible'";
+       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = "
+               + "'No disponible'";
          
 
         try {
             // Establecer la conexión
-            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
+                    DB_PASSWORD);
             
             // Crear una declaración preparada
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaDos);
+            PreparedStatement preparedStatement = 
+                    conexion.prepareStatement(consultaDos);
 
             // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -303,15 +320,18 @@ public class FXMLHomeController implements Initializable {
     }
     public int cargarTabletsNot(){
         // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
-       String consultaDos = "SELECT COUNT(*) FROM tablet WHERE available = 'No disponible'";
+       String consultaDos = "SELECT COUNT(*) FROM tablet WHERE available = "
+               + "'No disponible'";
          
 
         try {
             // Establecer la conexión
-            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+            Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
+                    DB_PASSWORD);
             
             // Crear una declaración preparada
-            PreparedStatement preparedStatement = conexion.prepareStatement(consultaDos);
+            PreparedStatement preparedStatement = 
+                    conexion.prepareStatement(consultaDos);
 
             // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();

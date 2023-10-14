@@ -23,6 +23,9 @@ public class ConexionUsuarios {
         } catch (SQLException e) {
             System.err.println("Error al conectar a la base de "
                     + "datos: " + e.getMessage());
+
+            System.err.println("Error al conectar a la base de datos: "
+                    + e.getMessage());
         }
         return conn;
     }
@@ -38,24 +41,25 @@ public class ConexionUsuarios {
             }
         }
     }
-     public static ObservableList<Usuario> getDataUsuario() {
+
+    public static ObservableList<Usuario> getDataUsuario() {
 
         Connection conn = conn();
         ObservableList<Usuario> list = FXCollections.observableArrayList();
 
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT id_person, "
+            PreparedStatement ps = conn.prepareStatement("select id_person, "
                     + "birth_date, identification, name, lastName,secondName , "
                     + "telephone, email, password, type " +
-                    "FROM person " +
-                    "INNER JOIN user ON person.id_person = user.id_user");
+                    "from person " +
+                    "inner join user on person.id_person = user.id_user");
             ResultSet rs = ps.executeQuery();
-         
+
             while (rs.next()) {
-                list.add(new Usuario(rs.getDate("birth_date"), 
-                        rs.getString("identification"), 
+                list.add(new Usuario(rs.getDate("birth_date"),
+                        rs.getString("identification"),
                         rs.getString("name"),
-                        rs.getString("lastName"), 
+                        rs.getString("lastName"),
                         rs.getString("secondName"),
                         Integer.parseInt(rs.getString("telephone")),
                         rs.getString("email"), rs.getString("password"),

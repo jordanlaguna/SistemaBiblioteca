@@ -97,6 +97,7 @@ public class Prestamo {
      * This function is used to add new elements or records to the system.
      */
     public void add() {
+        
     }
 
     /**

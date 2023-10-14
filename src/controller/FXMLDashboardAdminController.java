@@ -31,7 +31,8 @@ public class FXMLDashboardAdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             // Cargar la vista del dashboard al inicio
-            Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLHome.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource(
+                    "/vista/FXMLHome.fxml"));
             containerMenu.getChildren().clear(); // Limpiar el contenido actual
             containerMenu.getChildren().add(root); // Mostrar la vista del dashboard
         } catch (IOException ex) {
@@ -66,22 +67,24 @@ public class FXMLDashboardAdminController implements Initializable {
 
     @FXML
     private void openLoans(MouseEvent event) throws IOException {
-        System.out.println("clicked me!");
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLLoans.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(
+                "/vista/FXMLLoans.fxml"));
         containerMenu.getChildren().clear(); //limpiar
         containerMenu.getChildren().add(root);
     }
 
     @FXML
     private void openDash(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLHome.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(
+                "/vista/FXMLHome.fxml"));
         containerMenu.getChildren().clear(); //limpiar
         containerMenu.getChildren().add(root);
     }
 
     @FXML
     private void openUsers(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLUsers.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(
+                "/vista/FXMLUsers.fxml"));
         containerMenu.getChildren().clear(); //limpiar
         containerMenu.getChildren().add(root);
     }

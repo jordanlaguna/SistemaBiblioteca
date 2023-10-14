@@ -65,9 +65,11 @@ public class ForgetPasswordController implements Initializable {
     }
 
     @FXML
-    private void ActEnvia(ActionEvent event) throws AddressException, MessagingException {
+    private void ActEnvia(ActionEvent event) throws AddressException,
+            MessagingException {
         try {
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/sistemabiblioteca", "root", "");
+            con = (Connection) DriverManager.getConnection("jdbc:mysql:"
+                    + "//localhost/sistemabiblioteca", "root", "");
             String query = "select email from user where email= ?";
             pst = (PreparedStatement) con.prepareStatement(query);
             pst.setString(1, txtCorreo.getText());
@@ -83,7 +85,8 @@ public class ForgetPasswordController implements Initializable {
                     String pass = "xvgn ynck gtdx snjn";
                     String to = txtCorreo.getText();
                     String subject = "Código de Verificació.";
-                    String message = "Su código de reinicio es: " + randomCodigo;
+                    String message = "Su código de reinicio es: " + 
+                            randomCodigo;
                     boolean sessionDebug = false;
                     Properties pros = System.getProperties();
                     pros.put("mail.smtp.starttls.enable", "true");
@@ -91,7 +94,8 @@ public class ForgetPasswordController implements Initializable {
                     pros.put("mail.smtp.port", "587");
                     pros.put("mail.smtp.auth", "true ");
                     pros.put("mail.smtp.starttls.resquired", "true");
-                    java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+                    java.security.Security.addProvider(new com.sun.net.ssl.
+                            internal.ssl.Provider());
                     Session mailSession = Session.getDefaultInstance(pros, null);
                     mailSession.setDebug(sessionDebug);
                     Message msg = new MimeMessage(mailSession);
@@ -108,7 +112,8 @@ public class ForgetPasswordController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText(null);
                     alert.setTitle("Información");
-                    alert.setContentText("El código fue enviado al correo" + "\n" + txtCorreo.getText()); // "Code has send to the email"
+                    alert.setContentText("El código fue enviado al correo" + 
+                            "\n" + txtCorreo.getText()); // "Code has send to the email"
                     alert.showAndWait();
                     /*----------------------------------------------------------------------------------------------------*/
 
@@ -135,7 +140,8 @@ public class ForgetPasswordController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
-            alert.setContentText("No se puedo entrar a la base de datos.... " + ex);
+            alert.setContentText("No se puedo entrar a la base de datos.... " 
+                    + ex);
             alert.showAndWait();
         }
     }
@@ -144,9 +150,11 @@ public class ForgetPasswordController implements Initializable {
     private void ActVerfica(ActionEvent event) throws IOException {
         if (Integer.valueOf(txtVerfCod.getText()) == randomCodigo) {
 
-            Parent Regreso = FXMLLoader.load(getClass().getResource("/vista/FXMLSendEmail.fxml"));
+            Parent Regreso = FXMLLoader.load(getClass().getResource(
+                    "/vista/FXMLSendEmail.fxml"));
             Scene windowScene = new Scene(Regreso);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((Node) event.getSource()).getScene()
+                    .getWindow();
             window.setScene(windowScene);
             window.show();
 
@@ -162,7 +170,8 @@ public class ForgetPasswordController implements Initializable {
 
     @FXML
     private void Cerrar(ActionEvent event) throws IOException {
-        Parent Regreso = FXMLLoader.load(getClass().getResource("/vista/FXMLLogin.fxml"));
+        Parent Regreso = FXMLLoader.load(getClass().getResource(
+                "/vista/FXMLLogin.fxml"));
         Scene windowScene = new Scene(Regreso);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(windowScene);

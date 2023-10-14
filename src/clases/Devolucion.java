@@ -26,7 +26,8 @@ public class Devolucion {
      * @param copy //The list of individual items returned
      * @param user //The list of users who have completed the return.
      */
-    public Devolucion(Date date, Date deliverDate, List unit, List copy, List user) {
+    public Devolucion(Date date, Date deliverDate, List unit, List copy, 
+            List user) {
         this.date = date;
         this.deliverDate = deliverDate;
         this.unit = unit;

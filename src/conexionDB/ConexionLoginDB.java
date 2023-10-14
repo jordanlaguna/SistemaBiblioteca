@@ -48,7 +48,7 @@ public class ConexionLoginDB {
             PreparedStatement ps = con.prepareStatement("select * from user");
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
+            if (rs.next()) {
                 list.add(new Usuario(rs.getDate("birth_date"),
                         rs.getString("identification"),
                         rs.getString("name"),
@@ -58,11 +58,9 @@ public class ConexionLoginDB {
                         rs.getString("correo"), rs.getString("password"),
                         rs.getString("type")));
             }
-
         } catch (SQLException | NumberFormatException e) {
 
-            System.out.println(e);
-
+            e.printStackTrace();
         }
 
         return list;

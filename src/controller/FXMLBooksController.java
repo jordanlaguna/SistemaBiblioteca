@@ -69,6 +69,8 @@ public class FXMLBooksController implements Initializable {
     @FXML
     private TableColumn<Libro, java.sql.Date> column_year;
     @FXML
+    private TableColumn<Libro, String> column_available;
+    @FXML
     private TextField txt_search;
     private TextField txt_cantidad;
 
@@ -80,8 +82,7 @@ public class FXMLBooksController implements Initializable {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    @FXML
-    private TableColumn<Libro, String> column_available;
+    
 
     /**
      * Initializes the controller class.

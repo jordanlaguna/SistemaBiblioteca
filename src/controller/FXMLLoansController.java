@@ -170,9 +170,11 @@ public class FXMLLoansController implements Initializable {
         String selectedEditorial = txt_editorial.getValue();
         conn= ConextionLoans.conn(); 
         
-        String sql= "insert into loan(loan_date,devolution_date, loan_number,exemplars)"
+        String sql= "insert into loan(loan_date,devolution_date, loan_number,"
+                + "exemplars)"
                 + "values(?,?,?,?)";
-        String sqlNote= "insert into note(date,identification,noteDescription)values(?,?,?)";
+        String sqlNote= "insert into note(date,identification,noteDescription)"
+                + "values(?,?,?)";
         try {
             ps= conn.prepareStatement(sql); 
             ps.setString(1, Datepiker_loanDate.getValue().toString());
@@ -197,7 +199,8 @@ public class FXMLLoansController implements Initializable {
              Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
-            alert.setContentText("No se logro guardar los datos del prestamo. " + e);
+            alert.setContentText("No se logro guardar los datos del prestamo. "
+                    + e);
             alert.showAndWait();
         }
         loadData(); 
