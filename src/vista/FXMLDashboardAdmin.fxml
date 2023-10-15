@@ -38,7 +38,7 @@
                      <children>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openDash" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Dashboard">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
@@ -47,10 +47,13 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openBook" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Libros">
                            <font>
-                              <Font name="Times New Roman Bold" size="17.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
@@ -65,7 +68,7 @@
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openComputer" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Computadoras">
                            <font>
-                              <Font name="Times New Roman Bold" size="17.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
@@ -77,7 +80,7 @@
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openTablet" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Tablets">
                            <font>
-                              <Font name="Times New Roman Bold" size="17.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
@@ -89,7 +92,7 @@
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openLoans" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Prestamos">
                            <font>
-                              <Font name="Times New Roman Bold" size="17.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
@@ -101,7 +104,7 @@
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Devoluciones">
                            <font>
-                              <Font name="Times New Roman Bold" size="17.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
@@ -113,7 +116,7 @@
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#openUsers" prefHeight="60.0" prefWidth="176.0" styleClass="sidebarItem" stylesheets="@../Style/LoginStyleSheet.css" text="Usuario">
                            <font>
-                              <Font name="Times New Roman Bold" size="17.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                            <graphic>
                               <ImageView fitHeight="29.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
