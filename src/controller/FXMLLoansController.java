@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -35,6 +36,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javax.xml.crypto.Data;
 
 /**
  * FXML Controller class
@@ -53,8 +55,7 @@ public class FXMLLoansController implements Initializable {
     private DatePicker Datepiker_devolutionDate;
     @FXML
     private TextField txt_name;
-    @FXML
-    private TextField txt_lastName;
+   
     @FXML
     private TextField txt_email;
     @FXML
@@ -64,31 +65,34 @@ public class FXMLLoansController implements Initializable {
     @FXML
     private TableColumn<Prestamo, Integer> column_numLoan;
     @FXML
-    private TableColumn<Prestamo, DatePicker> colum_dateLoan;
+    private TableColumn<Prestamo,  java.sql.Date> colum_dateLoan;
     @FXML
-    private TableColumn<Prestamo, DatePicker> column_dateReturn;
+    private TableColumn<Prestamo,  java.sql.Date> column_dateReturn;
     @FXML
     private TableColumn<Prestamo, String>  column_editorial;
     @FXML
-    private TableColumn<Nota, String>  column_observations;
-    @FXML
-    private Button btn_add;
+    private TableColumn<Prestamo, String>  column_observations;
     @FXML
     private ComboBox<String> txt_editorial;
-
+    @FXML
+    private TableColumn<Prestamo, String> column_email;
+     @FXML
+    private TableColumn<Prestamo, String> column_fullName;
     
-    
-    private ObservableList<Prestamo> Prestamos; 
-    private ObservableList<Nota>Notas; 
+    private ObservableList<Prestamo> Prestamos = FXCollections.observableArrayList();
+    //private ObservableList<Nota>Notas; 
       Connection conn = null;
-      PreparedStatement ps = null;
+      PreparedStatement ps , ps2= null;
       ResultSet rs = null;
+   
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try { 
+           
             loadData();
         } catch (SQLException ex) {
             Logger.getLogger(FXMLLoansController.class.getName()).log(Level.SEVERE, null, ex);
@@ -118,10 +122,10 @@ public class FXMLLoansController implements Initializable {
         if (conn != null) {
             try {
                 PreparedStatement ps = conn.prepareStatement("SELECT"
-                        + " DISTINCT editorial FROM book");
+                        + " DISTINCT title FROM book");
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
-                    editorialData.add(rs.getString("editorial"));
+                    editorialData.add(rs.getString("title"));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -135,23 +139,34 @@ public class FXMLLoansController implements Initializable {
     /**
      * Load the data into the interface table...
      */
+   
     private void loadData() throws SQLException{
+        
+        conn= ConextionLoans.getConnection(); 
+        
+         this.colum_dateLoan.setCellValueFactory(new PropertyValueFactory<
+                Prestamo,  java.sql.Date>("dateLoan"));
+         
+         this.column_dateReturn.setCellValueFactory(new PropertyValueFactory<
+                Prestamo,  java.sql.Date>("dateReturn"));
+         
+         this.column_editorial.setCellValueFactory(new PropertyValueFactory<
+                Prestamo, String>("exemplars"));
+         
         this.column_numLoan.setCellValueFactory(new PropertyValueFactory<
                 Prestamo,Integer>("numLoan"));
-        this.colum_dateLoan.setCellValueFactory(new PropertyValueFactory<
-                Prestamo, DatePicker>("dateLoan"));
-        this.column_dateReturn.setCellValueFactory(new PropertyValueFactory<
-                Prestamo, DatePicker>("dateReturn"));
-        this.column_editorial.setCellValueFactory(new PropertyValueFactory<
-                Prestamo, String>("exemplars"));
+        
         this.column_observations.setCellValueFactory(new PropertyValueFactory<
-                Nota, String>("note"));
-      
-        Prestamos = ConextionLoans.getDataBook(); 
-        Notas =ConextionLoans.getNotas();
+                Prestamo, String>("note")); 
+        
+        this.column_email.setCellValueFactory(new PropertyValueFactory<
+                Prestamo, String>("email"));
+        this.column_fullName.setCellValueFactory(new PropertyValueFactory<
+                Prestamo, String>("fullName"));
+        
+        
+        Prestamos = ConextionLoans.getDataLoanAndNote();      
         tbw_libros.setItems(Prestamos); 
-  
- 
     }
     
     private void cleanData(){
@@ -159,52 +174,31 @@ public class FXMLLoansController implements Initializable {
         Datepiker_loanDate.setValue(null);
         Datepiker_devolutionDate.setValue(null);
         txt_name.clear();
-        txt_lastName.clear();
         txt_email.clear();
         txt_Observations.clear();
     }
     
     
     private void addLoans() throws SQLException{
-       
-        String selectedEditorial = txt_editorial.getValue();
-        conn= ConextionLoans.conn(); 
+        Prestamo prestamo = new Prestamo();
+        LocalDate localDate = Datepiker_loanDate.getValue();
+        Date loanDate = Date.valueOf(localDate);
+        LocalDate Datelocal = Datepiker_devolutionDate.getValue();
+        Date loandevolutionDate = Date.valueOf(Datelocal);
         
-        String sql= "insert into loan(loan_date,devolution_date, loan_number,"
-                + "exemplars)"
-                + "values(?,?,?,?)";
-        String sqlNote= "insert into note(date,identification,noteDescription)"
-                + "values(?,?,?)";
-        try {
-            ps= conn.prepareStatement(sql); 
-            ps.setString(1, Datepiker_loanDate.getValue().toString());
-            ps.setString(2, Datepiker_devolutionDate.getValue().toString());
-            ps.setString(3, txt_numLoan.getText());
-            ps.setString(4, selectedEditorial);
-            ps.execute(); 
-            
-            ps=conn.prepareStatement(sqlNote);
-                ps.setString(1, Datepiker_loanDate.getValue().toString());
-                ps.setString(2, txt_numLoan.getText());
-                ps.setString(3, txt_Observations.getText()); 
-            ps.execute(); 
-            
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("INFORMACIÓN");
-            alert.setContentText("Datos de prestamo guardados correctamente.");
-            alert.showAndWait();
-            
-        } catch (Exception e) {
-             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("ERROR");
-            alert.setContentText("No se logro guardar los datos del prestamo. "
-                    + e);
-            alert.showAndWait();
-        }
+        
+        prestamo.setDateLoan(loanDate); 
+        prestamo.setDateReturn(loandevolutionDate);
+        prestamo.setNumLoan(Integer.parseInt(txt_numLoan.getText()));
+        prestamo.setExemplars((String) txt_editorial.getValue() );
+        prestamo.setEmail(txt_email.getText());
+        prestamo.setFullName(txt_name.getText());
+        prestamo.setNote(txt_Observations.getText());
+      
+        prestamo.add();
+ 
         loadData(); 
         cleanData(); 
+        
     }
-    
 }

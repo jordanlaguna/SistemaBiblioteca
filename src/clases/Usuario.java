@@ -85,7 +85,8 @@ public class Usuario extends Persona {
      * The function to be able to make the function to make the request for the
      * book
      */
-    public void pedirPrestamo() {
+    public void pedirPrestamo(){
+        
         
     }
 

@@ -9,10 +9,9 @@ import java.util.Date;
 public class Nota  {
 
     private Date date;
-
-    private int numNotes;
-
+    private String identification;
     private String note;
+  
      /**
      *
      * @param date = A Date attribute that stores the date the note was
@@ -24,9 +23,9 @@ public class Nota  {
      * note itself.
      */
 
-    public Nota(Date date, int numNotes, String note) {
+    public Nota(Date date, String identification, String note) {
         this.date = date;
-        this.numNotes = numNotes;
+        this.identification = identification; 
         this.note = note;
     }
 
@@ -43,13 +42,7 @@ public class Nota  {
         this.date = date;
     }
 
-    public int getNumNotes() {
-        return numNotes;
-    }
-
-    public void setNumNotes(int numNotes) {
-        this.numNotes = numNotes;
-    }
+    
 
     public String getNote() {
         return note;
@@ -58,6 +51,16 @@ public class Nota  {
     public void setNote(String note) {
         this.note = note;
     }
+    
+    
+     public String getIdentification() {
+        return identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
+    }
+    
     
     /**
      * This function is probably used to add new notes.
