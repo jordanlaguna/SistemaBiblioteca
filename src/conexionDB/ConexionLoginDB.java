@@ -5,7 +5,6 @@
  */
 package conexionDB;
 
-import clases.Computadora;
 import clases.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -41,6 +40,42 @@ public class ConexionLoginDB {
 
     public static ObservableList<Usuario> getDataUsuario() {
 
+        Connection conn = conn();
+        ObservableList<Usuario> list = FXCollections.observableArrayList();
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(
+                    "select * from user");
+            ResultSet rs = ps.executeQuery();
+
+            addLoginToList(rs, list);
+
+        } catch (SQLException | NumberFormatException e) {
+
+            System.out.println(e);
+
+        }
+        return list;
+    }
+
+    private static void addLoginToList(ResultSet rs,
+            ObservableList<Usuario> list) throws SQLException {
+        if (rs.next()) {
+            list.add(new Usuario(rs.getDate("birth_date"),
+                    rs.getString("identification"),
+                    rs.getString("name"),
+                    rs.getString("lastName"),
+                    rs.getString("secondName"),
+                    Integer.parseInt(rs.getString("telephone")),
+                    rs.getString("correo"), rs.getString("password"),
+                    rs.getString("type")));
+            addLoginToList(rs, list);
+        }
+    }
+
+    /*
+    public static ObservableList<Usuario> getDataUsuario() {
+
         Connection con = conn();
         ObservableList<Usuario> list = FXCollections.observableArrayList();
 
@@ -65,5 +100,5 @@ public class ConexionLoginDB {
 
         return list;
     }
-
+     */
 }

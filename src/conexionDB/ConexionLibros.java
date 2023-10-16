@@ -44,48 +44,17 @@ public class ConexionLibros {
         }
 
     }
-
-    public static ObservableList<Libro> getDataBook() {
-
+     public static ObservableList<Libro> getDataBook() {
         Connection conn = conn();
         ObservableList<Libro> list = FXCollections.observableArrayList();
 
         try {
-            PreparedStatement ps = conn.prepareStatement("select * from book");
+            PreparedStatement ps = conn.prepareStatement(
+                    "select * from book");
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Libro(Integer.parseInt(rs.getString("isbn")),
-                        rs.getString("title"),
-                        rs.getString("authorBook"),
-                        rs.getString("editorial"),
-                        rs.getString("available"),
-                        rs.getDate("releaseDate")));
-            }
 
-        } catch (SQLException | NumberFormatException e) {
+            addBooksToList(rs, list);
 
-            System.out.println(e);
-
-        }
-
-        return list;    
-    }
-
-    public static ObservableList<Computadora> getDataComputer() {
-
-        Connection conn = conn();
-        ObservableList<Computadora> list = FXCollections.observableArrayList();
-
-        try {
-            PreparedStatement ps = conn.prepareStatement("select * "
-                    + "from computer");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Computadora(Integer.parseInt(rs.getString("id")),
-                        rs.getString("trademark"),
-                        rs.getString("ubication"),
-                        rs.getString("available")));
-            }
         } catch (SQLException | NumberFormatException e) {
 
             System.out.println(e);
@@ -94,4 +63,48 @@ public class ConexionLibros {
 
         return list;
     }
+       private static void addBooksToList(ResultSet rs, 
+               ObservableList<Libro> list) throws SQLException {
+        if (rs.next()) {
+              list.add(new Libro(Integer.parseInt(rs.getString("isbn")),
+                        rs.getString("title"),
+                        rs.getString("authorBook"),
+                        rs.getString("editorial"),
+                        rs.getString("available"),
+                        rs.getDate("releaseDate")));
+            addBooksToList(rs, list);
+        }
+    }
+       
+       
+     public static ObservableList<Computadora> getDataComputer() {
+        Connection conn = conn();
+        ObservableList<Computadora> list = FXCollections.observableArrayList();
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(
+                    "select * from computer");
+            ResultSet rs = ps.executeQuery();
+
+            addComputersToList(rs, list);
+
+        } catch (SQLException | NumberFormatException e) {
+
+            System.out.println(e);
+
+        }
+
+        return list;
+    }
+       private static void addComputersToList(ResultSet rs, 
+               ObservableList<Computadora> list) throws SQLException {
+        if (rs.next()) {
+             list.add(new Computadora(Integer.parseInt(rs.getString("id")),
+                        rs.getString("trademark"),
+                        rs.getString("ubication"),
+                        rs.getString("available")));
+            addComputersToList(rs, list);
+        }
+    }
+   
 }

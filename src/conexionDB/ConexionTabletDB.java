@@ -47,7 +47,38 @@ public class ConexionTabletDB {
             }
         }
     }
+    
+    
+     public static ObservableList<Tablet> getDataTablet() {
+        Connection conn = getConnection();
+        ObservableList<Tablet> list = FXCollections.observableArrayList();
 
+        try {
+            PreparedStatement ps = conn.prepareStatement(
+                    "select * from tablet");
+            ResultSet rs = ps.executeQuery();
+
+            addTabletsToList(rs, list);
+
+        } catch (SQLException | NumberFormatException e) {
+
+            System.out.println(e);
+
+        }
+
+        return list;
+    }
+       private static void addTabletsToList(ResultSet rs, 
+               ObservableList<Tablet> list) throws SQLException {
+        if (rs.next()) {
+            list.add(new Tablet(Integer.parseInt(rs.getString("id_tab")),
+                        rs.getString("trademark"),
+                        rs.getString("ubication"),
+                        rs.getString("available")));
+            addTabletsToList(rs, list);
+        }
+    }
+    /*
     public static ObservableList<Tablet> getDataTablet() {
 
         Connection conn = getConnection();
@@ -69,6 +100,6 @@ public class ConexionTabletDB {
         }
 
         return list;
-    }
+    }*/
 
 }

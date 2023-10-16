@@ -241,6 +241,11 @@ public class FXMLBooksController implements Initializable {
                     return true;
                 }
                 String tipoTexto = newvalue.toLowerCase();
+                if (String.valueOf(Book.getIsbn()).toLowerCase().
+                        indexOf(tipoTexto) != -1) {
+
+                    return true;
+                }
                 if (Book.getTitle().toLowerCase().contains(tipoTexto)) {
 
                     return true;
@@ -251,6 +256,9 @@ public class FXMLBooksController implements Initializable {
                 }
                 if (Book.getEditorial().toLowerCase().contains(tipoTexto)) {
 
+                    return true;
+                }
+                if (Book.getReleaseDate().toString().contains(tipoTexto)) {
                     return true;
                 }
                 if (Book.getAvailable().toLowerCase().contains(tipoTexto)) {
