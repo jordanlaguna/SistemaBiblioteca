@@ -42,7 +42,9 @@ public class Prestamo extends Nota{
     
     
 
-    public Prestamo( Date dateLoan, String exemplars, Date dateReturn, int numLoan,  String email, String fullName,  Date date, String identification, String note ) {//List copy, List unit,
+    public Prestamo( Date dateLoan, String exemplars, Date dateReturn, 
+            int numLoan,  String email, String fullName,  Date date, 
+            String identification, String note ) {
         super(date, identification, note);
         
         this.dateLoan = dateLoan;

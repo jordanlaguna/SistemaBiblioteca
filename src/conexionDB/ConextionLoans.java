@@ -26,12 +26,8 @@ import java.util.List;
  * @author julio
  */
 public class ConextionLoans {
-
     Connection conn;
-
-    public static Connection conn() {
-
-        private static final String JDBC_URL = "jdbc:mysql://localhost:3306/"
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/"
             + "sistemabiblioteca";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
@@ -78,22 +74,14 @@ public class ConextionLoans {
 
             while (rs.next()) {
                 list.add(new Prestamo(rs.getDate("loan_date"),
-                        rs.getString("exemplars"),
+                        rs.getString("exemplars"), 
                         rs.getDate("devolution_date"),
-
-                        // rs.getList("unit"),
-                        rs.getInt("loan_number")));
-            }
-
-        } catch (SQLException | NumberFormatException e) {
-
-
-                        rs.getInt("loan_number"),
+                        rs.getInt("numLoan"),
                         rs.getString("email"),
                         rs.getString("fullName"),
                         rs.getDate("date"),
                         rs.getString("identification"), 
-                        rs.getString("noteDescription")));   
+                        rs.getString("noteDescription"))); 
             }
         } catch (SQLException e) {
 
@@ -103,30 +91,7 @@ public class ConextionLoans {
         return list;
     }
 
-    public static ObservableList<Nota> getNotas() {
-
-        Connection conn = conn();
-        ObservableList<Nota> list = FXCollections.observableArrayList();
-
-        try {
-            PreparedStatement ps = conn.prepareStatement("select * from note");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Nota(rs.getDate("date"),
-                        rs.getInt("identification"),
-                        rs.getString("noteDescription")));
-            }
-
-        } catch (SQLException | NumberFormatException e) {
-
-            System.out.println(e);
-        }
-
-        return list;
-    }
-
-}
-    
+   
     
 }
 

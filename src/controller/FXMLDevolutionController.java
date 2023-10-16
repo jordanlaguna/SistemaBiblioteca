@@ -66,7 +66,7 @@ public class FXMLDevolutionController implements Initializable {
     }
 
     private void loadData() {
-        List<Prestamo> prestamos = ConextionLoans.getDataBook();
+        List<Prestamo> prestamos = ConextionLoans.getDataLoanAndNote();
 
         // Ahora, convierte los Prestamos en Devoluciones
         for (Prestamo prestamo : prestamos) {
