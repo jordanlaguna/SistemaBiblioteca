@@ -1,0 +1,19 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15/10/2023, 12:06:34 AM
+    Author     : melan
+*/
+
+//
+.shadow{
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.5), 8,0,0,0)
+}
+//
+.contaClient{
+    -fx-background-color: #fff;
+    -fx-background-radius: 6px;
+}

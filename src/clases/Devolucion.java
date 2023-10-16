@@ -2,6 +2,10 @@ package clases;
 
 import java.util.Date;
 import java.util.List;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 /**
  * The return class is used to record returns of items (books or equipment)
@@ -13,24 +17,23 @@ public class Devolucion {
 
     private Date deliverDate;
 
-    private List unit;
+    private String exemplars;
 
     private List copy;
 
-    private List user;
+    private String user;
 
     /**
      * @param date //The date on which the return was registered
      * @param deliverDate //The date on which the items must be returned
      * @param unit //The list of returned units (books or equipment)
-     * @param copy //The list of individual items returned
+     * @param exemplars //The list of individual items returned
      * @param user //The list of users who have completed the return.
      */
-    public Devolucion(Date date, Date deliverDate, List unit, List copy, 
-            List user) {
+    public Devolucion(Date date, Date deliverDate, String exemplars, List copy, String user) {
         this.date = date;
         this.deliverDate = deliverDate;
-        this.unit = unit;
+        this.exemplars = exemplars;
         this.copy = copy;
         this.user = user;
     }
@@ -54,12 +57,12 @@ public class Devolucion {
         this.deliverDate = deliverDate;
     }
 
-    public List getUnit() {
-        return unit;
+    public String getExemplars() {
+        return exemplars;
     }
 
-    public void setUnit(List unit) {
-        this.unit = unit;
+    public void setExemplars(String exemplars) {
+        this.exemplars = exemplars;
     }
 
     public List getCopy() {
@@ -70,15 +73,39 @@ public class Devolucion {
         this.copy = copy;
     }
 
-    public List getUser() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser(List user) {
+    public void setUser(String user) {
         this.user = user;
     }
 
     //The search method performs a search for specific evaluations
-    public void search() {
+    public static void search(TextField searchDevolution,
+            TableView<Devolucion> tableView) {
+        FilteredList<Devolucion> filteredData = new FilteredList<>(tableView.
+                getItems(), p -> true);
+
+        searchDevolution.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(devolucion -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String tipoTexto = newValue.toLowerCase();
+                return //devolucion.getUser().toLowerCase().contains(tipoTexto)
+                        //|| 
+                        devolucion.getExemplars().toLowerCase().
+                                contains(tipoTexto)
+                        || devolucion.getDate().toString().toLowerCase().
+                                contains(tipoTexto)
+                        || devolucion.getDeliverDate().toString().toLowerCase().
+                                contains(tipoTexto);
+            });
+        });
+
+        SortedList<Devolucion> sortedList = new SortedList<>(filteredData);
+        sortedList.comparatorProperty().bind(tableView.comparatorProperty());
+        tableView.setItems(sortedList);
     }
 }

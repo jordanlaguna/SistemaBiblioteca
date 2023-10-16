@@ -6,6 +6,7 @@
  */
 package conexionDB;
 
+import clases.Devolucion;
 import clases.Nota;
 import clases.Prestamo;
 import java.sql.Connection;
@@ -18,15 +19,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import java.util.List;
+
 /**
  *
  * @author julio
  */
 public class ConextionLoans {
-    
-     Connection conn;
 
-    public static Connection conn(){
+    Connection conn;
+
+    public static Connection conn() {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -55,23 +57,22 @@ public class ConextionLoans {
             PreparedStatement ps = conn.prepareStatement("select * from loan");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                  list.add(new Prestamo(rs.getDate("loan_date"),
+                list.add(new Prestamo(rs.getDate("loan_date"),
                         rs.getString("exemplars"),
                         rs.getDate("devolution_date"),
-                       // rs.getList("unit"),
+                        // rs.getList("unit"),
                         rs.getInt("loan_number")));
             }
-            
 
         } catch (SQLException | NumberFormatException e) {
 
             System.out.println(e);
-
         }
 
         return list;
-}
-     public static ObservableList<Nota> getNotas() {
+    }
+
+    public static ObservableList<Nota> getNotas() {
 
         Connection conn = conn();
         ObservableList<Nota> list = FXCollections.observableArrayList();
@@ -80,20 +81,17 @@ public class ConextionLoans {
             PreparedStatement ps = conn.prepareStatement("select * from note");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                  list.add(new Nota(rs.getDate("date"),
+                list.add(new Nota(rs.getDate("date"),
                         rs.getInt("identification"),
                         rs.getString("noteDescription")));
             }
-            
 
         } catch (SQLException | NumberFormatException e) {
 
             System.out.println(e);
-
         }
 
         return list;
-}
-    
-    
+    }
+
 }

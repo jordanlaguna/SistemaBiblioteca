@@ -88,4 +88,12 @@ public class FXMLDashboardAdminController implements Initializable {
         containerMenu.getChildren().clear(); //limpiar
         containerMenu.getChildren().add(root);
     }
+
+    @FXML
+    private void openDevolutions(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(
+                "/vista/FXMLDevolution.fxml"));
+        containerMenu.getChildren().clear(); //limpiar
+        containerMenu.getChildren().add(root);
+    }
 }
