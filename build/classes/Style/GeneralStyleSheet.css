@@ -17,3 +17,48 @@ and open the template in the editor.
     -fx-background-color: #fff;
     -fx-background-radius: 6px;
 }
+
+
+.text1{
+    -fx-border-color: black;
+    -fx-border-width: 0 0 1 0; /* Solo el borde inferior */
+    -fx-background-color: transparent;
+    -fx-border-radius: 1;
+    -fx-border: gone;
+    -fx-text-fill: grey;
+    -fx-padding: 12 12 1 11; /* Ajustar el espaciado */
+
+}
+
+.text1:focused {
+    -fx-background-color: #F1F3F4;
+    -fx-effect: dropshadow(three-pass-box,#f2f2f2, 10, 0, 0, 0);
+}
+
+.combox1{
+    -fx-background-color: transparent;
+    -fx-font-size: 18px;
+    -fx-font-family: "Times New Roman";
+    -fx-border-color: black;
+    -fx-border-radius:5;
+    -fx-background-radius:5;
+}
+.btnV{
+    -fx-background-radius: 15;
+    -fx-background-color:  #BF1717;
+    -fx-text-fill:white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0, 0, 2);
+    -fx-padding: 10 20; /* Ajusta el espaciado interno según tus necesidades */
+    -fx-border-width: 2; /* Ajusta el ancho del borde según tus necesidades */
+    -fx-border-radius: 15;
+}
+
+
+.btnV:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 5, 0, 0, 1); /* Efecto de sombra en hover */
+    -fx-translate-y: 3; /* Efecto de hundimiento en hover */
+}
+
+#tbw_tablet {
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0)
+}
