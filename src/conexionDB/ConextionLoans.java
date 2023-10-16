@@ -9,6 +9,7 @@ package conexionDB;
 import clases.Devolucion;
 import clases.Nota;
 import clases.Prestamo;
+import static conexionDB.ConexionLibros.conn;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -30,41 +31,71 @@ public class ConextionLoans {
 
     public static Connection conn() {
 
+        private static final String JDBC_URL = "jdbc:mysql://localhost:3306/"
+            + "sistemabiblioteca";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "";
+
+    public static Connection getConnection() {
+        Connection conn = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://"
-                    + "localhost:3306/sistemabiblioteca", "root", "");
-            return conn;
+            conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASSWORD);
+        } catch (SQLException e) {
+            System.err.println("Error al conectar a la base de "
+                    + "datos: " + e.getMessage());
 
-        } catch (ClassNotFoundException | SQLException e) {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("No se pudo conectar a la base de datos" + e);
-            alert.showAndWait();
-            return null;
+            System.err.println("Error al conectar a la base de datos: "
+                    + e.getMessage());
         }
-
+        return conn;
     }
 
-    public static ObservableList<Prestamo> getDataBook() {
-
-        Connection conn = conn();
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+                System.out.println("Conexión cerrada.");
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar la "
+                        + "conexión: " + e.getMessage());
+            }
+        }
+    }
+    
+// Agregar un método similar para obtener datos de la tabla 'loan' y 'note'
+    public static ObservableList<Prestamo> getDataLoanAndNote() {
+        Connection conn = conn(); 
         ObservableList<Prestamo> list = FXCollections.observableArrayList();
 
         try {
-            PreparedStatement ps = conn.prepareStatement("select * from loan");
+            PreparedStatement ps = conn.prepareStatement("SELECT id_loan,"
+                    + "loan_date, exemplars, unit, loan_number,"
+                    + "devolution_date, email,fullName,  "
+                    + " id, date, identification, noteDescription "
+                    + "from loan " +
+                    "inner join note on loan.id_loan = note.id");
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
                 list.add(new Prestamo(rs.getDate("loan_date"),
                         rs.getString("exemplars"),
                         rs.getDate("devolution_date"),
+
                         // rs.getList("unit"),
                         rs.getInt("loan_number")));
             }
 
         } catch (SQLException | NumberFormatException e) {
+
+
+                        rs.getInt("loan_number"),
+                        rs.getString("email"),
+                        rs.getString("fullName"),
+                        rs.getDate("date"),
+                        rs.getString("identification"), 
+                        rs.getString("noteDescription")));   
+            }
+        } catch (SQLException e) {
 
             System.out.println(e);
         }
@@ -95,3 +126,7 @@ public class ConextionLoans {
     }
 
 }
+    
+    
+}
+
