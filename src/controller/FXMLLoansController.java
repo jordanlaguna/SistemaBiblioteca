@@ -136,7 +136,8 @@ public class FXMLLoansController implements Initializable {
         if (conn != null) {
             try {
                 PreparedStatement ps = conn.prepareStatement("SELECT"
-                        + " DISTINCT isbn, title FROM book WHERE available = 'Disponible'");
+                        + " DISTINCT isbn, title FROM book WHERE "
+                        + "available = 'Disponible'");
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     editorialData.add(rs.getString("title"));
@@ -156,7 +157,8 @@ public class FXMLLoansController implements Initializable {
         if (con != null) {
             try {
                 PreparedStatement ps = con.prepareStatement("SELECT"
-                        + " DISTINCT id, trademark FROM computer WHERE available = 'Disponible'");
+                        + " DISTINCT id, trademark FROM computer WHERE "
+                        + "available = 'Disponible'");
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     computerData.add(rs.getString("trademark"));
@@ -169,13 +171,15 @@ public class FXMLLoansController implements Initializable {
         cmbTablet.setValue(null);
         txt_editorial.setValue(null);
         return computerData;
-    }private List<String> getTabletDataFromDatabase() {
+    }
+    private List<String> getTabletDataFromDatabase() {
         List<String> tabletData = new ArrayList<>();
         Connection connn = ConexionTabletDB.getConnection();
         if (connn != null) {
             try {
                 PreparedStatement ps = connn.prepareStatement("SELECT"
-                        + " DISTINCT id_tab, trademark FROM tablet WHERE available = 'Disponible'");
+                        + " DISTINCT id_tab, trademark FROM tablet WHERE "
+                        + "available = 'Disponible'");
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     tabletData.add(rs.getString("trademark"));
@@ -258,7 +262,6 @@ public class FXMLLoansController implements Initializable {
             
            prestamo.setExemplars((String) cmbTablet.getValue() ); 
         }
-        
         
         prestamo.setEmail(txt_email.getText());
         prestamo.setFullName(txt_name.getText());

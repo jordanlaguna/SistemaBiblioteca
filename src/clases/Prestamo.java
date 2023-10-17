@@ -2,6 +2,7 @@ package clases;
 
 import conexionDB.ConexionLibros;
 import conexionDB.ConexionLoans;
+import conexionDB.ConexionTabletDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +22,6 @@ public class Prestamo extends Nota {
     private String exemplars;
 
     private Date dateReturn;
-
     // private List unit;
     private int numLoan;
     private String email;
@@ -130,7 +130,8 @@ public class Prestamo extends Nota {
             String value1 = selectedEditorial;
             String value3 = "No disponible";
 
-            String sqlAvailable = "SELECT DISTINCT isbn FROM book WHERE available = 'Disponible' AND title = '" + value1 + "'";
+            String sqlAvailable = "SELECT DISTINCT isbn FROM book WHERE "
+                    + "available = 'Disponible' AND title = '" + value1 + "'";
 
             String isbn = executeQueryAndGetISBN(sqlAvailable);
             String value2 = isbn;
@@ -140,9 +141,11 @@ public class Prestamo extends Nota {
                 System.out.println("El ISBN encontrado es: " + isbn);
 
             } else {
-                System.out.println("No se encontró un ISBN para el título proporcionado.");
+                System.out.println("No se encontró un ISBN para el título "
+                        + "proporcionado.");
             }
-            String sqlUpdate = "UPDATE book SET isbn = '"+value2+"', available = '"+value3+"' WHERE isbn = '"+value2+"';";
+            String sqlUpdate = "UPDATE book SET isbn = '"+value2+"', available "
+                    + "= '"+value3+"' WHERE isbn = '"+value2+"';";
             
               
             ps1 = con.prepareStatement(sqlUpdate);
@@ -151,8 +154,81 @@ public class Prestamo extends Nota {
         } catch (Exception e) {
             System.out.println(e);
              System.out.println("No encontro codigo update");
-        }
+        }   
+    }
+    public void updateComputer(){
+        Connection conn = null;
+        PreparedStatement ps1 = null;
+        String selectedEditorialTwo = getExemplars();
+         
         
+        try {
+            conn = ConexionLibros.conn();
+            String value1 = selectedEditorialTwo;
+            String value3 = "No disponible";
+
+            String sqlAvailable = "SELECT DISTINCT id FROM computer WHERE "
+                    + "available = 'Disponible' AND trademark = '" + value1 + "'";
+
+            String id = executeQueryAndGetID(sqlAvailable);
+            String value2 = id;
+            // Verificar si se obtuvo un ISBN y mostrarlo
+            if (id != null) {
+
+                System.out.println("El ID encontrado es: " + id);
+
+            } else {
+                System.out.println("No se encontró un ID para el título "
+                        + "proporcionado.");
+            }
+            String sqlUpdate = "UPDATE computer SET id = '"+value2+"', available "
+                    + "= '"+value3+"' WHERE id = '"+value2+"';";
+            
+              
+            ps1 = conn.prepareStatement(sqlUpdate);
+            ps1.execute();
+            System.out.println("Actualiza disponible");
+        } catch (Exception e) {
+            System.out.println(e);
+             System.out.println("No encontro codigo update");
+        }   
+    }
+     public void updateTablet(){
+        Connection conn = null;
+        PreparedStatement ps1 = null;
+        String selectedEditorialThree = getExemplars();
+         
+        
+        try {
+            conn = ConexionTabletDB.getConnection();
+            String value1 = selectedEditorialThree;
+            String value3 = "No disponible";
+
+            String sqlAvailable = "SELECT DISTINCT id_tab FROM tablet WHERE "
+                    + "available = 'Disponible' AND trademark = '" + value1 + "'";
+
+            String id = executeQueryAndGetId_tab(sqlAvailable);
+            String value2 = id;
+            // Verificar si se obtuvo un ISBN y mostrarlo
+            if (id != null) {
+
+                System.out.println("El ID encontrado es: " + id);
+
+            } else {
+                System.out.println("No se encontró un ID para el título "
+                        + "proporcionado.");
+            }
+            String sqlUpdate = "UPDATE tablet SET id_tab = '"+value2+"', available "
+                    + "= '"+value3+"' WHERE id_tab = '"+value2+"';";
+            
+              
+            ps1 = conn.prepareStatement(sqlUpdate);
+            ps1.execute();
+            System.out.println("Actualiza disponible");
+        } catch (Exception e) {
+            System.out.println(e);
+             System.out.println("No encontro codigo update");
+        }   
     }
     public String executeQueryAndGetISBN(String sqlQuery) {
         String isbn = null;
@@ -185,6 +261,69 @@ public class Prestamo extends Nota {
 
         return isbn;
     }
+    public String executeQueryAndGetID(String sqlQuery2) {
+        String id = null;
+        Connection conn = null;
+        PreparedStatement statament = null;
+        ResultSet rs = null;
+        String selectedEditorialTwo = getExemplars();
+        conn = ConexionLibros.conn();
+
+        try {
+            // Crear una declaración (statement) para ejecutar la consulta
+            Statement statement = conn.createStatement();
+
+            // Ejecutar la consulta
+            ResultSet resultSet = statement.executeQuery(sqlQuery2);
+
+            // Verificar si se encontró algún resultado
+            if (resultSet.next()) {
+                // Obtener el ISBN de la primera fila (puedes ajustar esto según tus necesidades)
+                id = resultSet.getString("id");
+            }
+
+            // Cerrar la declaración y el resultado
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejo de errores SQL
+        }
+
+        return id;
+    }
+    
+     public String executeQueryAndGetId_tab(String sqlQueryThree) {
+        String id_tab= null;
+        Connection conn = null;
+        PreparedStatement statament = null;
+        ResultSet rs = null;
+        String selectedEditorialThree = getExemplars();
+        conn = ConexionTabletDB.getConnection();
+
+        try {
+            // Crear una declaración (statement) para ejecutar la consulta
+            Statement statement = conn.createStatement();
+
+            // Ejecutar la consulta
+            ResultSet resultSet = statement.executeQuery(sqlQueryThree);
+
+            // Verificar si se encontró algún resultado
+            if (resultSet.next()) {
+                // Obtener el ISBN de la primera fila (puedes ajustar esto según tus necesidades)
+                id_tab = resultSet.getString("id_tab");
+            }
+
+            // Cerrar la declaración y el resultado
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Manejo de errores SQL
+        }
+
+        return id_tab;
+    }
 
     /**
      * This function is used to add new elements or records to the system.
@@ -194,16 +333,18 @@ public class Prestamo extends Nota {
         PreparedStatement ps, ps2, ps1 = null;
         ResultSet rs = null;
         String selectedEditorial = getExemplars();
-        conn = ConexionLoans.getConnection();
-        
+        conn = ConexionLoans.getConnection();       
         updateBook();
+        updateComputer();
+        updateTablet();
         
         try {
 
-            String sql = "insert into loan(loan_date, devolution_date, loan_number,"
-                    + " exemplars, email, fullName)"
+            String sql = "insert into loan(loan_date, devolution_date, "
+                    + "loan_number,"+ " exemplars, email, fullName)"
                     + "values(?, ?, ?, ?, ?, ?)";
-            String sqlNote = "insert into note(date,identification,noteDescription)"
+            String sqlNote = "insert into note(date,identification"
+                    + ",noteDescription)"
                     + "values(?,?,?)";
 
             con = ConexionLibros.conn();

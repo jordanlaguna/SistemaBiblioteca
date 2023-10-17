@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/gatov/OneDrive/Documentos/Biblioteca/SistemaBiblioteca/src/controller/FXMLLoansController.java</file>
-            <file>file:/C:/Users/gatov/OneDrive/Documentos/Biblioteca/SistemaBiblioteca/src/clases/Prestamo.java</file>
-            <file>file:/C:/Users/gatov/OneDrive/Documentos/Biblioteca/SistemaBiblioteca/src/conexionDB/ConexionLoans.java</file>
-            <file>file:/C:/Users/gatov/OneDrive/Documentos/Biblioteca/SistemaBiblioteca/src/clases/Tablet.java</file>
+            <file>file:/C:/Users/jorda/Documents/NetBeansProjects/SistemaBiblioteca/SistemaBiblioteca/src/controller/FXMLLoansController.java</file>
+            <file>file:/C:/Users/jorda/Documents/NetBeansProjects/SistemaBiblioteca/SistemaBiblioteca/src/clases/Prestamo.java</file>
         </group>
     </open-files>
 </project-private>
