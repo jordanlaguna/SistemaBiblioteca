@@ -126,7 +126,7 @@ public class FXMLLoansController implements Initializable {
         if (conn != null) {
             try {
                 PreparedStatement ps = conn.prepareStatement("SELECT"
-                        + " DISTINCT title FROM book");
+                        + " DISTINCT title FROM book WHERE available = 'Disponible'");
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     editorialData.add(rs.getString("title"));
