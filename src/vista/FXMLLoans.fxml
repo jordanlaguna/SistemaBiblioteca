@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -17,7 +23,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="822.0" stylesheets="@../Style/GeneralStyleSheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLoansController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="822.0" stylesheets="@../Style/GeneralStyleSheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLLoansController">
    <children>
       <AnchorPane layoutX="25.0" layoutY="15.0" prefHeight="214.0" prefWidth="769.0">
          <children>
@@ -76,9 +82,14 @@
                               </DatePicker>
                            </children>
                         </HBox>
-                        <ComboBox fx:id="txt_editorial" maxHeight="-Infinity" prefHeight="37.0" prefWidth="210.0" promptText="Editorial" styleClass="combox1">
+                        <ComboBox fx:id="txt_editorial" maxHeight="-Infinity" prefHeight="37.0" prefWidth="186.0" promptText="Libros" styleClass="combox1">
                            <VBox.margin>
-                              <Insets left="15.0" top="10.0" />
+                              <Insets left="5.0" top="10.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                        <ComboBox fx:id="cmbComputer" maxHeight="-Infinity" prefHeight="37.0" prefWidth="186.0" promptText="Computadora" styleClass="combox1">
+                           <VBox.margin>
+                              <Insets left="200.0" top="-37.0" />
                            </VBox.margin>
                         </ComboBox>
                      </children>
@@ -129,11 +140,16 @@
                                     <Insets left="5.0" top="24.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextArea fx:id="txt_Observations" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="77.0" prefWidth="239.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;">
+                              <TextArea fx:id="txt_Observations" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="37.0" prefWidth="239.0" style="-fx-border-color: black; -fx-background-radius: 5; -fx-border-radius: 5;">
                                  <HBox.margin>
-                                    <Insets top="24.0" />
+                                    <Insets left="-5.0" top="18.0" />
                                  </HBox.margin>
                               </TextArea>
+                              <ComboBox fx:id="cmbTablet" maxHeight="-Infinity" prefHeight="37.0" prefWidth="186.0" promptText="Tablet" styleClass="combox1">
+                                 <HBox.margin>
+                                    <Insets left="-370.0" top="66.0" />
+                                 </HBox.margin>
+                              </ComboBox>
                            </children>
                         </HBox>
                      </children>
