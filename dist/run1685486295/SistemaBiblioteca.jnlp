@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<<< Updated upstream:dist/run1685486295/SistemaBiblioteca.jnlp
     <jar href="SistemaBiblioteca.jar" size="284149" download="eager" />
+========
+    <jar href="SistemaBiblioteca.jar" size="282271" download="eager" />
+>>>>>>>> Stashed changes:dist/run1836020228/SistemaBiblioteca.jnlp
     <jar href="lib\javamail-1.4.1.jar" size="371264" download="eager" />
     <jar href="lib\mysql-connector-java-8.0.29.jar" size="2519547" download="eager" />
   </resources>
