@@ -25,7 +25,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -55,6 +57,8 @@ public class ForgetPasswordController implements Initializable {
     PreparedStatement pst = null;
     Statement smtp = null;
     int randomCodigo;
+    @FXML
+    private AnchorPane containesFpass;
 
     /**
      * Initializes the controller class.
@@ -85,8 +89,8 @@ public class ForgetPasswordController implements Initializable {
                     String pass = "xvgn ynck gtdx snjn";
                     String to = txtCorreo.getText();
                     String subject = "Código de Verificació.";
-                    String message = "Su código de reinicio es: " + 
-                            randomCodigo;
+                    String message = "Su código de reinicio es: "
+                            + randomCodigo;
                     boolean sessionDebug = false;
                     Properties pros = System.getProperties();
                     pros.put("mail.smtp.starttls.enable", "true");
@@ -94,8 +98,7 @@ public class ForgetPasswordController implements Initializable {
                     pros.put("mail.smtp.port", "587");
                     pros.put("mail.smtp.auth", "true ");
                     pros.put("mail.smtp.starttls.resquired", "true");
-                    java.security.Security.addProvider(new com.sun.net.ssl.
-                            internal.ssl.Provider());
+                    java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
                     Session mailSession = Session.getDefaultInstance(pros, null);
                     mailSession.setDebug(sessionDebug);
                     Message msg = new MimeMessage(mailSession);
@@ -112,8 +115,8 @@ public class ForgetPasswordController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText(null);
                     alert.setTitle("Información");
-                    alert.setContentText("El código fue enviado al correo" + 
-                            "\n" + txtCorreo.getText()); // "Code has send to the email"
+                    alert.setContentText("El código fue enviado al correo"
+                            + "\n" + txtCorreo.getText()); // "Code has send to the email"
                     alert.showAndWait();
                     /*----------------------------------------------------------------------------------------------------*/
 
@@ -140,7 +143,7 @@ public class ForgetPasswordController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
-            alert.setContentText("No se puedo entrar a la base de datos.... " 
+            alert.setContentText("No se puedo entrar a la base de datos.... "
                     + ex);
             alert.showAndWait();
         }
@@ -150,13 +153,20 @@ public class ForgetPasswordController implements Initializable {
     private void ActVerfica(ActionEvent event) throws IOException {
         if (Integer.valueOf(txtVerfCod.getText()) == randomCodigo) {
 
-            Parent Regreso = FXMLLoader.load(getClass().getResource(
-                    "/vista/FXMLSendEmail.fxml"));
-            Scene windowScene = new Scene(Regreso);
-            Stage window = (Stage) ((Node) event.getSource()).getScene()
-                    .getWindow();
-            window.setScene(windowScene);
-            window.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/FXMLSendEmail.fxml"));
+            Parent root = loader.load();
+            FXMLNewPasswordController ac = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnCloseRequest(e -> {
+            });
+
+            Stage myStage = (Stage) this.containesFpass.getScene().getWindow();
+            myStage.close();
 
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -170,12 +180,20 @@ public class ForgetPasswordController implements Initializable {
 
     @FXML
     private void Cerrar(ActionEvent event) throws IOException {
-        Parent Regreso = FXMLLoader.load(getClass().getResource(
-                "/vista/FXMLLogin.fxml"));
-        Scene windowScene = new Scene(Regreso);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(windowScene);
-        window.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/FXMLLogin.fxml"));
+        Parent root = loader.load();
+        FXMLLoginController ac = loader.getController();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
+
+        stage.setOnCloseRequest(e -> {
+        });
+
+        Stage myStage = (Stage) this.containesFpass.getScene().getWindow();
+        myStage.close();
     }
 
 }

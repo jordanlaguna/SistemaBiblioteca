@@ -39,6 +39,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 /**
@@ -109,6 +110,8 @@ public class FXMLLoginController implements Initializable {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+    @FXML
+    private AnchorPane containerLogin;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -216,30 +219,30 @@ public class FXMLLoginController implements Initializable {
         String email = emailLogin.getText();
         String password = passwordLogin.getText();
         String type = (String) cmbBox.getValue();
-        
-        Usuario usuario = new Usuario(null, null, null, null, null, 0, email, 
+
+        Usuario usuario = new Usuario(null, null, null, null, null, 0, email,
                 password, type);
         boolean loginSuccessful = usuario.login(email, password, type);
-        try{
-        if (loginSuccessful) {
-             buttonInicio.getScene().getWindow().hide();
-                    Parent root = FXMLLoader.load(getClass().getResource(""
-                            + "/vista/FXMLDashboardAdmin.fxml"));
-                    Stage mainStage = new Stage();
-                    Scene scene = new Scene(root);
-                    mainStage.setScene(scene);
-                    Image icon = new Image(getClass().getResourceAsStream(""
-                            + "/img/bibliotecaenlinea.png"));
-                    mainStage.getIcons().add(icon);
-                    mainStage.setTitle("Biblioteca Admin");
-                    mainStage.show();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("ERROR");
-            alert.setContentText("Usuario/Contraseña incorrectos");
-            alert.showAndWait();
-        }
+        try {
+            if (loginSuccessful) {
+                buttonInicio.getScene().getWindow().hide();
+                Parent root = FXMLLoader.load(getClass().getResource(""
+                        + "/vista/FXMLDashboardAdmin.fxml"));
+                Stage mainStage = new Stage();
+                Scene scene = new Scene(root);
+                mainStage.setScene(scene);
+                Image icon = new Image(getClass().getResourceAsStream(""
+                        + "/img/bibliotecaenlinea.png"));
+                mainStage.getIcons().add(icon);
+                mainStage.setTitle("Biblioteca Admin");
+                mainStage.show();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("ERROR");
+                alert.setContentText("Usuario/Contraseña incorrectos");
+                alert.showAndWait();
+            }
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -248,7 +251,7 @@ public class FXMLLoginController implements Initializable {
                     + "ingrese los datos en la caja de texto. " + e);
             alert.showAndWait();
         }
-        
+
     }
 
     @FXML
@@ -283,10 +286,19 @@ public class FXMLLoginController implements Initializable {
     @FXML
     private void lb_olvidar(MouseEvent event) throws IOException {
         // Regresa al inicio LOGIN 
-        Parent Regreso = FXMLLoader.load(getClass().getResource("/vista/FXMLForgetPassword.fxml"));
-        Scene windowScene = new Scene(Regreso);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(windowScene);
-        window.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/FXMLForgetPassword.fxml"));
+        Parent root = loader.load();
+        ForgetPasswordController ac = loader.getController();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(scene);
+        stage.show();
+
+        stage.setOnCloseRequest(e -> {
+        });
+
+        Stage myStage = (Stage) this.containerLogin.getScene().getWindow();
+        myStage.close();
     }
 }

@@ -23,7 +23,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -42,9 +44,11 @@ public class FXMLNewPasswordController implements Initializable {
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
-    
+
     @FXML
     private TextField txtUserName;
+    @FXML
+    private AnchorPane containerNpass;
 
     /**
      * Initializes the controller class.
@@ -66,32 +70,39 @@ public class FXMLNewPasswordController implements Initializable {
                 String sql = "update user set email= '" + value1 + "',password= '"
                         + value2 + "' where email= '"
                         + value1 + "' ";
-                
+
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("CONFIRMACIÓN");
-            alert.setContentText("¿Desea modificar los datos?");
-            Optional<ButtonType> opcion = alert.showAndWait();
-
-            if (opcion.get().equals(ButtonType.OK)) {
-                pst = conn.prepareStatement(sql);
-                pst.execute();
-                alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
-                alert.setTitle("INFORMACIÓN");
-                alert.setContentText("Datos modificados con éxito.");
-                alert.showAndWait();
+                alert.setTitle("CONFIRMACIÓN");
+                alert.setContentText("¿Desea modificar los datos?");
+                Optional<ButtonType> opcion = alert.showAndWait();
 
-            }
+                if (opcion.get().equals(ButtonType.OK)) {
+                    pst = conn.prepareStatement(sql);
+                    pst.execute();
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setTitle("INFORMACIÓN");
+                    alert.setContentText("Datos modificados con éxito.");
+                    alert.showAndWait();
 
-                 
+                }
+
                 // Regresa al inicio LOGIN 
-                Parent Regreso = FXMLLoader.load(getClass().getResource("/vista/"
-                        + "FXMLLogin.fxml"));
-                Scene windowScene = new Scene(Regreso);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(windowScene);
-                window.show();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/FXMLLogin.fxml"));
+                Parent root = loader.load();
+                FXMLLoginController ac = loader.getController();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(scene);
+                stage.show();
+
+                stage.setOnCloseRequest(e -> {
+                });
+
+                Stage myStage = (Stage) this.containerNpass.getScene().getWindow();
+                myStage.close();
 
             } catch (Exception ex) {
 
