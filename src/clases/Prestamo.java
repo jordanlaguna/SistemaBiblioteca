@@ -1,6 +1,6 @@
 package clases;
 
-import conexionDB.ConextionLoans;
+import conexionDB.ConexionLoans;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -135,7 +135,7 @@ public class Prestamo extends Nota{
       PreparedStatement ps , ps2= null;
       ResultSet rs = null;
        String selectedEditorial = getExemplars();
-        conn= ConextionLoans.getConnection(); 
+        conn= ConexionLoans.getConnection(); 
         
         String sql= "insert into loan(loan_date, devolution_date, loan_number,"
                 + " exemplars, email, fullName)"

@@ -1,7 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt
     to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.ConextionLoans
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.ConexionLoans
     to edit this template
  */
 package conexionDB;
@@ -25,7 +25,7 @@ import java.util.List;
  *
  * @author julio
  */
-public class ConextionLoans {
+public class ConexionLoans {
     Connection conn;
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/"
             + "sistemabiblioteca";
@@ -62,27 +62,17 @@ public class ConextionLoans {
     public static ObservableList<Prestamo> getDataLoanAndNote() {
         Connection conn = conn(); 
         ObservableList<Prestamo> list = FXCollections.observableArrayList();
-
+        
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT id_loan,"
                     + "loan_date, exemplars, unit, loan_number,"
-                    + "devolution_date, email,fullName,  "
-                    + " id, date, identification, noteDescription "
+                    + "devolution_date, email,fullName,"
+                    + "id, date, identification, noteDescription "
                     + "from loan " +
                     "inner join note on loan.id_loan = note.id");
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
-                list.add(new Prestamo(rs.getDate("loan_date"),
-                        rs.getString("exemplars"), 
-                        rs.getDate("devolution_date"),
-                        rs.getInt("numLoan"),
-                        rs.getString("email"),
-                        rs.getString("fullName"),
-                        rs.getDate("date"),
-                        rs.getString("identification"), 
-                        rs.getString("noteDescription"))); 
-            }
+           addLoanToList(rs, list);
         } catch (SQLException e) {
 
             System.out.println(e);
@@ -91,7 +81,20 @@ public class ConextionLoans {
         return list;
     }
 
-   
-    
+    private static void addLoanToList(ResultSet rs, ObservableList<Prestamo> 
+            list) throws SQLException {
+        if (rs.next()) 
+             {
+                list.add(new Prestamo(rs.getDate("loan_date"),
+                        rs.getString("exemplars"), 
+                        rs.getDate("devolution_date"),
+                        rs.getInt("loan_number"),
+                        rs.getString("email"),
+                        rs.getString("fullName"),
+                        rs.getDate("date"),
+                        rs.getString("identification"), 
+                        rs.getString("noteDescription"))); 
+                 addLoanToList(rs, list);
+             } 
+    }
 }
-

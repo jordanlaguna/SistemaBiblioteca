@@ -8,7 +8,7 @@ package controller;
 import clases.Prestamo;
 import clases.Nota;
 import conexionDB.ConexionLibros;
-import conexionDB.ConextionLoans; 
+import conexionDB.ConexionLoans; 
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,12 +86,15 @@ public class FXMLLoansController implements Initializable {
       PreparedStatement ps , ps2= null;
       ResultSet rs = null;
    
-
+    int randomCodigo;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Random rand = new Random();
+        randomCodigo = rand.nextInt(999999);
+        txt_numLoan.setText(String.valueOf(randomCodigo));
         try { 
            
             loadData();
@@ -142,7 +146,7 @@ public class FXMLLoansController implements Initializable {
    
     private void loadData() throws SQLException{
         
-        conn= ConextionLoans.getConnection(); 
+        conn= ConexionLoans.getConnection(); 
         
          this.colum_dateLoan.setCellValueFactory(new PropertyValueFactory<
                 Prestamo,  java.sql.Date>("dateLoan"));
@@ -165,7 +169,7 @@ public class FXMLLoansController implements Initializable {
                 Prestamo, String>("fullName"));
         
         
-        Prestamos = ConextionLoans.getDataLoanAndNote();      
+        Prestamos = ConexionLoans.getDataLoanAndNote();      
         tbw_libros.setItems(Prestamos); 
     }
     

@@ -8,7 +8,7 @@ package controller;
 import clases.Devolucion;
 import clases.Prestamo;
 import clases.Tablet;
-import conexionDB.ConextionLoans;
+import conexionDB.ConexionLoans;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -66,7 +66,7 @@ public class FXMLDevolutionController implements Initializable {
     }
 
     private void loadData() {
-        List<Prestamo> prestamos = ConextionLoans.getDataLoanAndNote();
+        List<Prestamo> prestamos = ConexionLoans.getDataLoanAndNote();
 
         // Ahora, convierte los Prestamos en Devoluciones
         for (Prestamo prestamo : prestamos) {
