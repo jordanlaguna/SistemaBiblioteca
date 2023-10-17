@@ -8,6 +8,7 @@ package controller;
 import clases.Prestamo;
 import conexionDB.ConexionLibros;
 import conexionDB.ConexionLoans; 
+import conexionDB.ConexionTabletDB;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -77,13 +78,15 @@ public class FXMLLoansController implements Initializable {
     
     private ObservableList<Prestamo> Prestamos = FXCollections.observableArrayList();
     //private ObservableList<Nota>Notas; 
-      Connection conn = null;
+      Connection conn, con, connn = null;
       PreparedStatement ps , ps2= null;
       ResultSet rs = null;
    
     int randomCodigo;
     @FXML
-    private Label IdBook;
+    private ComboBox<String> cmbComputer;
+    @FXML
+    private ComboBox<String> cmbTablet;
     /**
      * Initializes the controller class.
      */
@@ -103,6 +106,16 @@ public class FXMLLoansController implements Initializable {
         ObservableList<String> editorialList = FXCollections.observableArrayList();
         editorialList.addAll(getEditorialDataFromDatabase());
         txt_editorial.setItems(editorialList);
+        
+        // Llena el ComboBox de editorial
+        ObservableList<String> computerList = FXCollections.observableArrayList();
+        computerList.addAll(getComputerDataFromDatabase());
+        cmbComputer.setItems(computerList);
+        
+        // Llena el ComboBox de editorial
+        ObservableList<String> tabletList = FXCollections.observableArrayList();
+        tabletList.addAll(getTabletDataFromDatabase());
+        cmbTablet.setItems(tabletList);
     } 
     
     
@@ -133,10 +146,49 @@ public class FXMLLoansController implements Initializable {
                 e.printStackTrace();
             }
         }
-        
+        cmbComputer.setValue(null);
+        cmbTablet.setValue(null);
         return editorialData;
     }
-    
+    private List<String> getComputerDataFromDatabase() {
+        List<String> computerData = new ArrayList<>();
+        Connection con = ConexionLibros.conn();
+        if (con != null) {
+            try {
+                PreparedStatement ps = con.prepareStatement("SELECT"
+                        + " DISTINCT id, trademark FROM computer WHERE available = 'Disponible'");
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    computerData.add(rs.getString("trademark"));
+                       
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        cmbTablet.setValue(null);
+        txt_editorial.setValue(null);
+        return computerData;
+    }private List<String> getTabletDataFromDatabase() {
+        List<String> tabletData = new ArrayList<>();
+        Connection connn = ConexionTabletDB.getConnection();
+        if (connn != null) {
+            try {
+                PreparedStatement ps = connn.prepareStatement("SELECT"
+                        + " DISTINCT id_tab, trademark FROM tablet WHERE available = 'Disponible'");
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    tabletData.add(rs.getString("trademark"));
+                       
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        cmbComputer.setValue(null);
+        txt_editorial.setValue(null);
+        return tabletData;
+    }
     
     
     /**
@@ -188,12 +240,26 @@ public class FXMLLoansController implements Initializable {
         Date loanDate = Date.valueOf(localDate);
         LocalDate Datelocal = Datepiker_devolutionDate.getValue();
         Date loandevolutionDate = Date.valueOf(Datelocal);
-        
-        
         prestamo.setDateLoan(loanDate); 
         prestamo.setDateReturn(loandevolutionDate);
         prestamo.setNumLoan(Integer.parseInt(txt_numLoan.getText()));
-        prestamo.setExemplars((String) txt_editorial.getValue() );
+        
+        String opcion = txt_editorial.getValue();
+        String opcionTwo = cmbComputer.getValue();
+        String opcionThree = cmbTablet.getValue();
+        
+        if(opcion != null && !opcion.isEmpty()){
+            
+           prestamo.setExemplars((String) txt_editorial.getValue() ); 
+        }else if(opcionTwo != null && !opcionTwo.isEmpty()){
+            
+           prestamo.setExemplars((String) cmbComputer.getValue() ); 
+        }else if(opcionThree != null && !opcionThree.isEmpty()){
+            
+           prestamo.setExemplars((String) cmbTablet.getValue() ); 
+        }
+        
+        
         prestamo.setEmail(txt_email.getText());
         prestamo.setFullName(txt_name.getText());
         prestamo.setNote(txt_Observations.getText());
