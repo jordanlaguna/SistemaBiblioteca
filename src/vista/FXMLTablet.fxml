@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLTabletController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="822.0" stylesheets="@../Style/LoginStyleSheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLTabletController">
    <children>
       <AnchorPane layoutX="55.0" layoutY="22.0" prefHeight="182.0" prefWidth="448.0" stylesheets="@../Style/GeneralStyleSheet.css">
          <children>
@@ -102,7 +102,7 @@
                 <TableColumn fx:id="column_id" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="column_brand" prefWidth="246.0" text="Marca" />
                   <TableColumn fx:id="column_ubication" prefWidth="174.0" text="Ubicación" />
-                  <TableColumn fx:id="column_available" prefWidth="217.0" text="Disponibilidad" />
+                  <TableColumn fx:id="column_available" prefWidth="216.0" text="Disponibilidad" />
               </columns>
             </TableView>
          </children>

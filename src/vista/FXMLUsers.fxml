@@ -328,7 +328,7 @@
       </HBox>
       <VBox layoutX="19.0" layoutY="330.0" prefHeight="227.0" prefWidth="788.0">
          <children>
-            <TableView fx:id="tbw_users" layoutX="84.0" layoutY="210.0" onMouseClicked="#Items" prefHeight="231.0" prefWidth="713.0">
+            <TableView fx:id="tbw_users" layoutX="84.0" layoutY="210.0" onMouseClicked="#Items" prefHeight="231.0" prefWidth="713.0" stylesheets="@../Style/LoginStyleSheet.css">
               <columns>
                 <TableColumn fx:id="column_birthDay" prefWidth="83.0" text="Fecha. N" />
                 <TableColumn fx:id="column_identification" prefWidth="81.0" text="Cédula" />

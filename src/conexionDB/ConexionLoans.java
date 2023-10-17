@@ -6,8 +6,6 @@
  */
 package conexionDB;
 
-import clases.Devolucion;
-import clases.Nota;
 import clases.Prestamo;
 import static conexionDB.ConexionLibros.conn;
 import java.sql.Connection;
@@ -65,7 +63,7 @@ public class ConexionLoans {
         
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT id_loan,"
-                    + "loan_date, exemplars, unit, loan_number,"
+                    + "loan_date, exemplars, loan_number,"
                     + "devolution_date, email,fullName,"
                     + "id, date, identification, noteDescription "
                     + "from loan " +
