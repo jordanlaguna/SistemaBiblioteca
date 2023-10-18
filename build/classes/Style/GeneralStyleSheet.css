@@ -7,8 +7,6 @@ and open the template in the editor.
     Created on : 15/10/2023, 12:06:34 AM
     Author     : melan
 */
-
-
 .shadow{
     -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.5), 8,0,0,0)
 }
@@ -48,20 +46,39 @@ and open the template in the editor.
     -fx-background-color:  #BF1717;
     -fx-text-fill:white;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 10, 0, 0, 2);
-    -fx-padding: 10 20; /* Ajusta el espaciado interno según tus necesidades */
-    -fx-border-width: 2; /* Ajusta el ancho del borde según tus necesidades */
+    -fx-padding: 10 20; 
+    -fx-border-width: 2; 
     -fx-border-radius: 15;
 }
 
 .btnV:hover {
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 5, 0, 0, 1); /* Efecto de sombra en hover */
-    -fx-translate-y: 3; /* Efecto de hundimiento en hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 5, 0, 0, 1);
+    -fx-translate-y: 3; 
 }
 
-#tbw_tablet {
-    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0)
+#column_action {
+    -fx-alignment: CENTER;
 }
 
 .textHome{
-    -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.8), 30, 0, 0, 0); /* Sombra con el color rojo fosforescente y 50% de opacidad */
+    -fx-effect: dropshadow(gaussian, rgba(255, 0, 0, 0.8), 30, 0, 0, 0);
+}
+
+.button.delete-button {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-radius:50;
+}
+
+.button.delete-button .image-view {
+    -fx-padding: 10;  
+    -fx-fit-width: 10px; 
+    -fx-fit-height: 10px; 
+}
+
+.button.delete-button:hover {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 5, 0, 0, 1); 
+    -fx-translate-y: 1;
 }

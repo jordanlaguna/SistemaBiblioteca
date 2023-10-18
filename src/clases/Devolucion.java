@@ -19,22 +19,21 @@ public class Devolucion {
 
     private String exemplars;
 
-    private List copy;
+    private String userEmail;
 
     private String user;
 
     /**
      * @param date //The date on which the return was registered
      * @param deliverDate //The date on which the items must be returned
-     * @param unit //The list of returned units (books or equipment)
      * @param exemplars //The list of individual items returned
      * @param user //The list of users who have completed the return.
      */
-    public Devolucion(Date date, Date deliverDate, String exemplars, List copy, String user) {
+    public Devolucion(Date date, Date deliverDate, String exemplars, String userEmail, String user) {
         this.date = date;
         this.deliverDate = deliverDate;
         this.exemplars = exemplars;
-        this.copy = copy;
+        this.userEmail = userEmail;
         this.user = user;
     }
 
@@ -65,12 +64,12 @@ public class Devolucion {
         this.exemplars = exemplars;
     }
 
-    public List getCopy() {
-        return copy;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setCopy(List copy) {
-        this.copy = copy;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getUser() {
@@ -93,9 +92,10 @@ public class Devolucion {
                     return true;
                 }
                 String tipoTexto = newValue.toLowerCase();
-                return //devolucion.getUser().toLowerCase().contains(tipoTexto)
-                        //|| 
-                        devolucion.getExemplars().toLowerCase().
+                return devolucion.getUser().toLowerCase().contains(tipoTexto)
+                        || devolucion.getUserEmail().toLowerCase().
+                                contains(tipoTexto)
+                        || devolucion.getExemplars().toLowerCase().
                                 contains(tipoTexto)
                         || devolucion.getDate().toString().toLowerCase().
                                 contains(tipoTexto)

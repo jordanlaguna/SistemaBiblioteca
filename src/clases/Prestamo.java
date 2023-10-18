@@ -388,6 +388,7 @@ public class Prestamo extends Nota {
     public void search() {
     }
 
+    
     /**
      * This function is used to search for information in the system. The search
      * could be based on some specific criteria and return relevant results.
@@ -407,4 +408,5 @@ public class Prestamo extends Nota {
      */
     public void users() {
     }
+    
 }
