@@ -25,12 +25,14 @@ public class Usuario extends Persona {
     private String type;
 
     /**
+     * @param id_person To request the id_person 
      * @param birth_date =
      * @param identification = To request the user's ID
      * @param name = To request the name of the user
      * @param lastName = To request the last name of the user
      * @param secondName = To request the last name of the user
      * @param telephone = To request the last name of the user
+     * @param id_user To request the id_user of the user
      * @param email =username: A String attribute that likely stores the
      * username of the user.
      * @param password = password: A String attribute that likely stores the
@@ -103,7 +105,14 @@ public class Usuario extends Persona {
     /**
      * The function to be able to log into the system and enter the systems
      */
-    public boolean login(String email, String paaword, String type) {
+    /**
+     * 
+     * @param email email of the user
+     * @param password password of the user
+     * @param type type of user
+     * @return 
+     */
+    public boolean login(String email, String password, String type) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -138,6 +147,10 @@ public class Usuario extends Persona {
 
     /**
      * The function to register as a user, whether a person or student
+     */
+    /**
+     * 
+     * @throws SQLException 
      */
     public void registatrarse() throws SQLException {
         Connection conn = null;

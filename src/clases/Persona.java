@@ -25,7 +25,7 @@ public class Persona  {
     private int telephone;
      
     /**
-     *
+     *@param id_person A id_person of the person
      * @param birth_date = dateBirth: An attribute of type Date that stores
      * the date of birth of the person.
      * @param identification = A String type attribute that stores the person's ID

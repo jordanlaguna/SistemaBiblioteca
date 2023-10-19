@@ -90,7 +90,7 @@ public class FXMLBooksController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        cargarDatos();
+        loadData();
     }
 
     public String validation() throws SQLException {
@@ -108,7 +108,8 @@ public class FXMLBooksController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("INFORMACIÓN");
-        alert.setContentText("El libro ya se encuentra en la biblioteca, coloca distinto Código.");
+        alert.setContentText("El libro ya se encuentra en la biblioteca,"
+                + " coloca distinto Código.");
         alert.showAndWait();
 
         resultSet.close();
@@ -117,7 +118,8 @@ public class FXMLBooksController implements Initializable {
         idAux = "1";
         return idAux;
     } else {
-        System.out.println("No se encontraron registros que cumplan con la condición.");
+        System.out.println("No se encontraron registros que cumplan con"
+                + " la condición.");
 
         resultSet.close();
         ps1.close();
@@ -161,8 +163,8 @@ public class FXMLBooksController implements Initializable {
             }
 
         }
-        cargarDatos();
-        limpiarDatos();
+        loadData();
+        cleanData();
     }
 
     @FXML
@@ -204,11 +206,11 @@ public class FXMLBooksController implements Initializable {
             alert.showAndWait();
 
         }
-        cargarDatos();
-        limpiarDatos();
+        loadData();
+        cleanData();
     }
 
-    private void limpiarDatos() {
+    private void cleanData() {
         txt_isbn.clear();
         txt_title.clear();
         txt_author.clear();
@@ -247,12 +249,12 @@ public class FXMLBooksController implements Initializable {
             alert.setContentText("Los datos no se pudieron eliminar. " + e);
             alert.showAndWait();
         }
-        cargarDatos();
-        limpiarDatos();
+        loadData();
+        cleanData();
 
     }
 
-    private void cargarDatos() {
+    private void loadData() {
         this.column_isbn.setCellValueFactory(new PropertyValueFactory<Libro, Integer>("isbn"));
         this.column_title.setCellValueFactory(new PropertyValueFactory<Libro, String>("title"));
         this.column_author.setCellValueFactory(new PropertyValueFactory<Libro, String>("authorBook"));

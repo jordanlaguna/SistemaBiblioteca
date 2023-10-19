@@ -213,7 +213,11 @@ public class FXMLLoginController implements Initializable {
 
         }));
     }
-
+    /**
+     * 
+     * @param event is event of login
+     * @throws IOException 
+     */
     @FXML
     private void Login(ActionEvent event) throws IOException {
         String email = emailLogin.getText();
@@ -253,7 +257,11 @@ public class FXMLLoginController implements Initializable {
         }
 
     }
-
+    /**
+     * 
+     * @param event event of register
+     * @throws SQLException 
+     */
     @FXML
     private void registrarUser(ActionEvent event) throws SQLException {
         LocalDate localDate = birthDay.getValue();
@@ -265,7 +273,10 @@ public class FXMLLoginController implements Initializable {
         usuario.registatrarse();
         cleanData();
     }
-
+    /**{
+     * 
+     * @param event event for the button
+     */
     @FXML
     private void exit(ActionEvent event) {
         System.exit(0);
@@ -282,7 +293,11 @@ public class FXMLLoginController implements Initializable {
         passwordRegis.clear();
         cmbType.setValue(null);
     }
-
+    /**
+     * 
+     * @param event is event forgotPassword
+     * @throws IOException 
+     */
     @FXML
     private void lb_olvidar(MouseEvent event) throws IOException {
         // Regresa al inicio LOGIN 

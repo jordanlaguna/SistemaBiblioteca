@@ -81,6 +81,11 @@ public class Tablet {
     /**
      * This method is designed to search for tablet drives in the library.
      */
+    /**
+     * 
+     * @param txt_search search tablet
+     * @param tableView load data tablet in the table
+     */
     public void unitSearch(TextField txt_search, TableView<Tablet> tableView) {
         FilteredList<Tablet> filterData = new FilteredList<>(tableView.
                 getItems(), p -> true);

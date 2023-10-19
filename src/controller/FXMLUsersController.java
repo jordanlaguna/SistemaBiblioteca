@@ -109,8 +109,11 @@ public class FXMLUsersController implements Initializable {
         cmbType.getItems().addAll("Admin", "Profesor", "Estudiante");
         loadData();
     }
-
- 
+    
+    /**
+     * 
+     * @param event event for to button
+     */
    @FXML
     private void update(ActionEvent event) {
         try {
@@ -177,7 +180,10 @@ public class FXMLUsersController implements Initializable {
         }
         loadData();
     }
-
+    /**
+     * 
+     * @param event event for to button 
+     */
     @FXML
     private void delete(ActionEvent event) {
         String sqlDeletePerson = "delete from person where id_person = ?";
@@ -217,7 +223,10 @@ public class FXMLUsersController implements Initializable {
         }
         loadData();
     }
-
+    /**
+     * 
+     * @param event event for to button
+     */
     @FXML
     private void Items(MouseEvent event) {
         index = tbw_users.getSelectionModel().getSelectedIndex();
@@ -244,7 +253,7 @@ public class FXMLUsersController implements Initializable {
         cmbType.setValue(column_type.getCellData(index));
 
     }
-
+    
     private void loadData() {
 
         conn = ConexionUsuarios.getConnection();
@@ -273,7 +282,11 @@ public class FXMLUsersController implements Initializable {
         users = ConexionUsuarios.getDataUsuario();
         tbw_users.setItems(users);
     }
-
+    
+    /**
+     * 
+     * @param ke search data
+     */
     @FXML
     private void search(KeyEvent ke) {
         FilteredList<Usuario> filterData = new FilteredList<>(users, p -> true);

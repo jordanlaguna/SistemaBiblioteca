@@ -74,7 +74,10 @@ public class FXMLTabletController implements Initializable {
         cmbBox.getItems().addAll("Disponible", "No disponible");
         loadData();
     }
-
+    /**
+     * 
+     * @param event for the button 
+     */
     @FXML
     private void add(ActionEvent event) {
         Tablet tablet = new Tablet();
@@ -85,7 +88,10 @@ public class FXMLTabletController implements Initializable {
         loadData();
         cleanData();
     }
-
+    /**
+     * 
+     * @param event for the button
+     */
     @FXML
     private void update(ActionEvent event) {
         Tablet tablet = new Tablet();
@@ -97,7 +103,10 @@ public class FXMLTabletController implements Initializable {
         loadData();
         cleanData();
     }
-
+    /**
+     * 
+     * @param event for the button
+     */
     @FXML
     private void delete(ActionEvent event) {
         Tablet tablet = new Tablet();
@@ -106,7 +115,10 @@ public class FXMLTabletController implements Initializable {
         loadData();
         cleanData();
     }
-
+    /**{
+     * 
+     * @param event fot the button
+     */
     @FXML
     private void selectItems(MouseEvent event) {
         index = tbw_tablet.getSelectionModel().getSelectedIndex();
@@ -121,7 +133,10 @@ public class FXMLTabletController implements Initializable {
         txt_ubication.setText(column_ubication.getCellData(index));
         cmbBox.setValue(column_available.getCellData(index));
     }
-
+    /**
+     * 
+     * @param event for the button
+     */
     @FXML
     private void searchTablet(KeyEvent event) {
         Tablet tablet = new Tablet();
