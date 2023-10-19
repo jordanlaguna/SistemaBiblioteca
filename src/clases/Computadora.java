@@ -84,6 +84,11 @@ public class Computadora  {
     /**
      * This method is designed to search for computer drives in the library.
      */
+    /**
+     * 
+     * @param txt_search Search computer
+     * @param tableView Table computer
+     */
     public void unitSearch(TextField txt_search, TableView<Computadora> tableView) {
         FilteredList<Computadora> filterData = new FilteredList<>(tableView.
                 getItems(), p -> true);

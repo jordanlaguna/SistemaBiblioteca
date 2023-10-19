@@ -28,6 +28,8 @@ public class Devolucion {
      * @param deliverDate //The date on which the items must be returned
      * @param exemplars //The list of individual items returned
      * @param user //The list of users who have completed the return.
+     * @param id_loan //The id of loan
+     * @param userEmail //The email of user
      */
     public Devolucion(int id_loan, Date date, Date deliverDate, String exemplars, String userEmail, String user) {
         this.date = date;
