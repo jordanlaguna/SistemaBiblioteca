@@ -31,7 +31,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -40,12 +39,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 
 /**
- * FXML Controller class
- *
- * @author melan
+ * 
+ * @author julio
  */
 public class FXMLLoansController implements Initializable {
-
+    
     @FXML
     private TextArea txt_Observations;
     @FXML
@@ -79,7 +77,8 @@ public class FXMLLoansController implements Initializable {
     @FXML
     private TableColumn<Prestamo, String> column_fullName;
 
-    private ObservableList<Prestamo> Prestamos = FXCollections.observableArrayList();
+    private ObservableList<Prestamo> Prestamos = 
+            FXCollections.observableArrayList();
 
     Connection conn, con, connn = null;
     PreparedStatement ps, ps2 = null;
@@ -92,9 +91,11 @@ public class FXMLLoansController implements Initializable {
     private ComboBox<String> cmbTablet;
     @FXML
     private TableColumn<Prestamo, Integer> column_id;
-
+    
     /**
-     * Initializes the controller class.
+     * 
+     * @param url The relative location of the FXML file.
+     * @param rb A resource that provides findable information.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -105,24 +106,34 @@ public class FXMLLoansController implements Initializable {
 
             loadData();
         } catch (SQLException ex) {
-            Logger.getLogger(FXMLLoansController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLLoansController.class.getName()).log(
+                    Level.SEVERE, null, ex);
         }
 
         //Fill the Editorial ComboBox
-        ObservableList<String> editorialList = FXCollections.observableArrayList();
+        ObservableList<String> editorialList = 
+                FXCollections.observableArrayList();
         editorialList.addAll(getEditorialDataFromDatabase());
         txt_editorial.setItems(editorialList);
 
         // Fill the ComboBox with computers
-        ObservableList<String> computerList = FXCollections.observableArrayList();
+        ObservableList<String> computerList = 
+                FXCollections.observableArrayList();
         computerList.addAll(getComputerDataFromDatabase());
         cmbComputer.setItems(computerList);
 
         // Fill the Tables ComboBox
-        ObservableList<String> tabletList = FXCollections.observableArrayList();
+        ObservableList<String> tabletList = 
+                FXCollections.observableArrayList();
         tabletList.addAll(getTabletDataFromDatabase());
         cmbTablet.setItems(tabletList);
     }
+    /**
+     * 
+     * @param event The action event that triggers the addition of a loan.
+     * @throws SQLException If an error occurs while adding the loan to the 
+     * database.
+     */
 
     @FXML
     void btn_add(ActionEvent event) throws SQLException {
@@ -155,8 +166,18 @@ public class FXMLLoansController implements Initializable {
     
     return editorialData;
 }
+<<<<<<< Updated upstream
 
     private void getEditorialDataRecursively(ResultSet rs, List<String>
+=======
+/**
+ * 
+ * @param rs The ResultSet containing the editorial data.
+ * @param editorialData The list in which editorial data will be stored.
+ * @throws SQLException If an error occurs while accessing the data in the ResultSet.  
+ */
+    private void getEditorialDataRecursively(ResultSet rs, List<String> 
+>>>>>>> Stashed changes
             editorialData) throws SQLException {
         if (rs.next()) {
             String title = rs.getString("title");
@@ -164,7 +185,12 @@ public class FXMLLoansController implements Initializable {
             getEditorialDataRecursively(rs, editorialData);
         }
     }
-
+/**
+ * 
+ * @return A list of strings containing information about available computers.
+ * 
+ */
+    
     private List<String> getComputerDataFromDatabase() {
     List<String> computerData = new ArrayList<>();
     Connection con = ConexionLibros.conn();
@@ -187,8 +213,21 @@ public class FXMLLoansController implements Initializable {
     txt_editorial.setValue(null);
     return computerData;
 }
+<<<<<<< Updated upstream
 
     private void getComputerDataRecursively(ResultSet rs, List<String>
+=======
+    
+/**
+ * 
+ * @param rs The ResultSet containing the computers data.
+ * @param computerData La lista en la que se almacenan los datos de
+ * computadoras.
+ * @throws  SQLException Si se produce un error al acceder a los datos en el
+ * ResultSet.
+ */
+    private void getComputerDataRecursively(ResultSet rs, List<String> 
+>>>>>>> Stashed changes
             computerData) throws SQLException {
         if (rs.next()) {
             String trademark = rs.getString("trademark");
@@ -197,7 +236,10 @@ public class FXMLLoansController implements Initializable {
         }
     }
 
-
+/**
+ * 
+ * @return A list of strings containing information about available tablets.
+ */
     private List<String> getTabletDataFromDatabase() {
         List<String> tabletData = new ArrayList<>();
         Connection connn = ConexionTabletDB.getConnection();
@@ -221,9 +263,22 @@ public class FXMLLoansController implements Initializable {
 
         return tabletData;
     }
+<<<<<<< Updated upstream
 
     private void getTabletDataRecursively(ResultSet rs, List<String> 
             tabletData) throws SQLException {
+=======
+    
+/**
+ * 
+ * @param rs The ResultSet containing the tablet data.
+ * @param tabletData The list in which tablet data is stored.
+ * @throws SQLException If an error occurs while accessing the data in the
+ * ResultSet.
+ */
+    private void getTabletDataRecursively(ResultSet rs, List<String> tabletData)
+            throws SQLException {
+>>>>>>> Stashed changes
         if (rs.next()) {
             String trademark = rs.getString("trademark");
             tabletData.add(trademark);
@@ -231,10 +286,11 @@ public class FXMLLoansController implements Initializable {
             getTabletDataRecursively(rs, tabletData);
         }
     }
-
-
+    
     /**
-     * Load the data into the interface table...
+     * 
+     * @throws SQLException If an error occurs while interacting with the
+     * database.
      */
     private void loadData() throws SQLException {
 
@@ -274,7 +330,11 @@ public class FXMLLoansController implements Initializable {
         txt_Observations.clear();
     }
     
-    
+    /**
+     * 
+     * @throws SQLException If an error occurs while interacting with the
+     * database.
+     */
     private void addLoans() throws SQLException{
         Prestamo prestamo = new Prestamo();
         LocalDate localDate = Datepiker_loanDate.getValue();
@@ -306,17 +366,20 @@ public class FXMLLoansController implements Initializable {
 
           //Fill the Editorial ComboBox
         prestamo.add();
-        ObservableList<String> editorialList = FXCollections.observableArrayList();
+        ObservableList<String> editorialList =
+                FXCollections.observableArrayList();
         editorialList.addAll(getEditorialDataFromDatabase());
         txt_editorial.setItems(editorialList);
         
        // Fill the computer ComboBox
-        ObservableList<String> computerList = FXCollections.observableArrayList();
+        ObservableList<String> computerList =
+                FXCollections.observableArrayList();
         computerList.addAll(getComputerDataFromDatabase());
         cmbComputer.setItems(computerList);
         
        // Fill the Tablet ComboBox
-        ObservableList<String> tabletList = FXCollections.observableArrayList();
+        ObservableList<String> tabletList = 
+                FXCollections.observableArrayList();
         tabletList.addAll(getTabletDataFromDatabase());
         cmbTablet.setItems(tabletList);
         loadData(); 
@@ -325,12 +388,16 @@ public class FXMLLoansController implements Initializable {
         cleanData();
 
 }
-
+/**
+ * 
+ * @param event event The keyboard event that triggers the search.
+ */
     @FXML
     private void search(KeyEvent event) {
        /* Prestamo loan = new Prestamo();
         loan.search(txt_search, tbw_libros);*/
-        FilteredList<Prestamo> filterData = new FilteredList<>(Prestamos, p -> true);
+        FilteredList<Prestamo> filterData = new FilteredList<>(Prestamos, 
+                p -> true);
         txt_search.textProperty().addListener((obsevable, oldvalue, newvalue)
                 -> {
             filterData.setPredicate(Loan -> {
@@ -371,7 +438,8 @@ public class FXMLLoansController implements Initializable {
                 return false;
             });
             SortedList<Prestamo> sortedList = new SortedList<>(filterData);
-            sortedList.comparatorProperty().bind(tbw_libros.comparatorProperty());
+            sortedList.comparatorProperty().bind(
+                    tbw_libros.comparatorProperty());
             tbw_libros.setItems(sortedList);
         });        
     }

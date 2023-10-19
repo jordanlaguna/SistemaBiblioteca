@@ -15,9 +15,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-/**
+
+/** 
  * The Loan class represents the loans in the system, related to the library. In
  * order to manage the loans
+ * 
+ * @author julio
  */
 public class Prestamo extends Nota {
 
@@ -25,20 +28,21 @@ public class Prestamo extends Nota {
     private String exemplars;
     private int id_loan;
     private Date dateReturn;
-    // private List unit;
     private int numLoan;
     private String email;
     private String fullName;
-
     /**
-     *
-     * @param date
-     * @param dateLoan = A Date type attribute that stores the date the loan was
-     * made.
-     * @param dateReturn = An attribute of type Date that stores the date on
-     * which the loaned items are expected to be returned.
-     * @param numLoan = An integer (int) type attribute that stores a loan
-     * number, to uniquely identify this loan in the system.
+     * 
+     * @param id_loan The ID of the loan.
+     * @param dateLoan The loan date.
+     * @param exemplars The borrowed item.
+     * @param dateReturn The return date.
+     * @param numLoan The loan number.
+     * @param email The user's email.
+     * @param fullName The name of the user.
+     * @param date The loan date.
+     * @param identification The identification.
+     * @param note The observations.
      */
     public Prestamo(int id_loan, Date dateLoan, String exemplars, Date dateReturn,
             int numLoan, String email, String fullName, Date date,
@@ -61,9 +65,6 @@ public class Prestamo extends Nota {
         return id_loan;
     }
 
-    /*public Prestamo(int aInt, java.sql.Date date, int aInt0, String string, String string0, java.sql.Date date0, int aInt1, String string1) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
     public void setId_loan(int id_loan) {
         this.id_loan = id_loan;
     }
@@ -92,13 +93,6 @@ public class Prestamo extends Nota {
         this.dateReturn = dateReturn;
     }
 
-    /*public List getUnit() {
-        return unit;
-    }
-
-    public void setUnit(List unit) {
-        this.unit = unit;
-    }*/
     public int getNumLoan() {
         return numLoan;
     }
@@ -129,7 +123,8 @@ public class Prestamo extends Nota {
      */
     public void seeActiveLoan() {
     }
-
+ 
+    
     public void updateBook() {
         Connection con = null;
         PreparedStatement ps1 = null;
@@ -155,7 +150,8 @@ public class Prestamo extends Nota {
                 System.out.println("No se encontró un ISBN para el título "
                         + "proporcionado.");
             }
-            String sqlUpdate = "UPDATE book SET isbn = '" + value2 + "', available "
+            String sqlUpdate = "UPDATE book SET isbn = '" + value2 + "', "
+                    + "available "
                     + "= '" + value3 + "' WHERE isbn = '" + value2 + "';";
 
             ps1 = con.prepareStatement(sqlUpdate);
@@ -191,7 +187,8 @@ public class Prestamo extends Nota {
                 System.out.println("No se encontró un ID para el título "
                         + "proporcionado.");
             }
-            String sqlUpdate = "UPDATE computer SET id = '" + value2 + "', available "
+            String sqlUpdate = "UPDATE computer SET id = '" + value2 + "',"
+                    + " available "
                     + "= '" + value3 + "' WHERE id = '" + value2 + "';";
 
             ps1 = conn.prepareStatement(sqlUpdate);
@@ -202,7 +199,10 @@ public class Prestamo extends Nota {
             System.out.println("No encontro codigo update");
         }
     }
-
+    
+    /**
+     * 
+     */
     public void updateTablet() {
         Connection conn = null;
         PreparedStatement ps1 = null;
@@ -227,7 +227,8 @@ public class Prestamo extends Nota {
                 System.out.println("No se encontró un ID para el título "
                         + "proporcionado.");
             }
-            String sqlUpdate = "UPDATE tablet SET id_tab = '" + value2 + "', available "
+            String sqlUpdate = "UPDATE tablet SET id_tab = '" + value2 + "',"
+                    + " available "
                     + "= '" + value3 + "' WHERE id_tab = '" + value2 + "';";
 
             ps1 = conn.prepareStatement(sqlUpdate);
@@ -238,7 +239,12 @@ public class Prestamo extends Nota {
             System.out.println("No encontro codigo update");
         }
     }
-
+/**
+ * 
+ * @param sqlQuery The SQL query to execute.
+ * @return The ISBN obtained from the query results or null if no results were
+ * found or an error occurred.
+ */
     public String executeQueryAndGetISBN(String sqlQuery) {
         String isbn = null;
         Connection conn = null;
@@ -248,15 +254,14 @@ public class Prestamo extends Nota {
         conn = ConexionLibros.conn();
 
         try {
-            // Crear una declaración (statement) para ejecutar la consulta
+          
             Statement statement = conn.createStatement();
 
-            // Ejecutar la consulta
+     
             ResultSet resultSet = statement.executeQuery(sqlQuery);
 
-            // Verificar si se encontró algún resultado
             if (resultSet.next()) {
-                // Obtener el ISBN de la primera fila (puedes ajustar esto según tus necesidades)
+                
                 isbn = resultSet.getString("isbn");
             }
 
@@ -280,29 +285,32 @@ public class Prestamo extends Nota {
         conn = ConexionLibros.conn();
 
         try {
-            // Crear una declaración (statement) para ejecutar la consulta
+   
             Statement statement = conn.createStatement();
 
-            // Ejecutar la consulta
+            
             ResultSet resultSet = statement.executeQuery(sqlQuery2);
 
-            // Verificar si se encontró algún resultado
             if (resultSet.next()) {
-                // Obtener el ISBN de la primera fila (puedes ajustar esto según tus necesidades)
                 id = resultSet.getString("id");
             }
 
-            // Cerrar la declaración y el resultado
+            
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            // Manejo de errores SQL
+
         }
 
         return id;
     }
-
+/**
+ * 
+ * @param sqlQueryThree The SQL query to execute.
+ * @return The tablet ID obtained from the query results or null if no results
+ * were foundor if an error occurred.
+ */
     public String executeQueryAndGetId_tab(String sqlQueryThree) {
         String id_tab = null;
         Connection conn = null;
@@ -312,24 +320,23 @@ public class Prestamo extends Nota {
         conn = ConexionTabletDB.getConnection();
 
         try {
-            // Crear una declaración (statement) para ejecutar la consulta
             Statement statement = conn.createStatement();
 
-            // Ejecutar la consulta
+          
             ResultSet resultSet = statement.executeQuery(sqlQueryThree);
 
-            // Verificar si se encontró algún resultado
+           
             if (resultSet.next()) {
-                // Obtener el ISBN de la primera fila (puedes ajustar esto según tus necesidades)
+                
                 id_tab = resultSet.getString("id_tab");
             }
 
-            // Cerrar la declaración y el resultado
+
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            // Manejo de errores SQL
+
         }
 
         return id_tab;
@@ -391,9 +398,11 @@ public class Prestamo extends Nota {
         }
     }
 
+  
     /**
-     * This function is used to search for information in the system. The search
-     * could be based on some specific criteria and return relevant results.
+     * 
+     * @param txt_search The text field where the search term is entered.
+     * @param  tableView The TableView to filter and update.
      */
     public void search(TextField txt_search, TableView<Prestamo> tableView) {
          FilteredList<Prestamo> filterData = new FilteredList<>(tableView.
@@ -445,7 +454,9 @@ public class Prestamo extends Nota {
     public void users() {
     }
 
-    //disponibilidad de las devoluciones
+    /**
+     * availability of returns
+     */
     public void availableBook() {
         Connection conn = null;
         PreparedStatement ps1 = null;
