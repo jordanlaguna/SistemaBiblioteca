@@ -9,7 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 /**
  * The Loan class represents the loans in the system, related to the library. In
@@ -391,7 +395,34 @@ public class Prestamo extends Nota {
      * This function is used to search for information in the system. The search
      * could be based on some specific criteria and return relevant results.
      */
-    public void search() {
+    public void search(TextField txt_search, TableView<Prestamo> tableView) {
+         FilteredList<Prestamo> filterData = new FilteredList<>(tableView.
+                getItems(), p -> true);
+
+        txt_search.textProperty().addListener((observable, oldValue, newValue) 
+                -> {
+            filterData.setPredicate(prestamo -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String tipoTexto = newValue.toLowerCase();
+                 if (prestamo.getExemplars().toLowerCase().contains(tipoTexto)
+                        || prestamo.getEmail().toLowerCase().
+                                contains(tipoTexto)
+                        || prestamo.getFullName().toLowerCase().
+                                contains(tipoTexto)
+                        || String.valueOf(prestamo.getId_loan()).toLowerCase().
+                                contains(tipoTexto)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<Prestamo> sortedList = new SortedList<>(filterData);
+        sortedList.comparatorProperty().bind(tableView.comparatorProperty());
+        tableView.setItems(sortedList);
+
     }
 
     /**

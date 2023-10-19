@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="535.0" prefWidth="822.0" stylesheets="@../Style/GeneralStyleSheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDevolutionController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="822.0" stylesheets="@../Style/GeneralStyleSheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDevolutionController">
    <children>
       <TextField fx:id="searchDevolution" layoutX="30.0" layoutY="86.0" onKeyTyped="#searchDevolution" prefHeight="27.0" prefWidth="293.0" promptText="Buscar" style="-fx-border-color: #BF1717; -fx-background-radius: 5; -fx-border-radius: 5;">
          <font>

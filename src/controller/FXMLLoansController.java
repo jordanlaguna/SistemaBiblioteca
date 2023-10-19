@@ -35,6 +35,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
@@ -237,8 +238,9 @@ public class FXMLLoansController implements Initializable {
         txt_email.clear();
         txt_Observations.clear();
     }
-
-    private void addLoans() throws SQLException {
+    
+    
+    private void addLoans() throws SQLException{
         Prestamo prestamo = new Prestamo();
         LocalDate localDate = Datepiker_loanDate.getValue();
         Date loanDate = Date.valueOf(localDate);
@@ -268,10 +270,31 @@ public class FXMLLoansController implements Initializable {
         prestamo.setNote(txt_Observations.getText());
 
         prestamo.add();
-
+        ObservableList<String> editorialList = FXCollections.observableArrayList();
+        editorialList.addAll(getEditorialDataFromDatabase());
+        txt_editorial.setItems(editorialList);
+        
+        // Llena el ComboBox de editorial
+        ObservableList<String> computerList = FXCollections.observableArrayList();
+        computerList.addAll(getComputerDataFromDatabase());
+        cmbComputer.setItems(computerList);
+        
+        // Llena el ComboBox de editorial
+        ObservableList<String> tabletList = FXCollections.observableArrayList();
+        tabletList.addAll(getTabletDataFromDatabase());
+        cmbTablet.setItems(tabletList);
+        loadData(); 
+        cleanData(); 
         loadData();
         cleanData();
 
+}
+
+    @FXML
+    private void search(KeyEvent event) {
+        Prestamo loan = new Prestamo();
+        loan.search(txt_search, tbw_libros);
     }
 
 }
+
