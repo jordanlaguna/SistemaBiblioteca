@@ -16,7 +16,7 @@ public class Nota  {
      *
      * @param date = A Date attribute that stores the date the note was
      * created.
-     * @param numNotes = An integer (int) attribute that stores a number related
+     * @param identification = An integer (int) attribute that stores a number related
      * to the note. A unique identifier or simply a number associated with the
      * note.
      * @param note = A String attribute that stores the content or text of the
