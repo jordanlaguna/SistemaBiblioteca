@@ -156,7 +156,8 @@ public class FXMLLoansController implements Initializable {
     return editorialData;
 }
 
-    private void getEditorialDataRecursively(ResultSet rs, List<String> editorialData) throws SQLException {
+    private void getEditorialDataRecursively(ResultSet rs, List<String>
+            editorialData) throws SQLException {
         if (rs.next()) {
             String title = rs.getString("title");
             editorialData.add(title);
@@ -187,7 +188,8 @@ public class FXMLLoansController implements Initializable {
     return computerData;
 }
 
-    private void getComputerDataRecursively(ResultSet rs, List<String> computerData) throws SQLException {
+    private void getComputerDataRecursively(ResultSet rs, List<String>
+            computerData) throws SQLException {
         if (rs.next()) {
             String trademark = rs.getString("trademark");
             computerData.add(trademark);
@@ -220,7 +222,8 @@ public class FXMLLoansController implements Initializable {
         return tabletData;
     }
 
-    private void getTabletDataRecursively(ResultSet rs, List<String> tabletData) throws SQLException {
+    private void getTabletDataRecursively(ResultSet rs, List<String> 
+            tabletData) throws SQLException {
         if (rs.next()) {
             String trademark = rs.getString("trademark");
             tabletData.add(trademark);

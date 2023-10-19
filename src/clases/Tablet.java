@@ -79,7 +79,7 @@ public class Tablet {
     }
 
     /**
-     * This method is designed to search for computer drives in the library.
+     * This method is designed to search for tablet drives in the library.
      */
     public void unitSearch(TextField txt_search, TableView<Tablet> tableView) {
         FilteredList<Tablet> filterData = new FilteredList<>(tableView.
@@ -110,7 +110,9 @@ public class Tablet {
         tableView.setItems(sortedList);
 
     }
-
+     /**
+     * This method desing add a computer drives in the library.
+     */
     public void add() {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -143,7 +145,9 @@ public class Tablet {
             alert.showAndWait();
         }
     }
-
+     /**
+     * This method is designed to update a computer drives in the library.
+     */
     public void update() {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -186,7 +190,9 @@ public class Tablet {
 
         }
     }
-
+     /**
+     * This method is designed to delete a computer drives in the library.
+     */
     public void delete() {
         Connection conn = null;
         PreparedStatement ps = null;
