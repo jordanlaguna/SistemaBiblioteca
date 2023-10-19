@@ -10,12 +10,21 @@ and open the template in the editor.
 #olvidoContrasena{
     -fx-underline: true;
 }
-
+#olvidoContrasena:hover{
+       -fx-cursor: hand;
+}
 #paneInfo{
     -fx-background-color: linear-gradient(to top left, #000000, #CD1719);
 }
 
-
+#iniciarSesion:hover{
+    -fx-text-fill: #C70808; 
+    -fx-border-color: #007bff; 
+}
+#registrarUsuario:hover{
+    -fx-text-fill: #C70808; 
+    -fx-border-color: #007bff; 
+}
 
 .textField{
     -fx-background-radius: 15;
@@ -27,6 +36,9 @@ and open the template in the editor.
     -fx-font-size: 20px;
     -fx-font-family: "Times New Roman";
 }
+.textField1:hover{
+   -fx-cursor: hand;
+}
 
 .sidebarItem{
     -fx-background-color: #F2F2F2;
@@ -35,6 +47,7 @@ and open the template in the editor.
     -fx-background-color: #e4e2e2;
     -fx-border-color: #bf1717;
     -fx-border-width: 0px 0px 0px 3px;
+    -fx-cursor: hand;
 }
 .border{
     -fx-border-color: #e4e2e2;
@@ -49,6 +62,9 @@ and open the template in the editor.
 .btnregi:hover {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 5, 0, 0, 1);
     -fx-translate-y: 3; 
+
+.btnregi:hover{
+    -fx-cursor: hand;
 }
 .btnregi1{
     -fx-background-radius: 15;
@@ -57,6 +73,9 @@ and open the template in the editor.
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0, 0, 2);
     -fx-border-color: white;
     -fx-border-width: 2px;
+}
+.btnregi1:hover, btnregi:hover {
+    -fx-cursor: hand;
 }
 
 .btnregi1:hover{
