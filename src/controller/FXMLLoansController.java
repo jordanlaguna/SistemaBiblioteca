@@ -72,8 +72,7 @@ public class FXMLLoansController implements Initializable {
     private TableColumn<Prestamo, String> column_observations;
     @FXML
     private ComboBox<String> txt_editorial;
-    @FXML
-    private TableColumn<Prestamo, String> column_email;
+   
     @FXML
     private TableColumn<Prestamo, String> column_fullName;
 
@@ -302,9 +301,6 @@ public class FXMLLoansController implements Initializable {
 
         this.column_observations.setCellValueFactory(new PropertyValueFactory<
                 Prestamo, String>("note"));
-
-        this.column_email.setCellValueFactory(new PropertyValueFactory<
-                Prestamo, String>("email"));
         this.column_fullName.setCellValueFactory(new PropertyValueFactory<
                 Prestamo, String>("fullName"));
 
@@ -377,7 +373,6 @@ public class FXMLLoansController implements Initializable {
         cleanData(); 
         loadData();
         cleanData();
-
 }
 /**
  * 
