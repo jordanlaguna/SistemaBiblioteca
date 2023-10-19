@@ -166,10 +166,8 @@ public class FXMLLoansController implements Initializable {
     
     return editorialData;
 }
-<<<<<<< Updated upstream
 
-    private void getEditorialDataRecursively(ResultSet rs, List<String>
-=======
+
 /**
  * 
  * @param rs The ResultSet containing the editorial data.
@@ -177,7 +175,7 @@ public class FXMLLoansController implements Initializable {
  * @throws SQLException If an error occurs while accessing the data in the ResultSet.  
  */
     private void getEditorialDataRecursively(ResultSet rs, List<String> 
->>>>>>> Stashed changes
+
             editorialData) throws SQLException {
         if (rs.next()) {
             String title = rs.getString("title");
@@ -213,10 +211,7 @@ public class FXMLLoansController implements Initializable {
     txt_editorial.setValue(null);
     return computerData;
 }
-<<<<<<< Updated upstream
 
-    private void getComputerDataRecursively(ResultSet rs, List<String>
-=======
     
 /**
  * 
@@ -227,7 +222,7 @@ public class FXMLLoansController implements Initializable {
  * ResultSet.
  */
     private void getComputerDataRecursively(ResultSet rs, List<String> 
->>>>>>> Stashed changes
+
             computerData) throws SQLException {
         if (rs.next()) {
             String trademark = rs.getString("trademark");
@@ -263,11 +258,7 @@ public class FXMLLoansController implements Initializable {
 
         return tabletData;
     }
-<<<<<<< Updated upstream
 
-    private void getTabletDataRecursively(ResultSet rs, List<String> 
-            tabletData) throws SQLException {
-=======
     
 /**
  * 
@@ -278,7 +269,7 @@ public class FXMLLoansController implements Initializable {
  */
     private void getTabletDataRecursively(ResultSet rs, List<String> tabletData)
             throws SQLException {
->>>>>>> Stashed changes
+
         if (rs.next()) {
             String trademark = rs.getString("trademark");
             tabletData.add(trademark);
