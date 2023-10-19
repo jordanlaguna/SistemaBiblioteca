@@ -13,11 +13,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import java.util.List;
+
 
 /**
  *
@@ -56,7 +54,6 @@ public class ConexionLoans {
         }
     }
     
-// Agregar un método similar para obtener datos de la tabla 'loan' y 'note'
     public static ObservableList<Prestamo> getDataLoanAndNote() {
         Connection conn = conn(); 
         ObservableList<Prestamo> list = FXCollections.observableArrayList();

@@ -24,6 +24,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -78,7 +80,7 @@ public class FXMLLoansController implements Initializable {
     private TableColumn<Prestamo, String> column_fullName;
 
     private ObservableList<Prestamo> Prestamos = FXCollections.observableArrayList();
-    //private ObservableList<Nota>Notas; 
+
     Connection conn, con, connn = null;
     PreparedStatement ps, ps2 = null;
     ResultSet rs = null;
@@ -106,17 +108,17 @@ public class FXMLLoansController implements Initializable {
             Logger.getLogger(FXMLLoansController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // Llena el ComboBox de editorial
+        //Fill the Editorial ComboBox
         ObservableList<String> editorialList = FXCollections.observableArrayList();
         editorialList.addAll(getEditorialDataFromDatabase());
         txt_editorial.setItems(editorialList);
 
-        // Llena el ComboBox de editorial
+        // Fill the ComboBox with computers
         ObservableList<String> computerList = FXCollections.observableArrayList();
         computerList.addAll(getComputerDataFromDatabase());
         cmbComputer.setItems(computerList);
 
-        // Llena el ComboBox de editorial
+        // Fill the Tables ComboBox
         ObservableList<String> tabletList = FXCollections.observableArrayList();
         tabletList.addAll(getTabletDataFromDatabase());
         cmbTablet.setItems(tabletList);
@@ -133,70 +135,100 @@ public class FXMLLoansController implements Initializable {
      *
      */
     private List<String> getEditorialDataFromDatabase() {
-        List<String> editorialData = new ArrayList<>();
-        Connection conn = ConexionLibros.conn();
-        if (conn != null) {
-            try {
-                PreparedStatement ps = conn.prepareStatement("SELECT"
-                        + " DISTINCT isbn, title FROM book WHERE "
-                        + "available = 'Disponible'");
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    editorialData.add(rs.getString("title"));
-
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    List<String> editorialData = new ArrayList<>();
+    Connection conn = ConexionLibros.conn();
+    
+    if (conn != null) {
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT"
+                    + " DISTINCT isbn, title FROM book WHERE "
+                    + "available = 'Disponible'");
+            ResultSet rs = ps.executeQuery();
+            getEditorialDataRecursively(rs, editorialData);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        cmbComputer.setValue(null);
-        cmbTablet.setValue(null);
-        return editorialData;
+    }
+    
+    cmbComputer.setValue(null);
+    cmbTablet.setValue(null);
+    
+    return editorialData;
+}
+
+    private void getEditorialDataRecursively(ResultSet rs, List<String> editorialData) throws SQLException {
+        if (rs.next()) {
+            String title = rs.getString("title");
+            editorialData.add(title);
+            getEditorialDataRecursively(rs, editorialData);
+        }
     }
 
     private List<String> getComputerDataFromDatabase() {
-        List<String> computerData = new ArrayList<>();
-        Connection con = ConexionLibros.conn();
-        if (con != null) {
-            try {
-                PreparedStatement ps = con.prepareStatement("SELECT"
-                        + " DISTINCT id, trademark FROM computer WHERE "
-                        + "available = 'Disponible'");
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    computerData.add(rs.getString("trademark"));
+    List<String> computerData = new ArrayList<>();
+    Connection con = ConexionLibros.conn();
 
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    if (con != null) {
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT"
+                    + " DISTINCT id, trademark FROM computer WHERE "
+                    + "available = 'Disponible'");
+            ResultSet rs = ps.executeQuery();
+            
+          
+            getComputerDataRecursively(rs, computerData);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        cmbTablet.setValue(null);
-        txt_editorial.setValue(null);
-        return computerData;
     }
+
+    cmbTablet.setValue(null);
+    txt_editorial.setValue(null);
+    return computerData;
+}
+
+    private void getComputerDataRecursively(ResultSet rs, List<String> computerData) throws SQLException {
+        if (rs.next()) {
+            String trademark = rs.getString("trademark");
+            computerData.add(trademark);
+            getComputerDataRecursively(rs, computerData);
+        }
+    }
+
 
     private List<String> getTabletDataFromDatabase() {
         List<String> tabletData = new ArrayList<>();
         Connection connn = ConexionTabletDB.getConnection();
+
         if (connn != null) {
             try {
                 PreparedStatement ps = connn.prepareStatement("SELECT"
                         + " DISTINCT id_tab, trademark FROM tablet WHERE "
                         + "available = 'Disponible'");
                 ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    tabletData.add(rs.getString("trademark"));
 
-                }
+
+                getTabletDataRecursively(rs, tabletData);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+
         cmbComputer.setValue(null);
         txt_editorial.setValue(null);
+
         return tabletData;
     }
+
+    private void getTabletDataRecursively(ResultSet rs, List<String> tabletData) throws SQLException {
+        if (rs.next()) {
+            String trademark = rs.getString("trademark");
+            tabletData.add(trademark);
+
+            getTabletDataRecursively(rs, tabletData);
+        }
+    }
+
 
     /**
      * Load the data into the interface table...
@@ -264,22 +296,23 @@ public class FXMLLoansController implements Initializable {
 
             prestamo.setExemplars((String) cmbTablet.getValue());
         }
-
+        
         prestamo.setEmail(txt_email.getText());
         prestamo.setFullName(txt_name.getText());
         prestamo.setNote(txt_Observations.getText());
 
+          //Fill the Editorial ComboBox
         prestamo.add();
         ObservableList<String> editorialList = FXCollections.observableArrayList();
         editorialList.addAll(getEditorialDataFromDatabase());
         txt_editorial.setItems(editorialList);
         
-        // Llena el ComboBox de editorial
+       // Fill the computer ComboBox
         ObservableList<String> computerList = FXCollections.observableArrayList();
         computerList.addAll(getComputerDataFromDatabase());
         cmbComputer.setItems(computerList);
         
-        // Llena el ComboBox de editorial
+       // Fill the Tablet ComboBox
         ObservableList<String> tabletList = FXCollections.observableArrayList();
         tabletList.addAll(getTabletDataFromDatabase());
         cmbTablet.setItems(tabletList);
@@ -292,9 +325,51 @@ public class FXMLLoansController implements Initializable {
 
     @FXML
     private void search(KeyEvent event) {
-        Prestamo loan = new Prestamo();
-        loan.search(txt_search, tbw_libros);
+       /* Prestamo loan = new Prestamo();
+        loan.search(txt_search, tbw_libros);*/
+        FilteredList<Prestamo> filterData = new FilteredList<>(Prestamos, p -> true);
+        txt_search.textProperty().addListener((obsevable, oldvalue, newvalue)
+                -> {
+            filterData.setPredicate(Loan -> {
+                if (newvalue == null || newvalue.isEmpty()) {
+                    return true;
+                }
+                String tipoTexto = newvalue.toLowerCase();
+                if (Loan.getDateLoan().toString().contains(tipoTexto)) {
+                    return true;
+                }
+                if (Loan.getIdentification().toLowerCase().indexOf(tipoTexto)
+                        != -1) {
+                    return true;
+                }
+                if (Loan.getDateReturn().toString().contains(tipoTexto)) {
+                    return true;
+                }
+                if (Loan.getDateReturn().toString().contains(tipoTexto)) {
+                    return true;
+                }
+                if(String.valueOf(Loan.getNumLoan()).toLowerCase().
+                        indexOf(tipoTexto) != -1) {
+
+                    return true;
+                }
+                if (Loan.getExemplars().toLowerCase().indexOf(tipoTexto) != -1){
+
+                    return true;
+                }
+                if (Loan.getEmail().toLowerCase().indexOf(tipoTexto) != -1) {
+
+                    return true;
+                }
+                if (Loan.getFullName().toLowerCase().indexOf(tipoTexto) != -1) {
+
+                    return true;
+                }
+                return false;
+            });
+            SortedList<Prestamo> sortedList = new SortedList<>(filterData);
+            sortedList.comparatorProperty().bind(tbw_libros.comparatorProperty());
+            tbw_libros.setItems(sortedList);
+        });        
     }
-
 }
-

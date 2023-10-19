@@ -166,6 +166,7 @@ public class FXMLDevolutionController implements Initializable {
             alert.setTitle("ERROR");
             alert.setContentText("Los datos no se pudieron eliminar. " + e);
             alert.showAndWait();
+            System.out.println(e);
         }
     }
 
