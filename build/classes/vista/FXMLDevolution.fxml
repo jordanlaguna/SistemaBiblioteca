@@ -18,13 +18,13 @@
          <children>
             <TableView fx:id="tbw_devolutions" layoutX="84.0" layoutY="210.0" onMouseClicked="#selectItems" prefHeight="290.0" prefWidth="668.0" stylesheets="@../Style/LoginStyleSheet.css">
                <columns>
-                  <TableColumn fx:id="column_id" prefWidth="46.0" text="N°" />
-                  <TableColumn fx:id="column_user" prefWidth="88.0" text="Usuario" />
-                  <TableColumn fx:id="column_userEmail" prefWidth="131.0" text="Email" />
-                  <TableColumn fx:id="column_exemplars" minWidth="0.0" prefWidth="102.0" text="Ejemplar" />
-                  <TableColumn fx:id="column_date" minWidth="0.0" prefWidth="94.0" text="Fecha prestamo" />
-                  <TableColumn fx:id="column_deliverDate" prefWidth="112.0" text="Fecha devolución" />
-                  <TableColumn fx:id="column_action" prefWidth="172.0" text="Accion" />
+                  <TableColumn fx:id="column_id" prefWidth="46.0" text="N°" visible="false" />
+                  <TableColumn fx:id="column_user" prefWidth="155.0" text="Usuario" />
+                  <TableColumn fx:id="column_userEmail" prefWidth="165.0" text="Email" />
+                  <TableColumn fx:id="column_exemplars" minWidth="0.0" prefWidth="162.0" text="Ejemplar" />
+                  <TableColumn fx:id="column_date" minWidth="0.0" prefWidth="104.0" text="Fecha prestamo" />
+                  <TableColumn fx:id="column_deliverDate" prefWidth="105.0" text="Fecha devolución" />
+                  <TableColumn fx:id="column_action" prefWidth="71.0" text="Accion" />
                </columns>
             </TableView>
          </children>

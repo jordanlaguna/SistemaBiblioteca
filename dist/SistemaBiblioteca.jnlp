@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SistemaBiblioteca.jar" size="299771" download="eager" />
+    <jar href="SistemaBiblioteca.jar" size="300745" download="eager" />
     <jar href="lib\javamail-1.4.1.jar" size="371264" download="eager" />
     <jar href="lib\mysql-connector-java-8.0.29.jar" size="2519547" download="eager" />
   </resources>

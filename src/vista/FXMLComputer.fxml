@@ -55,10 +55,7 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="80.0" prefWidth="215.0">
                      <children>
-                        <Label text="Seleccione">
-                           <HBox.margin>
-                              <Insets left="10.0" top="25.0" />
-                           </HBox.margin>
+                        <Label text="Se ubica">
                            <font>
                               <Font name="Times New Roman" size="19.0" />
                            </font>
@@ -84,10 +81,7 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="190.0">
                      <children>
-                        <Label text="Se ubica">
-                           <HBox.margin>
-                              <Insets left="10.0" top="25.0" />
-                           </HBox.margin>
+                        <Label text="Seleccione">
                            <font>
                               <Font name="Times New Roman" size="19.0" />
                            </font>

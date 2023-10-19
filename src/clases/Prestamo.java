@@ -53,7 +53,6 @@ public class Prestamo extends Nota {
     public Prestamo() {
     }
 
-    
     public int getId_loan() {
         return id_loan;
     }
@@ -61,7 +60,7 @@ public class Prestamo extends Nota {
     /*public Prestamo(int aInt, java.sql.Date date, int aInt0, String string, String string0, java.sql.Date date0, int aInt1, String string1) {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }*/
-    public void setId_loan(int id_loan) {    
+    public void setId_loan(int id_loan) {
         this.id_loan = id_loan;
     }
 
@@ -126,13 +125,13 @@ public class Prestamo extends Nota {
      */
     public void seeActiveLoan() {
     }
-    public void updateBook(){
+
+    public void updateBook() {
         Connection con = null;
         PreparedStatement ps1 = null;
-        
+
         String selectedEditorial = getExemplars();
-         
-        
+
         try {
             con = ConexionLibros.conn();
             String value1 = selectedEditorial;
@@ -152,24 +151,23 @@ public class Prestamo extends Nota {
                 System.out.println("No se encontró un ISBN para el título "
                         + "proporcionado.");
             }
-            String sqlUpdate = "UPDATE book SET isbn = '"+value2+"', available "
-                    + "= '"+value3+"' WHERE isbn = '"+value2+"';";
-            
-              
+            String sqlUpdate = "UPDATE book SET isbn = '" + value2 + "', available "
+                    + "= '" + value3 + "' WHERE isbn = '" + value2 + "';";
+
             ps1 = con.prepareStatement(sqlUpdate);
             ps1.execute();
             System.out.println("Actualiza disponible");
         } catch (Exception e) {
             System.out.println(e);
-             System.out.println("No encontro codigo update");
-        }   
+            System.out.println("No encontro codigo update");
+        }
     }
-    public void updateComputer(){
+
+    public void updateComputer() {
         Connection conn = null;
         PreparedStatement ps1 = null;
         String selectedEditorialTwo = getExemplars();
-         
-        
+
         try {
             conn = ConexionLibros.conn();
             String value1 = selectedEditorialTwo;
@@ -189,24 +187,23 @@ public class Prestamo extends Nota {
                 System.out.println("No se encontró un ID para el título "
                         + "proporcionado.");
             }
-            String sqlUpdate = "UPDATE computer SET id = '"+value2+"', available "
-                    + "= '"+value3+"' WHERE id = '"+value2+"';";
-            
-              
+            String sqlUpdate = "UPDATE computer SET id = '" + value2 + "', available "
+                    + "= '" + value3 + "' WHERE id = '" + value2 + "';";
+
             ps1 = conn.prepareStatement(sqlUpdate);
             ps1.execute();
             System.out.println("Actualiza disponible");
         } catch (Exception e) {
             System.out.println(e);
-             System.out.println("No encontro codigo update");
-        }   
+            System.out.println("No encontro codigo update");
+        }
     }
-     public void updateTablet(){
+
+    public void updateTablet() {
         Connection conn = null;
         PreparedStatement ps1 = null;
         String selectedEditorialThree = getExemplars();
-         
-        
+
         try {
             conn = ConexionTabletDB.getConnection();
             String value1 = selectedEditorialThree;
@@ -226,18 +223,18 @@ public class Prestamo extends Nota {
                 System.out.println("No se encontró un ID para el título "
                         + "proporcionado.");
             }
-            String sqlUpdate = "UPDATE tablet SET id_tab = '"+value2+"', available "
-                    + "= '"+value3+"' WHERE id_tab = '"+value2+"';";
-            
-              
+            String sqlUpdate = "UPDATE tablet SET id_tab = '" + value2 + "', available "
+                    + "= '" + value3 + "' WHERE id_tab = '" + value2 + "';";
+
             ps1 = conn.prepareStatement(sqlUpdate);
             ps1.execute();
             System.out.println("Actualiza disponible");
         } catch (Exception e) {
             System.out.println(e);
-             System.out.println("No encontro codigo update");
-        }   
+            System.out.println("No encontro codigo update");
+        }
     }
+
     public String executeQueryAndGetISBN(String sqlQuery) {
         String isbn = null;
         Connection conn = null;
@@ -269,6 +266,7 @@ public class Prestamo extends Nota {
 
         return isbn;
     }
+
     public String executeQueryAndGetID(String sqlQuery2) {
         String id = null;
         Connection conn = null;
@@ -300,9 +298,9 @@ public class Prestamo extends Nota {
 
         return id;
     }
-    
-     public String executeQueryAndGetId_tab(String sqlQueryThree) {
-        String id_tab= null;
+
+    public String executeQueryAndGetId_tab(String sqlQueryThree) {
+        String id_tab = null;
         Connection conn = null;
         PreparedStatement statament = null;
         ResultSet rs = null;
@@ -341,15 +339,15 @@ public class Prestamo extends Nota {
         PreparedStatement ps, ps2, ps1 = null;
         ResultSet rs = null;
         String selectedEditorial = getExemplars();
-        conn = ConexionLoans.getConnection();       
+        conn = ConexionLoans.getConnection();
         updateBook();
         updateComputer();
         updateTablet();
-        
+
         try {
 
             String sql = "insert into loan(loan_date, devolution_date, "
-                    + "loan_number,"+ " exemplars, email, fullName)"
+                    + "loan_number," + " exemplars, email, fullName)"
                     + "values(?, ?, ?, ?, ?, ?)";
             String sqlNote = "insert into note(date,identification"
                     + ",noteDescription)"
@@ -396,7 +394,6 @@ public class Prestamo extends Nota {
     public void search() {
     }
 
-    
     /**
      * This function is used to search for information in the system. The search
      * could be based on some specific criteria and return relevant results.
@@ -416,5 +413,95 @@ public class Prestamo extends Nota {
      */
     public void users() {
     }
-    
+
+    //disponibilidad de las devoluciones
+    public void availableBook() {
+        Connection conn = null;
+        PreparedStatement ps1 = null;
+
+        try {
+            conn = ConexionLibros.conn();
+            String selectedEditorial = getExemplars();
+            String value1 = selectedEditorial;
+            String value3 = "Disponible"; // Cambiar el estado a "Disponible"
+
+            // Buscar el objeto en la base de datos que coincide con el 'exemplar'
+            String sqlAvailable = "SELECT DISTINCT isbn FROM book WHERE "
+                    + "available = 'No disponible' AND title = '" + value1 + "'";
+
+            String isbn = executeQueryAndGetISBN(sqlAvailable);
+            String value2 = isbn;
+
+            // Actualizar el estado del objeto a "Disponible" en la base de datos
+            String sqlUpdate = "UPDATE book SET isbn = '" + value2 + "', "
+                    + "available = '" + value3 + "' WHERE isbn = '" + value2 + "';";
+
+            ps1 = conn.prepareStatement(sqlUpdate);
+            ps1.execute();
+            System.out.println("Esta disponible");
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("No encontro codigo update");
+        }
+    }
+
+    public void availableComputer() {
+        Connection conn = null;
+        PreparedStatement ps1 = null;
+
+        try {
+            conn = ConexionLibros.conn();
+            String selectedEditorialTwo = getExemplars();
+            String value1 = selectedEditorialTwo;
+            String value3 = "Disponible"; // Cambiar el estado a "Disponible"
+
+            // Buscar el objeto en la base de datos que coincide con el 'exemplar'
+            String sqlAvailable = "SELECT DISTINCT id FROM computer WHERE "
+                    + "available = 'No disponible' AND trademark = '" + value1 + "'";
+
+            String id = executeQueryAndGetID(sqlAvailable);
+            String value2 = id;
+
+            // Actualizar el estado del objeto a "Disponible" en la base de datos
+            String sqlUpdate = "UPDATE computer SET id = '" + value2 + "', "
+                    + "available = '" + value3 + "' WHERE id = '" + value2 + "';";
+
+            ps1 = conn.prepareStatement(sqlUpdate);
+            ps1.execute();
+            System.out.println("Esta disponible");
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("No encontró código de actualización");
+        }
+    }
+
+    public void availableTablet() {
+        Connection conn = null;
+        PreparedStatement ps1 = null;
+
+        try {
+            conn = ConexionTabletDB.getConnection();
+            String selectedEditorialThree = getExemplars();
+            String value1 = selectedEditorialThree;
+            String value3 = "Disponible"; // Cambiar el estado a "Disponible"
+
+            // Buscar el objeto en la base de datos que coincide con el 'exemplar'
+            String sqlAvailable = "SELECT DISTINCT id_tab FROM tablet WHERE "
+                    + "available = 'No disponible' AND trademark = '" + value1 + "'";
+
+            String id_tab = executeQueryAndGetId_tab(sqlAvailable);
+            String value2 = id_tab;
+
+            // Actualizar el estado del objeto a "Disponible" en la base de datos
+            String sqlUpdate = "UPDATE tablet SET id_tab = '" + value2 + "', "
+                    + "available = '" + value3 + "' WHERE id_tab = '" + value2 + "';";
+
+            ps1 = conn.prepareStatement(sqlUpdate);
+            ps1.execute();
+            System.out.println("Esta disponible");
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("No encontró código de actualización");
+        }
+    }
 }

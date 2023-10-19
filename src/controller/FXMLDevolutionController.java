@@ -64,7 +64,7 @@ public class FXMLDevolutionController implements Initializable {
     private TableColumn<Devolucion, Integer> column_id;
     @FXML
     private TextField txt_id;
-      Integer index;
+    Integer index;
 
     /**
      * Initializes the controller class.
@@ -81,7 +81,7 @@ public class FXMLDevolutionController implements Initializable {
         column_action.setCellValueFactory(new PropertyValueFactory<>("deleteButton"));
 
         Callback<TableColumn<Devolucion, String>, TableCell<Devolucion, String>> cellFactory
-               = new Callback<TableColumn<Devolucion, String>, TableCell<Devolucion, String>>() {
+                = new Callback<TableColumn<Devolucion, String>, TableCell<Devolucion, String>>() {
             @Override
             public TableCell<Devolucion, String> call(final TableColumn<Devolucion, String> param) {
                 final TableCell<Devolucion, String> cell = new TableCell<Devolucion, String>() {
@@ -103,7 +103,7 @@ public class FXMLDevolutionController implements Initializable {
 
                             btn.setOnAction(event -> {
                                 Devolucion devolucion = getTableView().getItems().get(getIndex());
-                                eliminarDevolucion(devolucion);
+                                eliminarDevolucion(devolucion.getId_loan());
                             });
 
                             setGraphic(btn);
@@ -118,11 +118,12 @@ public class FXMLDevolutionController implements Initializable {
         column_action.setCellFactory(cellFactory);
     }
 
-    private void eliminarDevolucion(Devolucion devolucion) {
+    private void eliminarDevolucion(int id_loan) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = "delete from loan where id_loan = ? ";
+
         try {
             conn = ConexionLoans.getConnection();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -133,7 +134,7 @@ public class FXMLDevolutionController implements Initializable {
 
             if (opcion.get().equals(ButtonType.OK)) {
                 ps = conn.prepareStatement(sql);
-                ps.setInt(1, Integer.parseInt(txt_id.getText()));
+                ps.setInt(1, id_loan);
                 ps.execute();
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
@@ -141,8 +142,24 @@ public class FXMLDevolutionController implements Initializable {
                 alert.setContentText("Datos eliminados con éxito.");
                 alert.showAndWait();
 
-            }
+                // Elimina el préstamo de la tabla devoluciones
+                Devolucion devolucionToRemove = devolutions.stream()
+                        .filter(devolucion -> devolucion.getId_loan() == id_loan)
+                        .findFirst()
+                        .orElse(null);
 
+                if (devolucionToRemove != null) {
+                    devolutions.remove(devolucionToRemove);
+                    tbw_devolutions.refresh(); // Actualiza la tabla
+                }
+
+                //disponibles 
+                Prestamo prestamo = new Prestamo();
+                prestamo.setExemplars(devolucionToRemove.getExemplars());
+                prestamo.availableBook();
+                prestamo.availableComputer();
+                prestamo.availableTablet();
+            }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -150,7 +167,6 @@ public class FXMLDevolutionController implements Initializable {
             alert.setContentText("Los datos no se pudieron eliminar. " + e);
             alert.showAndWait();
         }
-        loadData(ConexionLoans.getDataLoanAndNote(), 0);
     }
 
     @FXML
@@ -184,10 +200,8 @@ public class FXMLDevolutionController implements Initializable {
             loadData(prestamos, index + 1); // Llamada recursiva para procesar el siguiente prestamo
         } else {
             // Cuando se procesan todos los préstamos, configura las celdas de la tabla y agrega los datos
-            column_id.setCellValueFactory(new PropertyValueFactory<Devolucion, 
-                    Integer>("id_loan"));
-            column_user.setCellValueFactory(new PropertyValueFactory<Devolucion,
-                    String>("user"));
+            column_id.setCellValueFactory(new PropertyValueFactory<Devolucion, Integer>("id_loan"));
+            column_user.setCellValueFactory(new PropertyValueFactory<Devolucion, String>("user"));
             column_userEmail.setCellValueFactory(new PropertyValueFactory<
                     Devolucion, String>("userEmail"));
             column_exemplars.setCellValueFactory(new PropertyValueFactory<

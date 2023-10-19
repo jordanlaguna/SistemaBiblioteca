@@ -171,12 +171,12 @@
          <children>
             <TableView fx:id="tbw_libros" layoutX="84.0" layoutY="210.0" prefHeight="214.0" prefWidth="733.0" stylesheets="@../Style/LoginStyleSheet.css">
                <columns>
-                  <TableColumn fx:id="column_id" prefWidth="31.0" text="N°" />
-                  <TableColumn fx:id="column_numLoan" prefWidth="119.0" text="N° préstamo" />
-                  <TableColumn fx:id="colum_dateLoan" prefWidth="107.0" text="Fecha préstamo" />
-                  <TableColumn fx:id="column_dateReturn" prefWidth="107.0" text="Fecha devolución" />
-                  <TableColumn fx:id="column_editorial" prefWidth="94.0" text="Ejemplar" />
-                  <TableColumn fx:id="column_observations" minWidth="0.0" prefWidth="77.0" text="Observaciones" />
+                  <TableColumn fx:id="column_id" prefWidth="31.0" text="N°" visible="false" />
+                  <TableColumn fx:id="column_numLoan" prefWidth="85.0" text="N° préstamo" />
+                  <TableColumn fx:id="colum_dateLoan" prefWidth="108.0" text="Fecha préstamo" />
+                  <TableColumn fx:id="column_dateReturn" prefWidth="103.0" text="Fecha devolución" />
+                  <TableColumn fx:id="column_editorial" prefWidth="114.0" text="Ejemplar" />
+                  <TableColumn fx:id="column_observations" minWidth="0.0" prefWidth="94.0" text="Observaciones" />
                   <TableColumn fx:id="column_email" minWidth="0.0" prefWidth="124.0" text="Email" />
                   <TableColumn fx:id="column_fullName" minWidth="0.0" prefWidth="108.0" text="Nombre completo" />
                </columns>
