@@ -18,9 +18,8 @@ import javafx.scene.control.Alert;
 public class Prestamo extends Nota {
 
     private Date dateLoan;
-
     private String exemplars;
-
+    private int id_loan;
     private Date dateReturn;
     // private List unit;
     private int numLoan;
@@ -37,7 +36,7 @@ public class Prestamo extends Nota {
      * @param numLoan = An integer (int) type attribute that stores a loan
      * number, to uniquely identify this loan in the system.
      */
-    public Prestamo(Date dateLoan, String exemplars, Date dateReturn,
+    public Prestamo(int id_loan, Date dateLoan, String exemplars, Date dateReturn,
             int numLoan, String email, String fullName, Date date,
             String identification, String note) {
         super(date, identification, note);
@@ -45,7 +44,7 @@ public class Prestamo extends Nota {
         this.dateLoan = dateLoan;
         this.exemplars = exemplars;
         this.dateReturn = dateReturn;
-         
+        this.id_loan = id_loan;
         this.numLoan = numLoan;
         this.email = email;
         this.fullName = fullName;
@@ -54,9 +53,18 @@ public class Prestamo extends Nota {
     public Prestamo() {
     }
 
+    
+    public int getId_loan() {
+        return id_loan;
+    }
+
     /*public Prestamo(int aInt, java.sql.Date date, int aInt0, String string, String string0, java.sql.Date date0, int aInt1, String string1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }*/
+    public void setId_loan(int id_loan) {    
+        this.id_loan = id_loan;
+    }
+
     public Date getDateLoan() {
         return dateLoan;
     }

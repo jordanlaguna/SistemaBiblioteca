@@ -83,7 +83,8 @@ public class ConexionLoans {
             list) throws SQLException {
         if (rs.next()) 
              {
-                list.add(new Prestamo(rs.getDate("loan_date"),
+                list.add(new Prestamo(Integer.parseInt(rs.getString("id_loan")),
+                        rs.getDate("loan_date"),
                         rs.getString("exemplars"), 
                         rs.getDate("devolution_date"),
                         rs.getInt("loan_number"),

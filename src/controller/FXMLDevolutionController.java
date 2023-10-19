@@ -10,13 +10,19 @@ import clases.Prestamo;
 import clases.Tablet;
 import conexionDB.ConexionLoans;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -43,9 +49,9 @@ public class FXMLDevolutionController implements Initializable {
     @FXML
     private TableColumn<Devolucion, String> column_exemplars;
     @FXML
-    private TableColumn<Devolucion, DatePicker> column_date;
+    private TableColumn<Devolucion, java.sql.Date> column_date;
     @FXML
-    private TableColumn<Devolucion, DatePicker> column_deliverDate;
+    private TableColumn<Devolucion, java.sql.Date> column_deliverDate;
     @FXML
     private TableView<Devolucion> tbw_devolutions;
 
@@ -54,6 +60,11 @@ public class FXMLDevolutionController implements Initializable {
     private TableColumn<Devolucion, String> column_action;
     @FXML
     private TableColumn<Devolucion, String> column_userEmail;
+    @FXML
+    private TableColumn<Devolucion, Integer> column_id;
+    @FXML
+    private TextField txt_id;
+      Integer index;
 
     /**
      * Initializes the controller class.
@@ -70,7 +81,7 @@ public class FXMLDevolutionController implements Initializable {
         column_action.setCellValueFactory(new PropertyValueFactory<>("deleteButton"));
 
         Callback<TableColumn<Devolucion, String>, TableCell<Devolucion, String>> cellFactory
-                = new Callback<TableColumn<Devolucion, String>, TableCell<Devolucion, String>>() {
+               = new Callback<TableColumn<Devolucion, String>, TableCell<Devolucion, String>>() {
             @Override
             public TableCell<Devolucion, String> call(final TableColumn<Devolucion, String> param) {
                 final TableCell<Devolucion, String> cell = new TableCell<Devolucion, String>() {
@@ -108,11 +119,38 @@ public class FXMLDevolutionController implements Initializable {
     }
 
     private void eliminarDevolucion(Devolucion devolucion) {
-        // Agrega aquí la lógica para eliminar la devolución
-        // Puedes utilizar devolucion para identificar la devolución que se eliminará
-        // y luego eliminarla de tu lista devolutions
-        
-        devolutions.remove(devolucion);
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "delete from loan where id_loan = ? ";
+        try {
+            conn = ConexionLoans.getConnection();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("CONFIRMACIÓN");
+            alert.setContentText("¿Desea eliminar los datos?");
+            Optional<ButtonType> opcion = alert.showAndWait();
+
+            if (opcion.get().equals(ButtonType.OK)) {
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, Integer.parseInt(txt_id.getText()));
+                ps.execute();
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("INFORMACIÓN");
+                alert.setContentText("Datos eliminados con éxito.");
+                alert.showAndWait();
+
+            }
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Los datos no se pudieron eliminar. " + e);
+            alert.showAndWait();
+        }
+        loadData(ConexionLoans.getDataLoanAndNote(), 0);
     }
 
     @FXML
@@ -123,6 +161,12 @@ public class FXMLDevolutionController implements Initializable {
 
     @FXML
     private void selectItems(MouseEvent event) {
+        index = tbw_devolutions.getSelectionModel().getSelectedIndex();
+        if (index <= -1) {
+            return;
+        }
+        Integer idValue = column_id.getCellData(index);
+        txt_id.setText(String.valueOf(idValue));
     }
 
     private void loadData(List<Prestamo> prestamos, int index) {
@@ -130,6 +174,7 @@ public class FXMLDevolutionController implements Initializable {
             Prestamo prestamo = prestamos.get(index);
             Devolucion devolucion = new Devolucion();
             devolucion.setDate(prestamo.getDateLoan());
+            devolucion.setId_loan(prestamo.getId_loan());
             devolucion.setDeliverDate(prestamo.getDateReturn());
             devolucion.setExemplars(prestamo.getExemplars());
             devolucion.setUser(prestamo.getFullName());
@@ -139,11 +184,18 @@ public class FXMLDevolutionController implements Initializable {
             loadData(prestamos, index + 1); // Llamada recursiva para procesar el siguiente prestamo
         } else {
             // Cuando se procesan todos los préstamos, configura las celdas de la tabla y agrega los datos
-            column_user.setCellValueFactory(new PropertyValueFactory<>("user"));
-            column_userEmail.setCellValueFactory(new PropertyValueFactory<>("userEmail"));
-            column_exemplars.setCellValueFactory(new PropertyValueFactory<>("exemplars"));
-            column_date.setCellValueFactory(new PropertyValueFactory<>("date"));
-            column_deliverDate.setCellValueFactory(new PropertyValueFactory<>("deliverDate"));
+            column_id.setCellValueFactory(new PropertyValueFactory<Devolucion, 
+                    Integer>("id_loan"));
+            column_user.setCellValueFactory(new PropertyValueFactory<Devolucion,
+                    String>("user"));
+            column_userEmail.setCellValueFactory(new PropertyValueFactory<
+                    Devolucion, String>("userEmail"));
+            column_exemplars.setCellValueFactory(new PropertyValueFactory<
+                    Devolucion, String>("exemplars"));
+            column_date.setCellValueFactory(new PropertyValueFactory<
+                    Devolucion, java.sql.Date>("date"));
+            column_deliverDate.setCellValueFactory(new PropertyValueFactory<
+                    Devolucion, java.sql.Date>("deliverDate"));
 
             tbw_devolutions.setItems(devolutions);
         }

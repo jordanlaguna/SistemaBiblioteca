@@ -87,6 +87,8 @@ public class FXMLLoansController implements Initializable {
     private ComboBox<String> cmbComputer;
     @FXML
     private ComboBox<String> cmbTablet;
+    @FXML
+    private TableColumn<Prestamo, Integer> column_id;
     /**
      * Initializes the controller class.
      */
@@ -202,7 +204,8 @@ public class FXMLLoansController implements Initializable {
     private void loadData() throws SQLException{
         
         conn= ConexionLoans.getConnection(); 
-        
+         this.column_id.setCellValueFactory(new PropertyValueFactory<
+                Prestamo,Integer>("id_loan"));
          this.colum_dateLoan.setCellValueFactory(new PropertyValueFactory<
                 Prestamo,  java.sql.Date>("dateLoan"));
          

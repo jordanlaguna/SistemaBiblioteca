@@ -16,7 +16,7 @@ public class Devolucion {
     private Date date;
 
     private Date deliverDate;
-
+    private int id_loan;
     private String exemplars;
 
     private String userEmail;
@@ -29,16 +29,26 @@ public class Devolucion {
      * @param exemplars //The list of individual items returned
      * @param user //The list of users who have completed the return.
      */
-    public Devolucion(Date date, Date deliverDate, String exemplars, String userEmail, String user) {
+    public Devolucion(int id_loan,Date date, Date deliverDate, String exemplars, String userEmail, String user) {
         this.date = date;
         this.deliverDate = deliverDate;
         this.exemplars = exemplars;
         this.userEmail = userEmail;
         this.user = user;
+        this.id_loan = id_loan;
     }
 
     public Devolucion() {
     }
+
+    public int getId_loan() {
+        return id_loan;
+    }
+
+    public void setId_loan(int id_loan) {
+        this.id_loan = id_loan;
+    }
+    
 
     public Date getDate() {
         return date;
