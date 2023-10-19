@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ConexionUsuarios {
+
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/"
             + "sistemabiblioteca";
     private static final String DB_USER = "root";
@@ -41,19 +42,18 @@ public class ConexionUsuarios {
             }
         }
     }
-    
-    
-    
-     public static ObservableList<Usuario> getDataUsuario() {
+
+    public static ObservableList<Usuario> getDataUsuario() {
         Connection conn = conn();
         ObservableList<Usuario> list = FXCollections.observableArrayList();
 
         try {
-            PreparedStatement ps = conn.prepareStatement("select id_person, "
-                    + "birth_date, identification, name, lastName,secondName , "
-                    + "telephone, email, password, type " +
-                    "from person " +
-                    "inner join user on person.id_person = user.id_user");
+            PreparedStatement ps = conn.prepareStatement("select "
+                    + "person.id_person, "
+                    + "birth_date, identification, name, lastName, secondName, "
+                    + "telephone, email, password, type, user.id_user "
+                    + "from person "
+                    + "inner join user on person.id_person = user.id_user");
             ResultSet rs = ps.executeQuery();
 
             addUsuariosToList(rs, list);
@@ -67,15 +67,16 @@ public class ConexionUsuarios {
         return list;
     }
 
-    private static void addUsuariosToList(ResultSet rs, ObservableList<Usuario> 
-            list) throws SQLException {
+    private static void addUsuariosToList(ResultSet rs, ObservableList<Usuario> list) throws SQLException {
         if (rs.next()) {
-            list.add(new Usuario(rs.getDate("birth_date"),
+            list.add(new Usuario(Integer.parseInt(rs.getString("id_person")),
+                    rs.getDate("birth_date"),
                     rs.getString("identification"),
                     rs.getString("name"),
                     rs.getString("lastName"),
                     rs.getString("secondName"),
                     Integer.parseInt(rs.getString("telephone")),
+                    Integer.parseInt(rs.getString("id_user")),
                     rs.getString("email"), rs.getString("password"),
                     rs.getString("type")));
             addUsuariosToList(rs, list);

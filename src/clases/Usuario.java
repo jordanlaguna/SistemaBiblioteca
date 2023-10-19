@@ -15,7 +15,9 @@ import javafx.scene.control.Alert;
  * inherits attributes and methods from the Person class
  */
 public class Usuario extends Persona {
-
+    
+    private int id_user;
+    
     private String password;
 
     private String email;
@@ -36,14 +38,22 @@ public class Usuario extends Persona {
      * @param type = type: A String attribute of user classification or
      * categorization, such as "teacher", "student".
      */
-    public Usuario(Date birth_date, String identification, String name, 
-            String lastName, String secondName, int telephone, String email,
+    public Usuario(int id_person, Date birth_date, String identification, String name, 
+            String lastName, String secondName, int telephone, int id_user, String email,
             String password, String type) {
-        super(birth_date, identification, name, lastName, secondName, telephone);
-
+        super(id_person, birth_date, identification, name, lastName, secondName, telephone);
+        this.id_user = id_user;
         this.password = password;
         this.email = email;
         this.type = type;
+    }
+
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
     public String getPassword() {
@@ -139,7 +149,7 @@ public class Usuario extends Persona {
             conn.setAutoCommit(false);
 
             // Insertar en la tabla "person"
-            String sqlPerson = "insert into person (birth_date, "
+            String sqlPerson = "insert into person ( birth_date, "
                     + "identification, " + "name, "
                     + "lastName, secondName, telephone) "
                     + "values (?, ?, ?, ?, ?, ?)";

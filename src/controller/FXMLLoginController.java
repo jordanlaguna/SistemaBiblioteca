@@ -220,7 +220,7 @@ public class FXMLLoginController implements Initializable {
         String password = passwordLogin.getText();
         String type = (String) cmbBox.getValue();
 
-        Usuario usuario = new Usuario(null, null, null, null, null, 0, email,
+        Usuario usuario = new Usuario(0,null, null, null, null, null,0, 0, email,
                 password, type);
         boolean loginSuccessful = usuario.login(email, password, type);
         try {
@@ -258,9 +258,9 @@ public class FXMLLoginController implements Initializable {
     private void registrarUser(ActionEvent event) throws SQLException {
         LocalDate localDate = birthDay.getValue();
         Date dateOfBirth = Date.valueOf(localDate);
-        Usuario usuario = new Usuario(dateOfBirth, identification.getText(),
+        Usuario usuario = new Usuario(0,dateOfBirth, identification.getText(),
                 name.getText(), lastName.getText(), secondName.getText(),
-                Integer.parseInt(telephone.getText()), userName.getText(),
+                Integer.parseInt(telephone.getText()),0, userName.getText(),
                 passwordRegis.getText(), cmbType.getValue().toString());
         usuario.registatrarse();
         cleanData();
@@ -286,7 +286,8 @@ public class FXMLLoginController implements Initializable {
     @FXML
     private void lb_olvidar(MouseEvent event) throws IOException {
         // Regresa al inicio LOGIN 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/FXMLForgetPassword.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista"
+                + "/FXMLForgetPassword.fxml"));
         Parent root = loader.load();
         ForgetPasswordController ac = loader.getController();
         Scene scene = new Scene(root);

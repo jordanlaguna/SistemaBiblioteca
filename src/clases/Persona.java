@@ -9,7 +9,9 @@ import java.sql.Date;
  */
 
 public class Persona  {
-
+    
+    private int id_person;
+    
     private Date birth_date;
 
     private String identification;
@@ -37,8 +39,9 @@ public class Persona  {
      * last name.
      */
 
-    public Persona(Date birth_date, String identification, String name, 
+    public Persona(int id_person, Date birth_date, String identification, String name, 
             String lastName, String secondName, int telephone) {
+        this.id_person = id_person;
         this.birth_date = birth_date;
         this.identification = identification;
         this.name = name;
@@ -51,6 +54,14 @@ public class Persona  {
         
     }
 
+    public int getId_person() {
+        return id_person;
+    }
+
+    public void setId_person(int id_person) {
+        this.id_person = id_person;
+    }
+    
     public int getTelephone() {
         return telephone;
     }

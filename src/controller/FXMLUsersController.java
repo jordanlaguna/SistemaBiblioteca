@@ -68,6 +68,8 @@ public class FXMLUsersController implements Initializable {
     @FXML
     private TableView<Usuario> tbw_users;
     @FXML
+    private TableColumn<Usuario, Integer> column_id;
+    @FXML
     private TableColumn<Usuario, java.sql.Date> column_birthDay;
     @FXML
     private TableColumn<Usuario, String> column_identification;
@@ -79,6 +81,8 @@ public class FXMLUsersController implements Initializable {
     private TableColumn<Usuario, String> column_secondName;
     @FXML
     private TableColumn<Usuario, Integer> column_phone;
+    @FXML
+    private TableColumn<Usuario, Integer> column_idUser;
     @FXML
     private TableColumn<Usuario, String> column_correo;
     @FXML
@@ -106,11 +110,11 @@ public class FXMLUsersController implements Initializable {
         loadData();
     }
 
-    @FXML
+ 
+   @FXML
     private void update(ActionEvent event) {
         try {
             conn = ConexionUsuarios.getConnection();
-            //Actualiza la tabla persona.
             String value1 = txt_identification.getText();
             String value2 = txt_name.getText();
             String value3 = txt_lastName.getText();
@@ -119,15 +123,32 @@ public class FXMLUsersController implements Initializable {
             String value6 = txt_email.getText();
             String value7 = txt_password.getText();
             String value8 = cmbType.getValue().toString();
+            int idUser = Integer.parseInt(txt_idUser.getText()); 
 
-            String sql = "update person set identification= '" + value1 + "'"
-                    + ", name= '" + value2 + "', lastName= '" + value3 + "'"
-                    + ", secondName= '" + value4 + "', telephone= '" + value5
-                    + "' where identification= '" + value1 + "'";
+            // Consulta para actualizar la tabla person
+            String sqlPerson = "update person set identification = ?,"
+                + " name = ?, lastName = ?, secondName = ?, telephone = ? "
+                + "where id_person = ?";
 
-            String sql2 = "update user set email= '" + value6 + "',password='"
-                    + value7 + "',type='" + value8 + "'where email='"
-                    + value6 + "' ";
+            // Consulta para actualizar la tabla user
+            String sqlUser = "update user set email = ?, password = ?, "
+                    + "type = ? "+ "where id_user = ?";
+
+            PreparedStatement psPerson = conn.prepareStatement(sqlPerson);
+            PreparedStatement psUser = conn.prepareStatement(sqlUser);
+
+            // Personas
+            psPerson.setString(1, value1);
+            psPerson.setString(2, value2);
+            psPerson.setString(3, value3);
+            psPerson.setString(4, value4);
+            psPerson.setString(5, value5);
+            psPerson.setInt(6, idUser); 
+            //Usurios
+            psUser.setString(1, value6);
+            psUser.setString(2, value7);
+            psUser.setString(3, value8);
+            psUser.setInt(4, idUser); 
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText(null);
@@ -136,55 +157,57 @@ public class FXMLUsersController implements Initializable {
             Optional<ButtonType> opcion = alert.showAndWait();
 
             if (opcion.get().equals(ButtonType.OK)) {
-                ps = conn.prepareStatement(sql);
-                ps1 = conn.prepareStatement(sql2);
-                ps.execute();
-                ps1.execute();
+                psPerson.executeUpdate();
+                psUser.executeUpdate();
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
                 alert.setTitle("INFORMACIÓN");
                 alert.setContentText("Datos modificados con éxito.");
                 alert.showAndWait();
-
             }
-
+            //Cerramos las conexiones
+            psPerson.close();
+            psUser.close();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
             alert.setContentText("No se pudo modificar el usuario. " + e);
             alert.showAndWait();
-
         }
-
         loadData();
     }
 
     @FXML
     private void delete(ActionEvent event) {
-        String sqlDeletePerson = "delete from person where identification = ?";
-        String sqlDeleteUser = "delete from user where email = ?";
-        conn = ConexionUsuarios.getConnection();
+        String sqlDeletePerson = "delete from person where id_person = ?";
+        String sqlDeleteUser = "delete from user where id_user = ?";
 
         try {
-            ps = conn.prepareStatement(sqlDeleteUser);
-            ps.setString(1, txt_identification.getText());
-            ps.executeUpdate();
+            conn = ConexionUsuarios.getConnection();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("CONFIRMACIÓN");
+            alert.setContentText("¿Desea eliminar los datos?");
+            Optional<ButtonType> opcion = alert.showAndWait();
 
-            // Eliminar de la tabla 'person'
-            ps1 = conn.prepareStatement(sqlDeletePerson);
-            ps1.setString(1, txt_email.getText());
-            ps1.executeUpdate();
-            
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            if (opcion.get().equals(ButtonType.OK)) {
+                // Eliminar primero los registros relacionados en la tabla user
+                ps1 = conn.prepareStatement(sqlDeleteUser);
+                ps1.setInt(1, Integer.parseInt(txt_idUser.getText()));
+                ps1.execute();
+
+                // Luego eliminar la fila en la tabla person
+                ps = conn.prepareStatement(sqlDeletePerson);
+                ps.setInt(1, Integer.parseInt(txt_idPerson.getText()));
+                ps.execute();
+
+                alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
                 alert.setTitle("INFORMACIÓN");
-                alert.setContentText("Usuario eliminado con éxito.");
-                alert.showAndWait();       
-
-            txt_idPerson.clear();
-            txt_idUser.clear();
-
+                alert.setContentText("Datos eliminados con éxito.");
+                alert.showAndWait();
+            }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -193,17 +216,18 @@ public class FXMLUsersController implements Initializable {
             alert.showAndWait();
         }
         loadData();
-
     }
 
     @FXML
     private void Items(MouseEvent event) {
         index = tbw_users.getSelectionModel().getSelectedIndex();
-
         if (index <= -1) {
             return;
         }
-
+        Integer idValue = column_id.getCellData(index);
+        txt_idPerson.setText(String.valueOf(idValue));
+        Integer idUser = column_idUser.getCellData(index);
+        txt_idUser.setText(String.valueOf(idUser));
         java.sql.Date sqlDate = (java.sql.Date) column_birthDay.
                 getCellData(index);
         // Convierte java.sql.Date a LocalDate
@@ -224,11 +248,13 @@ public class FXMLUsersController implements Initializable {
     private void loadData() {
 
         conn = ConexionUsuarios.getConnection();
-        column_birthDay.setCellValueFactory(new PropertyValueFactory<Usuario, 
+        column_id.setCellValueFactory(new PropertyValueFactory<Usuario,
+                Integer>("id_person"));
+        column_birthDay.setCellValueFactory(new PropertyValueFactory<Usuario,
                 java.sql.Date>("birth_date"));
         column_identification.setCellValueFactory(new PropertyValueFactory<
                 Usuario, String>("identification"));
-        column_name.setCellValueFactory(new PropertyValueFactory<Usuario, 
+        column_name.setCellValueFactory(new PropertyValueFactory<Usuario,
                 String>("name"));
         column_lastName.setCellValueFactory(new PropertyValueFactory<Usuario,
                 String>("lastName"));
@@ -236,11 +262,13 @@ public class FXMLUsersController implements Initializable {
                 String>("secondName"));
         column_phone.setCellValueFactory(new PropertyValueFactory<Usuario,
                 Integer>("telephone"));
+        column_idUser.setCellValueFactory(new PropertyValueFactory<Usuario,
+                Integer>("id_user"));
         column_correo.setCellValueFactory(new PropertyValueFactory<Usuario,
                 String>("email"));
-        column_password.setCellValueFactory(new PropertyValueFactory<Usuario, 
+        column_password.setCellValueFactory(new PropertyValueFactory<Usuario,
                 String>("password"));
-        column_type.setCellValueFactory(new PropertyValueFactory<Usuario, 
+        column_type.setCellValueFactory(new PropertyValueFactory<Usuario,
                 String>("type"));
         users = ConexionUsuarios.getDataUsuario();
         tbw_users.setItems(users);

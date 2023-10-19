@@ -330,15 +330,17 @@
          <children>
             <TableView fx:id="tbw_users" layoutX="84.0" layoutY="210.0" onMouseClicked="#Items" prefHeight="231.0" prefWidth="713.0" stylesheets="@../Style/LoginStyleSheet.css">
               <columns>
-                <TableColumn fx:id="column_birthDay" prefWidth="83.0" text="Fecha. N" />
-                <TableColumn fx:id="column_identification" prefWidth="81.0" text="Cédula" />
-                  <TableColumn fx:id="column_name" prefWidth="79.0" text="Nombre" />
-                  <TableColumn fx:id="column_lastName" prefWidth="96.0" text="Apellido" />
-                  <TableColumn fx:id="column_secondName" prefWidth="84.0" text="Apellido" />
-                  <TableColumn fx:id="column_phone" prefWidth="87.0" text="Teléfono" />
-                  <TableColumn fx:id="column_correo" prefWidth="120.0" text="Correo" />
-                  <TableColumn fx:id="column_password" prefWidth="103.0" text="Contraseña" />
-                  <TableColumn fx:id="column_type" prefWidth="53.0" text="Tipo" />
+                  <TableColumn fx:id="column_id" prefWidth="31.0" text="N°" visible="false" />
+                <TableColumn fx:id="column_birthDay" prefWidth="74.0" text="Fecha. N°" />
+                <TableColumn fx:id="column_identification" prefWidth="84.0" text="Cédula" />
+                  <TableColumn fx:id="column_name" prefWidth="52.0" text="Nombre" />
+                  <TableColumn fx:id="column_lastName" prefWidth="90.0" text="Apellido" />
+                  <TableColumn fx:id="column_secondName" prefWidth="82.0" text="Apellido" />
+                  <TableColumn fx:id="column_phone" prefWidth="95.0" text="Teléfono" />
+                  <TableColumn fx:id="column_idUser" prefWidth="25.0" text="N°" visible="false" />
+                  <TableColumn fx:id="column_correo" prefWidth="107.0" text="Correo" />
+                  <TableColumn fx:id="column_password" prefWidth="93.0" text="Contraseña" />
+                  <TableColumn fx:id="column_type" prefWidth="106.0" text="Tipo" />
                  
               </columns>
             </TableView>

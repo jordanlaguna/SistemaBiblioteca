@@ -61,12 +61,14 @@ public class ConexionLoginDB {
     private static void addLoginToList(ResultSet rs,
             ObservableList<Usuario> list) throws SQLException {
         if (rs.next()) {
-            list.add(new Usuario(rs.getDate("birth_date"),
+            list.add(new Usuario(Integer.parseInt(rs.getString("id_person")),
+                    rs.getDate("birth_date"),
                     rs.getString("identification"),
                     rs.getString("name"),
                     rs.getString("lastName"),
                     rs.getString("secondName"),
                     Integer.parseInt(rs.getString("telephone")),
+                    Integer.parseInt(rs.getString("id_user")),
                     rs.getString("correo"), rs.getString("password"),
                     rs.getString("type")));
             addLoginToList(rs, list);
