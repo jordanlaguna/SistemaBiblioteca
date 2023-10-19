@@ -153,7 +153,8 @@ public class ForgetPasswordController implements Initializable {
     private void ActVerfica(ActionEvent event) throws IOException {
         if (Integer.valueOf(txtVerfCod.getText()) == randomCodigo) {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/FXMLSendEmail.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(""
+                    + "/vista/FXMLSendEmail.fxml"));
             Parent root = loader.load();
             FXMLNewPasswordController ac = loader.getController();
             Scene scene = new Scene(root);
@@ -180,7 +181,8 @@ public class ForgetPasswordController implements Initializable {
 
     @FXML
     private void Cerrar(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/FXMLLogin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(""
+                + "/vista/FXMLLogin.fxml"));
         Parent root = loader.load();
         FXMLLoginController ac = loader.getController();
         Scene scene = new Scene(root);

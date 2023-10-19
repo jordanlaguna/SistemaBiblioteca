@@ -268,43 +268,8 @@ public class FXMLBooksController implements Initializable {
 
     @FXML
     private void buscar(KeyEvent ke) {
-        FilteredList<Libro> filterData = new FilteredList<>(Libros, p -> true);
-        txt_search.textProperty().addListener((obsevable, oldvalue, newvalue) -> {
-            filterData.setPredicate(Book -> {
-                if (newvalue == null || newvalue.isEmpty()) {
-                    return true;
-                }
-                String tipoTexto = newvalue.toLowerCase();
-                if (String.valueOf(Book.getIsbn()).toLowerCase().
-                        indexOf(tipoTexto) != -1) {
-
-                    return true;
-                }
-                if (Book.getTitle().toLowerCase().contains(tipoTexto)) {
-
-                    return true;
-                }
-                if (Book.getAuthorBook().toLowerCase().contains(tipoTexto)) {
-
-                    return true;
-                }
-                if (Book.getEditorial().toLowerCase().contains(tipoTexto)) {
-
-                    return true;
-                }
-                if (Book.getReleaseDate().toString().contains(tipoTexto)) {
-                    return true;
-                }
-                if (Book.getAvailable().toLowerCase().contains(tipoTexto)) {
-
-                    return true;
-                }
-                return false;
-            });
-            SortedList<Libro> sortedList = new SortedList<>(filterData);
-            sortedList.comparatorProperty().bind(tbw_libros.comparatorProperty());
-            tbw_libros.setItems(sortedList);
-        });
+       Libro book = new Libro(null, null, null, null, null, null);
+       book.searchBook(txt_search, tbw_libros);
     }
 
     @FXML

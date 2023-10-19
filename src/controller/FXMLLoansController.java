@@ -83,7 +83,7 @@ public class FXMLLoansController implements Initializable {
     PreparedStatement ps, ps2 = null;
     ResultSet rs = null;
 
-    int randomCodigo;
+    int randomCode;
     @FXML
     private ComboBox<String> cmbComputer;
     @FXML
@@ -99,14 +99,13 @@ public class FXMLLoansController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Random rand = new Random();
-        randomCodigo = rand.nextInt(999999);
-        txt_numLoan.setText(String.valueOf(randomCodigo));
+        randomCode = rand.nextInt(999999);
+        txt_numLoan.setText(String.valueOf(randomCode));
         try {
 
             loadData();
         } catch (SQLException ex) {
-            Logger.getLogger(FXMLLoansController.class.getName()).log(
-                    Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
 
         //Fill the Editorial ComboBox
@@ -171,7 +170,8 @@ public class FXMLLoansController implements Initializable {
  * 
  * @param rs The ResultSet containing the editorial data.
  * @param editorialData The list in which editorial data will be stored.
- * @throws SQLException If an error occurs while accessing the data in the ResultSet.  
+ * @throws SQLException If an error occurs while accessing the data in the 
+ * ResultSet.  
  */
     private void getEditorialDataRecursively(ResultSet rs, List<String> 
 

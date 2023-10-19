@@ -78,28 +78,4 @@ public class ConexionTabletDB {
             addTabletsToList(rs, list);
         }
     }
-    /*
-    public static ObservableList<Tablet> getDataTablet() {
-
-        Connection conn = getConnection();
-        ObservableList<Tablet> list = FXCollections.observableArrayList();
-
-        try {
-            PreparedStatement ps = conn.prepareStatement("select * from tablet");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Tablet(Integer.parseInt(rs.getString("id_tab")),
-                        rs.getString("trademark"),
-                        rs.getString("ubication"),
-                        rs.getString("available")));
-            }
-        } catch (SQLException | NumberFormatException e) {
-
-            System.out.println(e);
-
-        }
-
-        return list;
-    }*/
-
 }

@@ -99,14 +99,14 @@ public class Computadora  {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-                String tipoTexto = newValue.toLowerCase();
-                 if (tablet.getUbication().toLowerCase().contains(tipoTexto)
+                String typeText = newValue.toLowerCase();
+                 if (tablet.getUbication().toLowerCase().contains(typeText)
                         || tablet.getTrademark().toLowerCase().
-                                contains(tipoTexto)
+                                contains(typeText)
                         || tablet.getAvailable().toLowerCase().
-                                contains(tipoTexto)
+                                contains(typeText)
                         || String.valueOf(tablet.getId()).toLowerCase().
-                                contains(tipoTexto)) {
+                                contains(typeText)) {
                     return true;
                 }
                 return false;

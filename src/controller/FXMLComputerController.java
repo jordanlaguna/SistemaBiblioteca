@@ -64,9 +64,8 @@ public class FXMLComputerController implements Initializable {
     @FXML
     private TableColumn<Computadora, String> column_available;
 
-    private ObservableList<Computadora> Compu = FXCollections.observableArrayList();
+    private ObservableList<Computadora> Computer = FXCollections.observableArrayList();
 
-    private ObservableList<Computadora> Compus;
 
     String aux;
 
@@ -93,8 +92,8 @@ public class FXMLComputerController implements Initializable {
         this.column_quantity.setCellValueFactory(new PropertyValueFactory<Computadora, String>("ubication"));
         this.column_available.setCellValueFactory(new PropertyValueFactory<Computadora, String>("available"));
 
-        Compus = ConexionLibros.getDataComputer();
-        tbw_computer.setItems(Compus);
+        Computer = ConexionLibros.getDataComputer();
+        tbw_computer.setItems(Computer);
     }
 
     @FXML

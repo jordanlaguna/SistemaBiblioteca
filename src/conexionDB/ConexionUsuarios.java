@@ -82,37 +82,4 @@ public class ConexionUsuarios {
             addUsuariosToList(rs, list);
         }
     }
-    /*
-    public static ObservableList<Usuario> getDataUsuario() {
-
-        Connection conn = conn();
-        ObservableList<Usuario> list = FXCollections.observableArrayList();
-
-        try {
-            PreparedStatement ps = conn.prepareStatement("select id_person, "
-                    + "birth_date, identification, name, lastName,secondName , "
-                    + "telephone, email, password, type " +
-                    "from person " +
-                    "inner join user on person.id_person = user.id_user");
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                list.add(new Usuario(rs.getDate("birth_date"),
-                        rs.getString("identification"),
-                        rs.getString("name"),
-                        rs.getString("lastName"),
-                        rs.getString("secondName"),
-                        Integer.parseInt(rs.getString("telephone")),
-                        rs.getString("email"), rs.getString("password"),
-                        rs.getString("type")));
-            }
-
-        } catch (SQLException | NumberFormatException e) {
-
-            System.out.println(e);
-
-        }
-
-        return list;
-    }*/
 }

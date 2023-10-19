@@ -49,46 +49,42 @@ public class FXMLHomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        cargarUsers();
-        cargarBooks();
-        cargarComputers();
-        cargarTablets();
-        cargarBooksNot();
-        cargarComputersNot();
-        cargarTabletsNot();
+        loadUsers();
+        loadBooks();
+        loadComputers();
+        loadTablets();
+        loadBooksNot();
+        loadComputersNot();
+        loadTabletsNot();
     }    
     
-    public int cargarUsers(){
-        // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
+    public int loadUsers(){
+   
         String consulta = "SELECT COUNT(*) FROM user";
          
 
         try {
-            // Establecer la conexión
+
             Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
                     DB_PASSWORD);
-            
-            // Crear una declaración preparada
+           
             PreparedStatement preparedStatement = conexion.
                     prepareStatement(consulta);
 
-            // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
-            
-            // Leer el resultado
+
             if (resultSet.next()) {
-                // Obtener la cantidad de filas
-                int cantidadFilas = resultSet.getInt(1);
-                if(cantidadFilas < 10){
-                   label_users.setText("0"+cantidadFilas); 
+
+                int row = resultSet.getInt(1);
+                if(row < 10){
+                   label_users.setText("0"+row); 
                 }else{
-                   label_users.setText(""+cantidadFilas);
+                   label_users.setText(""+row);
                 }
                 
-                return cantidadFilas;
+                return row;
             }
-            
-            // Cerrar la conexión y liberar recursos
+
             resultSet.close();
             preparedStatement.close();
             conexion.close();
@@ -100,38 +96,34 @@ public class FXMLHomeController implements Initializable {
         return -1; // Retorna -1 si hay algún error
     }
     
-    public int cargarBooks(){
+    public int loadBooks(){
         // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
          
         String consultaDos = "SELECT COUNT(*) FROM book WHERE available = "
                 + "'Disponible'";
 
         try {
-            // Establecer la conexión
+
             Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
                     DB_PASSWORD);
-            
-            // Crear una declaración preparada
+
             PreparedStatement preparedStatement = 
                     conexion.prepareStatement(consultaDos);
 
-            // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
-            
-            // Leer el resultado
+
             if (resultSet.next()) {
                 // Obtener la cantidad de filas
-                int cantidadFilas = resultSet.getInt(1);
-                if(cantidadFilas < 10){
-                   label_books.setText("0"+cantidadFilas); 
+                int rows = resultSet.getInt(1);
+                if(rows < 10){
+                   label_books.setText("0"+rows); 
                 }else{
-                   label_books.setText(""+cantidadFilas);
+                   label_books.setText(""+rows);
                 }
                 
-                return cantidadFilas;
+                return rows;
             }
-            
-            // Cerrar la conexión y liberar recursos
+
             resultSet.close();
             preparedStatement.close();
             conexion.close();
@@ -143,40 +135,34 @@ public class FXMLHomeController implements Initializable {
         return -1; // Retorna -1 si hay algún error
     }
     
-    public int cargarComputers(){
-        // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
-       String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = "
+    public int loadComputers(){
+         String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = "
                + "'Disponible'";
          
 
         try {
-            // Establecer la conexión
             Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
                     DB_PASSWORD);
-            
-            // Crear una declaración preparada
+
             PreparedStatement preparedStatement = 
                     conexion.prepareStatement(consultaDos);
 
-            // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
-            
-            // Leer el resultado
+
             if (resultSet.next()) {
                 // Obtener la cantidad de filas
-                int cantidadFilas = resultSet.getInt(1);
-                if(cantidadFilas < 10){
-                   label_laptos.setText("0"+cantidadFilas); 
-                }else if(cantidadFilas < 100 && cantidadFilas > 9){
-                   label_laptos.setText(" "+cantidadFilas);
+                int rowQuan = resultSet.getInt(1);
+                if(rowQuan < 10){
+                   label_laptos.setText("0"+rowQuan); 
+                }else if(rowQuan < 100 && rowQuan > 9){
+                   label_laptos.setText(" "+rowQuan);
                 }else{
-                    label_laptos.setText(""+cantidadFilas);
+                    label_laptos.setText(""+rowQuan);
                 }
                 
-                return cantidadFilas;
+                return rowQuan;
             }
-            
-            // Cerrar la conexión y liberar recursos
+ 
             resultSet.close();
             preparedStatement.close();
             conexion.close();
@@ -187,38 +173,34 @@ public class FXMLHomeController implements Initializable {
 
         return -1; // Retorna -1 si hay algún error
     }
-    public int cargarTablets(){
-        // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
+    public int loadTablets(){
+      
        String consultaDos = "SELECT COUNT(*) FROM tablet WHERE available = "
                + "'Disponible'";
          
 
         try {
-            // Establecer la conexión
+
             Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
                     DB_PASSWORD);
-            
-            // Crear una declaración preparada
+
             PreparedStatement preparedStatement = 
                     conexion.prepareStatement(consultaDos);
 
-            // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
-            
-            // Leer el resultado
+ 
             if (resultSet.next()) {
-                // Obtener la cantidad de filas
-                int cantidadFilas = resultSet.getInt(1);
-                if(cantidadFilas < 10){
-                   label_tablets.setText("0"+cantidadFilas); 
+
+                int quanRows = resultSet.getInt(1);
+                if(quanRows < 10){
+                   label_tablets.setText("0"+quanRows); 
                 }else{
-                   label_tablets.setText(""+cantidadFilas);
+                   label_tablets.setText(""+quanRows);
                 }
                 
-                return cantidadFilas;
+                return quanRows;
             }
-            
-            // Cerrar la conexión y liberar recursos
+
             resultSet.close();
             preparedStatement.close();
             conexion.close();
@@ -229,40 +211,34 @@ public class FXMLHomeController implements Initializable {
 
         return -1; // Retorna -1 si hay algún error
     }
-    public int cargarBooksNot(){
-        // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
-         
+    public int loadBooksNot(){
+
         String consultaDos = "SELECT COUNT(*) FROM book WHERE available = "
                 + "'No disponible'";
 
         try {
-            // Establecer la conexión
             Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
                     DB_PASSWORD);
-            
-            // Crear una declaración preparada
+
             PreparedStatement preparedStatement = 
                     conexion.prepareStatement(consultaDos);
 
-            // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
-            
-            // Leer el resultado
+
             if (resultSet.next()) {
                 // Obtener la cantidad de filas
-                int cantidadFilas = resultSet.getInt(1);
-                if(cantidadFilas < 10){
-                   label_Pbooks.setText("0"+cantidadFilas); 
-                }else if(cantidadFilas < 100 && cantidadFilas > 9){
-                   label_Pbooks.setText(" "+cantidadFilas);
+                int rows = resultSet.getInt(1);
+                if(rows < 10){
+                   label_Pbooks.setText("0"+rows); 
+                }else if(rows < 100 && rows > 9){
+                   label_Pbooks.setText(" "+rows);
                 }else{
-                    label_Pbooks.setText(""+cantidadFilas);
+                    label_Pbooks.setText(""+rows);
                 }
                 
-                return cantidadFilas;
+                return rows;
             }
-            
-            // Cerrar la conexión y liberar recursos
+
             resultSet.close();
             preparedStatement.close();
             conexion.close();
@@ -271,43 +247,38 @@ public class FXMLHomeController implements Initializable {
             e.printStackTrace();
         }
 
-        return -1; // Retorna -1 si hay algún error
+        return -1; 
     }
     
-    public int cargarComputersNot(){
-        // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
+    public int loadComputersNot(){
+      
        String consultaDos = "SELECT COUNT(*) FROM computer WHERE available = "
                + "'No disponible'";
          
 
         try {
-            // Establecer la conexión
+
             Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
                     DB_PASSWORD);
             
-            // Crear una declaración preparada
             PreparedStatement preparedStatement = 
                     conexion.prepareStatement(consultaDos);
 
-            // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
-            
-            // Leer el resultado
+
             if (resultSet.next()) {
-                // Obtener la cantidad de filas
-                int cantidadFilas = resultSet.getInt(1);
+
+                int row = resultSet.getInt(1);
                 
-                if(cantidadFilas < 10){
-                   label_Plaptos.setText("0"+cantidadFilas); 
+                if(row < 10){
+                   label_Plaptos.setText("0"+row); 
                 }else{
-                   label_Plaptos.setText(""+cantidadFilas);
+                   label_Plaptos.setText(""+row);
                 }
                 
                 
-                return cantidadFilas;
+                return row;
             }
-            
-            // Cerrar la conexión y liberar recursos
             resultSet.close();
             preparedStatement.close();
             conexion.close();
@@ -316,40 +287,36 @@ public class FXMLHomeController implements Initializable {
             e.printStackTrace();
         }
 
-        return -1; // Retorna -1 si hay algún error
+        return -1;
     }
-    public int cargarTabletsNot(){
-        // Consulta SQL para contar las filas en la tabla (reemplaza "nombre_tabla" con el nombre de tu tabla)
+    public int loadTabletsNot(){
+      
        String consultaDos = "SELECT COUNT(*) FROM tablet WHERE available = "
                + "'No disponible'";
          
 
         try {
-            // Establecer la conexión
+
             Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
                     DB_PASSWORD);
-            
-            // Crear una declaración preparada
+
             PreparedStatement preparedStatement = 
                     conexion.prepareStatement(consultaDos);
 
-            // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
-            
-            // Leer el resultado
+
             if (resultSet.next()) {
-                // Obtener la cantidad de filas
-                int cantidadFilas = resultSet.getInt(1);
-                if(cantidadFilas < 10){
-                   label_Ptablets.setText("0"+cantidadFilas); 
+
+                int rowss = resultSet.getInt(1);
+                if(rowss < 10){
+                   label_Ptablets.setText("0"+rowss); 
                 }else{
-                   label_Ptablets.setText(""+cantidadFilas);
+                   label_Ptablets.setText(""+rowss);
                 }
                 
-                return cantidadFilas;
+                return rowss;
             }
-            
-            // Cerrar la conexión y liberar recursos
+
             resultSet.close();
             preparedStatement.close();
             conexion.close();
@@ -358,6 +325,6 @@ public class FXMLHomeController implements Initializable {
             e.printStackTrace();
         }
 
-        return -1; // Retorna -1 si hay algún error
+        return -1;
     }
 }

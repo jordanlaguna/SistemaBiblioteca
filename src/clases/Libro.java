@@ -4,6 +4,10 @@ package clases;
  * The class Book represents a book within the library
  */
 import java.util.Date;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 public class Libro {
 
@@ -89,6 +93,33 @@ public class Libro {
 
     }
     
-    
+    public void searchBook(TextField txt_search, TableView<Libro> tableView){
+         FilteredList<Libro> filterData = new FilteredList<>(tableView.
+                getItems(), p -> true);
+
+        txt_search.textProperty().addListener((observable, oldValue, newValue) 
+                -> {
+            filterData.setPredicate(libro -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String typeText = newValue.toLowerCase();
+                 if (libro.getAuthorBook().toLowerCase().contains(typeText)
+                        || libro.getAvailable().toLowerCase().
+                                contains(typeText)
+                        || libro.getEditorial().toLowerCase().contains(typeText)
+                        || libro.getTitle().toLowerCase().contains(typeText)
+                        || String.valueOf(libro.getIsbn()).toLowerCase().
+                                contains(typeText)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+        SortedList<Libro> sortedList = new SortedList<>(filterData);
+        sortedList.comparatorProperty().bind(tableView.comparatorProperty());
+        tableView.setItems(sortedList);
+    }    
 
 }

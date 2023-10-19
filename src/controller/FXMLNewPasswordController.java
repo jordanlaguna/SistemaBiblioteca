@@ -89,7 +89,8 @@ public class FXMLNewPasswordController implements Initializable {
                 }
 
                 // Regresa al inicio LOGIN 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/FXMLLogin.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(""
+                        + "/vista/FXMLLogin.fxml"));
                 Parent root = loader.load();
                 FXMLLoginController ac = loader.getController();
                 Scene scene = new Scene(root);

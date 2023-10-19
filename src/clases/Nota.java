@@ -60,29 +60,5 @@ public class Nota  {
     public void setIdentification(String identification) {
         this.identification = identification;
     }
-    
-    
-    /**
-     * This function is probably used to add new notes.
-     *
-     */
-    public void add() {
-    }
-     /**
-     * This function could be used to search for relevant notes of information
-     * in the system.
-     */
-    public void search() {
-    }
-    /**
-     * This function is used to modify existing notes in the record or existing
-     * data in the system.
-     */
-    public void update() {
-    }
-     /**
-     * This function is used to delete system notes.
-     */
-    public void delete() {
-    }
+
 }

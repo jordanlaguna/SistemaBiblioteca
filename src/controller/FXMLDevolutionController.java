@@ -78,13 +78,18 @@ public class FXMLDevolutionController implements Initializable {
     }
 
     private void columnAction() {
-        column_action.setCellValueFactory(new PropertyValueFactory<>("deleteButton"));
+        column_action.setCellValueFactory(new PropertyValueFactory<>
+        ("deleteButton"));
 
-        Callback<TableColumn<Devolucion, String>, TableCell<Devolucion, String>> cellFactory
-                = new Callback<TableColumn<Devolucion, String>, TableCell<Devolucion, String>>() {
+        Callback<TableColumn<Devolucion, String>, TableCell<Devolucion, String>>
+                cellFactory
+                = new Callback<TableColumn<Devolucion, String>, TableCell
+                        <Devolucion, String>>() {
             @Override
-            public TableCell<Devolucion, String> call(final TableColumn<Devolucion, String> param) {
-                final TableCell<Devolucion, String> cell = new TableCell<Devolucion, String>() {
+            public TableCell<Devolucion, String> call(final TableColumn
+                    <Devolucion, String> param) {
+                final TableCell<Devolucion, String> cell = new TableCell
+                        <Devolucion, String>() {
 
                     final Button btn = new Button();
 
@@ -96,13 +101,16 @@ public class FXMLDevolutionController implements Initializable {
                             setText(null);
                         } else {
                             // Configura la imagen del botón
-                            ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/img/eliminar.png")));
+                            ImageView imageView = new ImageView(new Image
+                            (getClass().getResourceAsStream(
+                                    "/img/eliminar.png")));
                             btn.setGraphic(imageView);
                             btn.getStyleClass().add("delete-button");
                             imageView.getStyleClass().add("image-view");
 
                             btn.setOnAction(event -> {
-                                Devolucion devolucion = getTableView().getItems().get(getIndex());
+                                Devolucion devolucion = getTableView().
+                                        getItems().get(getIndex());
                                 eliminarDevolucion(devolucion.getId_loan());
                             });
 
@@ -142,7 +150,7 @@ public class FXMLDevolutionController implements Initializable {
                 alert.setContentText("Datos eliminados con éxito.");
                 alert.showAndWait();
 
-                // Elimina el préstamo de la tabla devoluciones
+                // 
                 Devolucion devolucionToRemove = devolutions.stream()
                         .filter(devolucion -> devolucion.getId_loan() == id_loan)
                         .findFirst()
@@ -150,10 +158,10 @@ public class FXMLDevolutionController implements Initializable {
 
                 if (devolucionToRemove != null) {
                     devolutions.remove(devolucionToRemove);
-                    tbw_devolutions.refresh(); // Actualiza la tabla
+                    tbw_devolutions.refresh(); // 
                 }
 
-                //disponibles 
+                
                 Prestamo prestamo = new Prestamo();
                 prestamo.setExemplars(devolucionToRemove.getExemplars());
                 prestamo.availableBook();
@@ -172,7 +180,7 @@ public class FXMLDevolutionController implements Initializable {
 
     @FXML
     private void searchDevolution(KeyEvent event) {
-        Devolucion devolucion = new Devolucion();
+        Devolucion devolution = new Devolucion();
         Devolucion.search(searchDevolution, tbw_devolutions);
     }
 
@@ -189,20 +197,21 @@ public class FXMLDevolutionController implements Initializable {
     private void loadData(List<Prestamo> prestamos, int index) {
         if (index < prestamos.size()) {
             Prestamo prestamo = prestamos.get(index);
-            Devolucion devolucion = new Devolucion();
-            devolucion.setDate(prestamo.getDateLoan());
-            devolucion.setId_loan(prestamo.getId_loan());
-            devolucion.setDeliverDate(prestamo.getDateReturn());
-            devolucion.setExemplars(prestamo.getExemplars());
-            devolucion.setUser(prestamo.getFullName());
-            devolucion.setUserEmail(prestamo.getEmail());
+            Devolucion devolution = new Devolucion();
+            devolution.setDate(prestamo.getDateLoan());
+            devolution.setId_loan(prestamo.getId_loan());
+            devolution.setDeliverDate(prestamo.getDateReturn());
+            devolution.setExemplars(prestamo.getExemplars());
+            devolution.setUser(prestamo.getFullName());
+            devolution.setUserEmail(prestamo.getEmail());
 
-            devolutions.add(devolucion);
-            loadData(prestamos, index + 1); // Llamada recursiva para procesar el siguiente prestamo
+            devolutions.add(devolution);
+            loadData(prestamos, index + 1); 
         } else {
-            // Cuando se procesan todos los préstamos, configura las celdas de la tabla y agrega los datos
-            column_id.setCellValueFactory(new PropertyValueFactory<Devolucion, Integer>("id_loan"));
-            column_user.setCellValueFactory(new PropertyValueFactory<Devolucion, String>("user"));
+            column_id.setCellValueFactory(new PropertyValueFactory<Devolucion,
+                    Integer>("id_loan"));
+            column_user.setCellValueFactory(new PropertyValueFactory<Devolucion,
+                    String>("user"));
             column_userEmail.setCellValueFactory(new PropertyValueFactory<
                     Devolucion, String>("userEmail"));
             column_exemplars.setCellValueFactory(new PropertyValueFactory<

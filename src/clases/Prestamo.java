@@ -117,14 +117,6 @@ public class Prestamo extends Nota {
         this.fullName = fullName;
     }
 
-    /**
-     * This function is used to display a list of active loans in the system.
-     * Active loans are those that have not yet been repaid or are pending.
-     */
-    public void seeActiveLoan() {
-    }
- 
-    
     public void updateBook() {
         Connection con = null;
         PreparedStatement ps1 = null;
@@ -414,14 +406,14 @@ public class Prestamo extends Nota {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-                String tipoTexto = newValue.toLowerCase();
-                 if (prestamo.getExemplars().toLowerCase().contains(tipoTexto)
+                String typeText = newValue.toLowerCase();
+                 if (prestamo.getExemplars().toLowerCase().contains(typeText)
                         || prestamo.getEmail().toLowerCase().
-                                contains(tipoTexto)
+                                contains(typeText)
                         || prestamo.getFullName().toLowerCase().
-                                contains(tipoTexto)
+                                contains(typeText)
                         || String.valueOf(prestamo.getId_loan()).toLowerCase().
-                                contains(tipoTexto)) {
+                                contains(typeText)) {
                     return true;
                 }
                 return false;
@@ -432,26 +424,6 @@ public class Prestamo extends Nota {
         sortedList.comparatorProperty().bind(tableView.comparatorProperty());
         tableView.setItems(sortedList);
 
-    }
-
-    /**
-     * This function is used to search for information in the system. The search
-     * could be based on some specific criteria and return relevant results.
-     */
-    public void seeReturns() {
-    }
-
-    /**
-     * This function is to display the notes made at the time of the loan
-     */
-    public void notes() {
-    }
-
-    /**
-     * This function is related to the management of users in the system, such
-     * as creating, editing or deleting users.
-     */
-    public void users() {
     }
 
     /**

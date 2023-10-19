@@ -85,23 +85,7 @@ public class Usuario extends Persona {
     /**
      * Its purpose is to identify whether the book is available or exists.
      */
-    /**
-     * The function to be able to make the function to make the request for the
-     * book
-     */
-    public void verLibros() {
-        
-    }
-
-    /**
-     * The function to be able to make the function to make the request for the
-     * book
-     */
-    public void pedirPrestamo(){
-        
-        
-    }
-
+  
     /**
      * The function to be able to log into the system and enter the systems
      */

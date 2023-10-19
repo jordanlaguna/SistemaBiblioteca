@@ -33,8 +33,8 @@ public class FXMLDashboardAdminController implements Initializable {
             // Cargar la vista del dashboard al inicio
             Parent root = FXMLLoader.load(getClass().getResource(
                     "/vista/FXMLHome.fxml"));
-            containerMenu.getChildren().clear(); // Limpiar el contenido actual
-            containerMenu.getChildren().add(root); // Mostrar la vista del dashboard
+            containerMenu.getChildren().clear(); // 
+            containerMenu.getChildren().add(root); //
         } catch (IOException ex) {
             System.out.println("" + ex);
 
@@ -45,7 +45,7 @@ public class FXMLDashboardAdminController implements Initializable {
     private void openBook(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/"
                 + "FXMLBooks.fxml"));
-        containerMenu.getChildren().clear(); //limpiar
+        containerMenu.getChildren().clear(); 
         containerMenu.getChildren().add(root);
     }
 
@@ -53,7 +53,7 @@ public class FXMLDashboardAdminController implements Initializable {
     private void openComputer(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/"
                 + "FXMLComputer.fxml"));
-        containerMenu.getChildren().clear(); //limpiar
+        containerMenu.getChildren().clear();
         containerMenu.getChildren().add(root);
     }
 
@@ -61,7 +61,7 @@ public class FXMLDashboardAdminController implements Initializable {
     private void openTablet(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/vista/FXMLTablet"
                 + ".fxml"));
-        containerMenu.getChildren().clear(); //limpiar
+        containerMenu.getChildren().clear(); 
         containerMenu.getChildren().add(root);
     }
 
@@ -69,7 +69,7 @@ public class FXMLDashboardAdminController implements Initializable {
     private void openLoans(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(
                 "/vista/FXMLLoans.fxml"));
-        containerMenu.getChildren().clear(); //limpiar
+        containerMenu.getChildren().clear();
         containerMenu.getChildren().add(root);
     }
 
@@ -77,7 +77,7 @@ public class FXMLDashboardAdminController implements Initializable {
     private void openDash(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(
                 "/vista/FXMLHome.fxml"));
-        containerMenu.getChildren().clear(); //limpiar
+        containerMenu.getChildren().clear();
         containerMenu.getChildren().add(root);
     }
 
@@ -85,7 +85,7 @@ public class FXMLDashboardAdminController implements Initializable {
     private void openUsers(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(
                 "/vista/FXMLUsers.fxml"));
-        containerMenu.getChildren().clear(); //limpiar
+        containerMenu.getChildren().clear(); 
         containerMenu.getChildren().add(root);
     }
 
@@ -93,7 +93,7 @@ public class FXMLDashboardAdminController implements Initializable {
     private void openDevolutions(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(
                 "/vista/FXMLDevolution.fxml"));
-        containerMenu.getChildren().clear(); //limpiar
+        containerMenu.getChildren().clear(); 
         containerMenu.getChildren().add(root);
     }
 }
