@@ -28,7 +28,7 @@ public class Libro {
      * @param title //The title of the book.
      * @param authorBook //The author of the book.
      * @param editorial //The publisher of the book.
-     * @param available //The publisher of the book.
+     * @param available //The available of the book.
      * @param releaseDate //The release date of the book.
      */
    
@@ -44,6 +44,9 @@ public class Libro {
         this.available = available;
     }
 
+    public Libro(){
+        
+    }
     public String getAvailable() {
         return available;
     }

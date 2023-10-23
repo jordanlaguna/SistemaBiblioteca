@@ -49,7 +49,9 @@ public class Usuario extends Persona {
         this.email = email;
         this.type = type;
     }
-
+    public Usuario(){
+        
+    }
     public int getId_user() {
         return id_user;
     }
@@ -94,7 +96,7 @@ public class Usuario extends Persona {
      * @param email email of the user
      * @param password password of the user
      * @param type type of user
-     * @return 
+     * 
      */
     public boolean login(String email, String password, String type) {
         Connection conn = null;
@@ -113,12 +115,12 @@ public class Usuario extends Persona {
 
             if (rs.next()) {
                 if ("Admin".equals(this.type)) {
-                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText(null);
                     alert.setTitle("INFORMACIÓN");
                     alert.setContentText("Bienvenido administrador " 
                             + getEmail());
-                    alert.showAndWait();
+                    alert.showAndWait();*/
                 }
                 return true;
             }
@@ -134,7 +136,7 @@ public class Usuario extends Persona {
      */
     /**
      * 
-     * @throws SQLException 
+     *
      */
     public void registatrarse() throws SQLException {
         Connection conn = null;
@@ -189,12 +191,11 @@ public class Usuario extends Persona {
             if (conn != null) {
                 conn.rollback();
             }
-
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
-            alert.setContentText("No se pudo agregar el usuario: "
-                    + e.getMessage());
+            alert.setContentText("No se pudo agregar el usuario: ");
             alert.showAndWait();
         } finally {
             try {

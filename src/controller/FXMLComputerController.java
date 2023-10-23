@@ -87,11 +87,14 @@ public class FXMLComputerController implements Initializable {
     }
 
     private void LoadDate() {
-        this.column_id.setCellValueFactory(new PropertyValueFactory<Computadora, Integer>("id"));
-        this.column_brand.setCellValueFactory(new PropertyValueFactory<Computadora, String>("trademark"));
-        this.column_quantity.setCellValueFactory(new PropertyValueFactory<Computadora, String>("ubication"));
-        this.column_available.setCellValueFactory(new PropertyValueFactory<Computadora, String>("available"));
-
+        this.column_id.setCellValueFactory(new PropertyValueFactory<Computadora,
+                Integer>("id"));
+        this.column_brand.setCellValueFactory(new PropertyValueFactory<
+                Computadora, String>("trademark"));
+        this.column_quantity.setCellValueFactory(new PropertyValueFactory<
+                Computadora, String>("ubication"));
+        this.column_available.setCellValueFactory(new PropertyValueFactory<
+                Computadora, String>("available"));
         Computer = ConexionLibros.getDataComputer();
         tbw_computer.setItems(Computer);
     }
@@ -141,7 +144,6 @@ public class FXMLComputerController implements Initializable {
         if (index <= -1) {
             return;
         } 
-
         Integer idValue = column_id.getCellData(index);
         id.setText(String.valueOf(idValue));
         txt_brand.setText(column_brand.getCellData(index));

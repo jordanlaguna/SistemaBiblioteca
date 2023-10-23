@@ -40,8 +40,11 @@ import javafx.scene.input.KeyEvent;
 
 /**
  * 
- * @author julio
+ *
+ *
+ * @author jorda
  */
+
 public class FXMLLoansController implements Initializable {
     
     @FXML
@@ -92,7 +95,7 @@ public class FXMLLoansController implements Initializable {
     private TableColumn<Prestamo, Integer> column_id;
     
     /**
-     * 
+     *  FXML Controller class
      * @param url The relative location of the FXML file.
      * @param rb A resource that provides findable information.
      */
@@ -102,7 +105,6 @@ public class FXMLLoansController implements Initializable {
         randomCode = rand.nextInt(999999);
         txt_numLoan.setText(String.valueOf(randomCode));
         try {
-
             loadData();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -174,7 +176,6 @@ public class FXMLLoansController implements Initializable {
  * ResultSet.  
  */
     private void getEditorialDataRecursively(ResultSet rs, List<String> 
-
             editorialData) throws SQLException {
         if (rs.next()) {
             String title = rs.getString("title");
@@ -351,7 +352,7 @@ public class FXMLLoansController implements Initializable {
         prestamo.setFullName(txt_name.getText());
         prestamo.setNote(txt_Observations.getText());
 
-          //Fill the Editorial ComboBox
+        //Fill the Editorial ComboBox
         prestamo.add();
         ObservableList<String> editorialList =
                 FXCollections.observableArrayList();
@@ -364,7 +365,7 @@ public class FXMLLoansController implements Initializable {
         computerList.addAll(getComputerDataFromDatabase());
         cmbComputer.setItems(computerList);
         
-       // Fill the Tablet ComboBox
+       // Fill the Tablet ComboBox update
         ObservableList<String> tabletList = 
                 FXCollections.observableArrayList();
         tabletList.addAll(getTabletDataFromDatabase());

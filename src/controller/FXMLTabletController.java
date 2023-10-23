@@ -126,7 +126,6 @@ public class FXMLTabletController implements Initializable {
         if (index <= -1) {
             return;
         }
-
         Integer idValue = column_id.getCellData(index);
         txt_id.setText(String.valueOf(idValue));
         txt_brand.setText(column_brand.getCellData(index));

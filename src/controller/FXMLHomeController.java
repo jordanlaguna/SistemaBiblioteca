@@ -59,10 +59,8 @@ public class FXMLHomeController implements Initializable {
     }    
     
     public int loadUsers(){
-   
         String consulta = "SELECT COUNT(*) FROM user";
          
-
         try {
 
             Connection conexion = DriverManager.getConnection(JDBC_URL, DB_USER,
@@ -324,7 +322,6 @@ public class FXMLHomeController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return -1;
     }
 }

@@ -70,7 +70,6 @@ public class FXMLNewPasswordController implements Initializable {
                 String sql = "update user set email= '" + value1 + "',password= '"
                         + value2 + "' where email= '"
                         + value1 + "' ";
-
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText(null);
                 alert.setTitle("CONFIRMACIÓN");

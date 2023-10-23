@@ -94,41 +94,39 @@ public class FXMLBooksController implements Initializable {
     }
 
     public String validation() throws SQLException {
-    conn = ConexionLibros.conn();
+        conn = ConexionLibros.conn();
 
-    String valueAux = txt_isbn.getText();
-    String sqlAux = "SELECT DISTINCT isbn FROM book WHERE isbn = ?";
-    ps1 = conn.prepareStatement(sqlAux);
-    ps1.setString(1, valueAux);
+        String valueAux = txt_isbn.getText();
+        String sqlAux = "SELECT DISTINCT isbn FROM book WHERE isbn = ?";
+        ps1 = conn.prepareStatement(sqlAux);
+        ps1.setString(1, valueAux);
 
-    ResultSet resultSet = ps1.executeQuery();
+        ResultSet resultSet = ps1.executeQuery();
 
-    if (resultSet.next()) {
-         
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("INFORMACIÓN");
-        alert.setContentText("El libro ya se encuentra en la biblioteca,"
-                + " coloca distinto Código.");
-        alert.showAndWait();
+        if (resultSet.next()) {
 
-        resultSet.close();
-        ps1.close();
-        conn.close();
-        idAux = "1";
-        return idAux;
-    } else {
-        System.out.println("No se encontraron registros que cumplan con"
-                + " la condición.");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("INFORMACIÓN");
+            alert.setContentText("El libro ya se encuentra en la biblioteca,"
+                    + " coloca distinto Código.");
+            alert.showAndWait();
+            resultSet.close();
+            ps1.close();
+            conn.close();
+            idAux = "1";
+            return idAux;
+        } else {
+            System.out.println("No se encontraron registros que cumplan con"
+                    + " la condición.");
 
-        resultSet.close();
-        ps1.close();
-        conn.close();
-        idAux = "0";
-        return idAux;
+            resultSet.close();
+            ps1.close();
+            conn.close();
+            idAux = "0";
+            return idAux;
+        }
     }
-}
-
 
     @FXML
     private void add(ActionEvent event) throws SQLException {
@@ -255,21 +253,26 @@ public class FXMLBooksController implements Initializable {
     }
 
     private void loadData() {
-        this.column_isbn.setCellValueFactory(new PropertyValueFactory<Libro, Integer>("isbn"));
-        this.column_title.setCellValueFactory(new PropertyValueFactory<Libro, String>("title"));
-        this.column_author.setCellValueFactory(new PropertyValueFactory<Libro, String>("authorBook"));
-        this.column_editorial.setCellValueFactory(new PropertyValueFactory<Libro, String>("editorial"));
-        this.column_year.setCellValueFactory(new PropertyValueFactory<Libro, java.sql.Date>("releaseDate"));
-        this.column_available.setCellValueFactory(new PropertyValueFactory<Libro, String>("available"));
-
+        this.column_isbn.setCellValueFactory(new PropertyValueFactory<Libro,
+                Integer>("isbn"));
+        this.column_title.setCellValueFactory(new PropertyValueFactory<Libro,
+                String>("title"));
+        this.column_author.setCellValueFactory(new PropertyValueFactory<Libro,
+                String>("authorBook"));
+        this.column_editorial.setCellValueFactory(new PropertyValueFactory<
+                Libro, String>("editorial"));
+        this.column_year.setCellValueFactory(new PropertyValueFactory<Libro, 
+                java.sql.Date>("releaseDate"));
+        this.column_available.setCellValueFactory(new PropertyValueFactory<
+                Libro, String>("available"));
         Libros = ConexionLibros.getDataBook();
         tbw_libros.setItems(Libros);
     }
 
     @FXML
     private void buscar(KeyEvent ke) {
-       Libro book = new Libro(null, null, null, null, null, null);
-       book.searchBook(txt_search, tbw_libros);
+        Libro book = new Libro();
+        book.searchBook(txt_search, tbw_libros);
     }
 
     @FXML

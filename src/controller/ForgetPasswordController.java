@@ -98,7 +98,8 @@ public class ForgetPasswordController implements Initializable {
                     pros.put("mail.smtp.port", "587");
                     pros.put("mail.smtp.auth", "true ");
                     pros.put("mail.smtp.starttls.resquired", "true");
-                    java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+                    java.security.Security.addProvider(new com.sun.net.
+                            ssl.internal.ssl.Provider());
                     Session mailSession = Session.getDefaultInstance(pros, null);
                     mailSession.setDebug(sessionDebug);
                     Message msg = new MimeMessage(mailSession);

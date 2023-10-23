@@ -112,11 +112,17 @@ public class FXMLLoginController implements Initializable {
     ResultSet rs = null;
     @FXML
     private AnchorPane containerLogin;
-
+    /**
+    * FXML Controller class
+    *
+    * @author jorda
+     * @param url url
+     * @param rb rb
+    */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cmbType.getItems().addAll("Estudiante", "Profesor");
-        cmbBox.getItems().addAll("Admin", "Estudiante");
+        cmbBox.getItems().addAll("Admin");
         labelLogin.setVisible(false);
         emailLogin.setVisible(false);
         passwordLogin.setVisible(false);

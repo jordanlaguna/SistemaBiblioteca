@@ -21,29 +21,24 @@ public class ConexionLibros {
     Connection conn;
 
     public static Connection conn() {
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        // URL de la base de datos
+        String url = "jdbc:mysql://localhost:3306/sistemabiblioteca";
+        String user = "root";
+        String password = "";
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            // Jordan
-            Connection conn = DriverManager.getConnection("jdbc:mysql://"
-                    + "localhost:3306/sistemabiblioteca", "root", "");
-            // Tony
-            // Connection conn =
-            // DriverManager.getConnection("jdbc:mysql://localhost:3306/biblioteca", "root",
-            // "");
-            return conn;
-
-        } catch (ClassNotFoundException | SQLException e) {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("No se pudo conectar a la base de datos" + e);
-            alert.showAndWait();
-            return null;
-        }
-
+        Connection conn = DriverManager.getConnection(url, user, password);
+        return conn;
+    } catch (ClassNotFoundException | SQLException e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle("Error");
+        alert.setContentText("No se pudo conectar a la base de datos" + e);
+        alert.showAndWait();
+        return null;
     }
+}
      public static ObservableList<Libro> getDataBook() {
         Connection conn = conn();
         ObservableList<Libro> list = FXCollections.observableArrayList();

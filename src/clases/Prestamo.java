@@ -237,38 +237,42 @@ public class Prestamo extends Nota {
  * @return The ISBN obtained from the query results or null if no results were
  * found or an error occurred.
  */
-    public String executeQueryAndGetISBN(String sqlQuery) {
-        String isbn = null;
-        Connection conn = null;
-        PreparedStatement statament = null;
-        ResultSet rs = null;
-        String selectedEditorial = getExemplars();
-        conn = ConexionLibros.conn();
+ public String executeQueryAndGetISBN(String sqlQuery) {
+    if (sqlQuery == null || sqlQuery.isEmpty()) {
+        // Manejo de consulta SQL vacía o nula
+        return null;
+    }
+    
+    String isbn = null;
+    Connection conn = null;
+    PreparedStatement statement = null;
+    ResultSet rs = null;
+    String selectedEditorial = getExemplars();
+    conn = ConexionLibros.conn();
 
-        try {
-          
-            Statement statement = conn.createStatement();
-
-     
-            ResultSet resultSet = statement.executeQuery(sqlQuery);
-
-            if (resultSet.next()) {
-                
-                isbn = resultSet.getString("isbn");
-            }
-
-            // Cerrar la declaración y el resultado
-            resultSet.close();
-            statement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Manejo de errores SQL
+    try {
+        Statement st = conn.createStatement();
+        ResultSet resultSet = st.executeQuery(sqlQuery);
+        if (resultSet.next()) {
+            isbn = resultSet.getString("isbn");
         }
 
-        return isbn;
+        // Cerrar la declaración y el resultado
+        resultSet.close();
+        st.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Manejo de errores SQL
     }
 
+    return isbn;
+}
+
     public String executeQueryAndGetID(String sqlQuery2) {
+           if (sqlQuery2 == null || sqlQuery2.isEmpty()) {
+        // Manejo de consulta SQL vacía o nula
+        return null;
+    }
         String id = null;
         Connection conn = null;
         PreparedStatement statament = null;
@@ -304,6 +308,10 @@ public class Prestamo extends Nota {
  * were foundor if an error occurred.
  */
     public String executeQueryAndGetId_tab(String sqlQueryThree) {
+           if (sqlQueryThree == null || sqlQueryThree.isEmpty()) {
+        // Manejo de consulta SQL vacía o nula
+        return null;
+    }
         String id_tab = null;
         Connection conn = null;
         PreparedStatement statament = null;
@@ -372,21 +380,20 @@ public class Prestamo extends Nota {
             ps2.setString(3, getNote());
 
             ps2.execute();
-
             Alert alerte = new Alert(Alert.AlertType.INFORMATION);
             alerte.setHeaderText(null);
             alerte.setTitle("INFORMACIÓN");
             alerte.setContentText("Datos de prestamo guardados correctamente.");
             alerte.showAndWait();
-
+            
         } catch (Exception e) {
+            e.printStackTrace();
             Alert alerti = new Alert(Alert.AlertType.ERROR);
             alerti.setHeaderText(null);
             alerti.setTitle("ERROR");
-            alerti.setContentText("No se logro guardar los datos del prestamo. "
-                    + e);
+            alerti.setContentText("No se logro guardar los datos del prestamo.");
             alerti.showAndWait();
-            System.out.println("error" + e);
+ 
         }
     }
 

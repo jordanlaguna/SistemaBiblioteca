@@ -55,7 +55,8 @@ public class FXMLDevolutionController implements Initializable {
     @FXML
     private TableView<Devolucion> tbw_devolutions;
 
-    private ObservableList<Devolucion> devolutions = FXCollections.observableArrayList();
+    private ObservableList<Devolucion> devolutions = FXCollections.
+            observableArrayList();
     @FXML
     private TableColumn<Devolucion, String> column_action;
     @FXML
@@ -122,7 +123,6 @@ public class FXMLDevolutionController implements Initializable {
                 return cell;
             }
         };
-
         column_action.setCellFactory(cellFactory);
     }
 

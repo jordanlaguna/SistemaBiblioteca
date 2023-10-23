@@ -129,24 +129,25 @@ public class Tablet {
                 + " available)values(?,?,?)";
 
         try {
+             if (getTrademark() != null && getUbication() != null && 
+                   getAvailable() != null) {
             ps = conn.prepareStatement(sql);
             ps.setString(1, getTrademark());
             ps.setString(2, getUbication());
             ps.setString(3, getAvailable());
-
             ps.execute();
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("INFORMACIÓN");
             alert.setContentText("Tablet guardada correctamente.");
             alert.showAndWait();
-
+             }
         } catch (Exception e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
-            alert.setContentText("No se pudo guardar la tablet. " + e);
+            alert.setContentText("No se pudo guardar la tablet. ");
             alert.showAndWait();
         }
     }
@@ -183,10 +184,10 @@ public class Tablet {
                 alert.setTitle("INFORMACIÓN");
                 alert.setContentText("Datos modificados con éxito.");
                 alert.showAndWait();
-
             }
-
+                
         } catch (Exception e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
@@ -222,8 +223,9 @@ public class Tablet {
                 alert.showAndWait();
 
             }
-
+              
         } catch (Exception e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");

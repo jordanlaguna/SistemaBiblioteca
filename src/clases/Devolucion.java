@@ -26,12 +26,13 @@ public class Devolucion {
     /**
      * @param date //The date on which the return was registered
      * @param deliverDate //The date on which the items must be returned
-     * @param exemplars //The list of individual items returned
+     * @param exemplars //The of individual items returned
      * @param user //The list of users who have completed the return.
      * @param id_loan //The id of loan
      * @param userEmail //The email of user
      */
-    public Devolucion(int id_loan, Date date, Date deliverDate, String exemplars, String userEmail, String user) {
+    public Devolucion(int id_loan, Date date, Date deliverDate, String exemplars
+            , String userEmail, String user) {
         this.date = date;
         this.deliverDate = deliverDate;
         this.exemplars = exemplars;
@@ -97,7 +98,8 @@ public class Devolucion {
         FilteredList<Devolucion> filteredData = new FilteredList<>(tableView.
                 getItems(), p -> true);
 
-        searchDevolution.textProperty().addListener((observable, oldValue, newValue) -> {
+        searchDevolution.textProperty().addListener((observable, oldValue,
+                newValue) -> {
             filteredData.setPredicate(devolucion -> {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;

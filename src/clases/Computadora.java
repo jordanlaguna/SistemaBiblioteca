@@ -39,7 +39,8 @@ public class Computadora  {
      * type are available for use.
      * 
      */
-    public Computadora(Integer id, String trademark, String ubication, String available) {     
+    public Computadora(Integer id, String trademark, String ubication,
+            String available) {     
         this.id = id;
         this.trademark = trademark;
         this.ubication = ubication;
@@ -117,7 +118,7 @@ public class Computadora  {
         sortedList.comparatorProperty().bind(tableView.comparatorProperty());
         tableView.setItems(sortedList);
     }
-    
+   
     public void add() {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -129,20 +130,25 @@ public class Computadora  {
                 + " available)values(?,?,?)";
 
         try {
+           if (getTrademark() != null && getUbication() != null && 
+                   getAvailable() != null) {
             ps = conn.prepareStatement(sql);
             ps.setString(1, getTrademark());
             ps.setString(2, getUbication());
             ps.setString(3, getAvailable());
 
             ps.execute();
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setTitle("INFORMACIÓN");
             alert.setContentText("Computadora guardada correctamente.");
             alert.showAndWait();
-
+        } 
+          
+           
+           
         } catch (Exception e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
@@ -174,7 +180,7 @@ public class Computadora  {
             Optional<ButtonType> opcion = alert.showAndWait();
 
             if (opcion.get().equals(ButtonType.OK)) {
-                ps = conn.prepareStatement(sql);
+               ps = conn.prepareStatement(sql);
                 ps.execute();
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
@@ -183,14 +189,15 @@ public class Computadora  {
                 alert.showAndWait();
 
             }
-
+                
         } catch (Exception e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
-            alert.setContentText("No se pudo modificar la computadora. " + e);
+            alert.setContentText("No se pudo modificar la computadora. ");
             alert.showAndWait();
-
+            
         }
     }
 
@@ -218,8 +225,9 @@ public class Computadora  {
                 alert.showAndWait();
 
             }
-
+              
         } catch (Exception e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");

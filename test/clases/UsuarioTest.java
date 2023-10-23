@@ -4,6 +4,11 @@
  */
 package clases;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,7 +28,10 @@ public class UsuarioTest {
     @BeforeClass
     public static void setUpClass() {
     }
-    
+    @BeforeClass
+    public static void initJavaFX() {
+        JFXPanel jfxPanel = new JFXPanel(); 
+    }
     @AfterClass
     public static void tearDownClass() {
     }
@@ -42,9 +50,10 @@ public class UsuarioTest {
     @Test
     public void testGetId_user() {
         System.out.println("getId_user");
-        Usuario instance = null;
-        assertEquals("", "");
-      
+        Usuario instance = new Usuario();
+        int expResult = 0;
+        int result = instance.getId_user();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -54,8 +63,8 @@ public class UsuarioTest {
     public void testSetId_user() {
         System.out.println("setId_user");
         int id_user = 0;
-        Usuario instance = null;
-          assertEquals("", "");
+        Usuario instance = new Usuario();
+        instance.setId_user(id_user);
     }
 
     /**
@@ -64,11 +73,10 @@ public class UsuarioTest {
     @Test
     public void testGetPassword() {
         System.out.println("getPassword");
-        Usuario instance = null;
+        Usuario instance = new Usuario();
         String expResult = "";
-       
-        assertEquals(expResult,"");
-        
+        String result = instance.getPassword();
+        assertEquals("", "");
     }
 
     /**
@@ -78,8 +86,8 @@ public class UsuarioTest {
     public void testSetPassword() {
         System.out.println("setPassword");
         String password = "";
-        Usuario instance = null;
-        assertEquals("", "");
+        Usuario instance = new Usuario();
+        instance.setPassword(password);
     }
 
     /**
@@ -88,11 +96,10 @@ public class UsuarioTest {
     @Test
     public void testGetEmail() {
         System.out.println("getEmail");
-        Usuario instance = null;
+        Usuario instance = new Usuario();
         String expResult = "";
-        
-        assertEquals(expResult, "");
-       
+        String result = instance.getEmail();
+        assertEquals("", "");
     }
 
     /**
@@ -102,8 +109,8 @@ public class UsuarioTest {
     public void testSetEmail() {
         System.out.println("setEmail");
         String email = "";
-        Usuario instance = null;
-         assertEquals("", "");
+        Usuario instance = new Usuario();
+        instance.setEmail(email);
     }
 
     /**
@@ -112,10 +119,10 @@ public class UsuarioTest {
     @Test
     public void testGetType() {
         System.out.println("getType");
-        Usuario instance = null;
+        Usuario instance = new Usuario();
         String expResult = "";
+        String result = instance.getType();
         assertEquals("", "");
-        
     }
 
     /**
@@ -125,31 +132,8 @@ public class UsuarioTest {
     public void testSetType() {
         System.out.println("setType");
         String type = "";
-        Usuario instance = null;
-            assertEquals("", "");
-        
-    }
-
-    /**
-     * Test of verLibros method, of class Usuario.
-     */
-    @Test
-    public void testVerLibros() {
-        System.out.println("verLibros");
-        Usuario instance = null;
-        
-          assertEquals("", "");
-    }
-
-    /**
-     * Test of pedirPrestamo method, of class Usuario.
-     */
-    @Test
-    public void testPedirPrestamo() {
-        System.out.println("pedirPrestamo");
-        Usuario instance = null;
-  
-          assertEquals("", "");
+        Usuario instance = new Usuario();
+        instance.setType(type);
     }
 
     /**
@@ -161,20 +145,29 @@ public class UsuarioTest {
         String email = "";
         String password = "";
         String type = "";
-        Usuario instance = null;
-        assertEquals("", "");
-        
+        Usuario instance =new Usuario();
+        Platform.runLater(() -> {
+        boolean expResult = false;
+        boolean result = instance.login(email, password, type);
+        assertEquals(expResult, result);
+        });
     }
 
     /**
      * Test of registatrarse method, of class Usuario.
+     * @throws java.lang.Exception
      */
     @Test
     public void testRegistatrarse() throws Exception {
-        System.out.println("registatrarse");
-        Usuario instance = null;
- 
-         assertEquals("", "");
+         System.out.println("registrarse");
+        Platform.runLater(() -> {
+        Usuario instance = new Usuario();
+             try {
+                 instance.registatrarse();
+             } catch (SQLException ex) {
+                 Logger.getLogger(UsuarioTest.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        });
     }
     
 }
