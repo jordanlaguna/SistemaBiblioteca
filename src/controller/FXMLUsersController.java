@@ -5,8 +5,8 @@
  */
 package controller;
 
-import clases.Usuario;
-import conexionDB.ConexionUsuarios;
+import clases.User;
+import conexionDB.ConexionUser;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -66,30 +66,30 @@ public class FXMLUsersController implements Initializable {
     @FXML
     private TextField txt_search;
     @FXML
-    private TableView<Usuario> tbw_users;
+    private TableView<User> tbw_users;
     @FXML
-    private TableColumn<Usuario, Integer> column_id;
+    private TableColumn<User, Integer> column_id;
     @FXML
-    private TableColumn<Usuario, java.sql.Date> column_birthDay;
+    private TableColumn<User, java.sql.Date> column_birthDay;
     @FXML
-    private TableColumn<Usuario, String> column_identification;
+    private TableColumn<User, String> column_identification;
     @FXML
-    private TableColumn<Usuario, String> column_name;
+    private TableColumn<User, String> column_name;
     @FXML
-    private TableColumn<Usuario, String> column_lastName;
+    private TableColumn<User, String> column_lastName;
     @FXML
-    private TableColumn<Usuario, String> column_secondName;
+    private TableColumn<User, String> column_secondName;
     @FXML
-    private TableColumn<Usuario, Integer> column_phone;
+    private TableColumn<User, Integer> column_phone;
     @FXML
-    private TableColumn<Usuario, Integer> column_idUser;
+    private TableColumn<User, Integer> column_idUser;
     @FXML
-    private TableColumn<Usuario, String> column_correo;
+    private TableColumn<User, String> column_correo;
     @FXML
-    private TableColumn<Usuario, String> column_password;
+    private TableColumn<User, String> column_password;
     @FXML
-    private TableColumn<Usuario, String> column_type;
-    private ObservableList<Usuario> users = FXCollections.observableArrayList();
+    private TableColumn<User, String> column_type;
+    private ObservableList<User> users = FXCollections.observableArrayList();
 
     private Integer index;
     Connection conn = null;
@@ -117,7 +117,7 @@ public class FXMLUsersController implements Initializable {
    @FXML
     private void update(ActionEvent event) {
         try {
-            conn = ConexionUsuarios.getConnection();
+            conn = ConexionUser.getConnection();
             String value1 = txt_identification.getText();
             String value2 = txt_name.getText();
             String value3 = txt_lastName.getText();
@@ -190,7 +190,7 @@ public class FXMLUsersController implements Initializable {
         String sqlDeleteUser = "delete from user where id_user = ?";
 
         try {
-            conn = ConexionUsuarios.getConnection();
+            conn = ConexionUser.getConnection();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText(null);
             alert.setTitle("CONFIRMACIÓN");
@@ -256,30 +256,30 @@ public class FXMLUsersController implements Initializable {
     
     private void loadData() {
 
-        conn = ConexionUsuarios.getConnection();
-        column_id.setCellValueFactory(new PropertyValueFactory<Usuario,
+        conn = ConexionUser.getConnection();
+        column_id.setCellValueFactory(new PropertyValueFactory<User,
                 Integer>("id_person"));
-        column_birthDay.setCellValueFactory(new PropertyValueFactory<Usuario,
+        column_birthDay.setCellValueFactory(new PropertyValueFactory<User,
                 java.sql.Date>("birth_date"));
         column_identification.setCellValueFactory(new PropertyValueFactory<
-                Usuario, String>("identification"));
-        column_name.setCellValueFactory(new PropertyValueFactory<Usuario,
+                User, String>("identification"));
+        column_name.setCellValueFactory(new PropertyValueFactory<User,
                 String>("name"));
-        column_lastName.setCellValueFactory(new PropertyValueFactory<Usuario,
+        column_lastName.setCellValueFactory(new PropertyValueFactory<User,
                 String>("lastName"));
-        column_secondName.setCellValueFactory(new PropertyValueFactory<Usuario,
+        column_secondName.setCellValueFactory(new PropertyValueFactory<User,
                 String>("secondName"));
-        column_phone.setCellValueFactory(new PropertyValueFactory<Usuario,
+        column_phone.setCellValueFactory(new PropertyValueFactory<User,
                 Integer>("telephone"));
-        column_idUser.setCellValueFactory(new PropertyValueFactory<Usuario,
+        column_idUser.setCellValueFactory(new PropertyValueFactory<User,
                 Integer>("id_user"));
-        column_correo.setCellValueFactory(new PropertyValueFactory<Usuario,
+        column_correo.setCellValueFactory(new PropertyValueFactory<User,
                 String>("email"));
-        column_password.setCellValueFactory(new PropertyValueFactory<Usuario,
+        column_password.setCellValueFactory(new PropertyValueFactory<User,
                 String>("password"));
-        column_type.setCellValueFactory(new PropertyValueFactory<Usuario,
+        column_type.setCellValueFactory(new PropertyValueFactory<User,
                 String>("type"));
-        users = ConexionUsuarios.getDataUsuario();
+        users = ConexionUser.getDataUsuario();
         tbw_users.setItems(users);
     }
     
@@ -289,7 +289,7 @@ public class FXMLUsersController implements Initializable {
      */
     @FXML
     private void search(KeyEvent ke) {
-        FilteredList<Usuario> filterData = new FilteredList<>(users, p -> true);
+        FilteredList<User> filterData = new FilteredList<>(users, p -> true);
         txt_search.textProperty().addListener((obsevable, oldvalue, newvalue)
                 -> {
             filterData.setPredicate(User -> {
@@ -339,7 +339,7 @@ public class FXMLUsersController implements Initializable {
                 }
                 return false;
             });
-            SortedList<Usuario> sortedList = new SortedList<>(filterData);
+            SortedList<User> sortedList = new SortedList<>(filterData);
             sortedList.comparatorProperty().bind(tbw_users.comparatorProperty());
             tbw_users.setItems(sortedList);
         });

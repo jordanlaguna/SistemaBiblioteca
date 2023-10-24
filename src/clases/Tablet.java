@@ -129,8 +129,8 @@ public class Tablet {
                 + " available)values(?,?,?)";
 
         try {
-             if (getTrademark() != null && getUbication() != null && 
-                   getAvailable() != null) {
+            if (getTrademark() != null && getUbication() != null && 
+                getAvailable() != null) {
             ps = conn.prepareStatement(sql);
             ps.setString(1, getTrademark());
             ps.setString(2, getUbication());

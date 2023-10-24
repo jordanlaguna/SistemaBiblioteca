@@ -5,8 +5,8 @@
  */
 package controller;
 
-import clases.Prestamo;
-import conexionDB.ConexionLibros;
+import clases.Loan;
+import conexionDB.ConexionBooks;
 import conexionDB.ConexionLoans;
 import conexionDB.ConexionTabletDB;
 import java.net.URL;
@@ -62,24 +62,24 @@ public class FXMLLoansController implements Initializable {
     @FXML
     private TextField txt_search;
     @FXML
-    private TableView<Prestamo> tbw_libros;
+    private TableView<Loan> tbw_libros;
     @FXML
-    private TableColumn<Prestamo, Integer> column_numLoan;
+    private TableColumn<Loan, Integer> column_numLoan;
     @FXML
-    private TableColumn<Prestamo, java.sql.Date> colum_dateLoan;
+    private TableColumn<Loan, java.sql.Date> colum_dateLoan;
     @FXML
-    private TableColumn<Prestamo, java.sql.Date> column_dateReturn;
+    private TableColumn<Loan, java.sql.Date> column_dateReturn;
     @FXML
-    private TableColumn<Prestamo, String> column_editorial;
+    private TableColumn<Loan, String> column_editorial;
     @FXML
-    private TableColumn<Prestamo, String> column_observations;
+    private TableColumn<Loan, String> column_observations;
     @FXML
     private ComboBox<String> txt_editorial;
    
     @FXML
-    private TableColumn<Prestamo, String> column_fullName;
+    private TableColumn<Loan, String> column_fullName;
 
-    private ObservableList<Prestamo> Prestamos = 
+    private ObservableList<Loan> Prestamos = 
             FXCollections.observableArrayList();
 
     Connection conn, con, connn = null;
@@ -92,7 +92,7 @@ public class FXMLLoansController implements Initializable {
     @FXML
     private ComboBox<String> cmbTablet;
     @FXML
-    private TableColumn<Prestamo, Integer> column_id;
+    private TableColumn<Loan, Integer> column_id;
     
     /**
      *  FXML Controller class
@@ -147,7 +147,7 @@ public class FXMLLoansController implements Initializable {
      */
     private List<String> getEditorialDataFromDatabase() {
     List<String> editorialData = new ArrayList<>();
-    Connection conn = ConexionLibros.conn();
+    Connection conn = ConexionBooks.conn();
     
     if (conn != null) {
         try {
@@ -191,7 +191,7 @@ public class FXMLLoansController implements Initializable {
     
     private List<String> getComputerDataFromDatabase() {
     List<String> computerData = new ArrayList<>();
-    Connection con = ConexionLibros.conn();
+    Connection con = ConexionBooks.conn();
 
     if (con != null) {
         try {
@@ -287,23 +287,23 @@ public class FXMLLoansController implements Initializable {
 
         conn = ConexionLoans.getConnection();
         this.column_id.setCellValueFactory(new PropertyValueFactory<
-                Prestamo, Integer>("id_loan"));
+                Loan, Integer>("id_loan"));
         this.colum_dateLoan.setCellValueFactory(new PropertyValueFactory<
-                Prestamo, java.sql.Date>("dateLoan"));
+                Loan, java.sql.Date>("dateLoan"));
 
         this.column_dateReturn.setCellValueFactory(new PropertyValueFactory<
-                Prestamo, java.sql.Date>("dateReturn"));
+                Loan, java.sql.Date>("dateReturn"));
 
         this.column_editorial.setCellValueFactory(new PropertyValueFactory<
-                Prestamo, String>("exemplars"));
+                Loan, String>("exemplars"));
 
         this.column_numLoan.setCellValueFactory(new PropertyValueFactory<
-                Prestamo, Integer>("numLoan"));
+                Loan, Integer>("numLoan"));
 
         this.column_observations.setCellValueFactory(new PropertyValueFactory<
-                Prestamo, String>("note"));
+                Loan, String>("note"));
         this.column_fullName.setCellValueFactory(new PropertyValueFactory<
-                Prestamo, String>("fullName"));
+                Loan, String>("fullName"));
 
         Prestamos = ConexionLoans.getDataLoanAndNote();
         tbw_libros.setItems(Prestamos);
@@ -324,7 +324,7 @@ public class FXMLLoansController implements Initializable {
      * database.
      */
     private void addLoans() throws SQLException{
-        Prestamo prestamo = new Prestamo();
+        Loan prestamo = new Loan();
         LocalDate localDate = Datepiker_loanDate.getValue();
         Date loanDate = Date.valueOf(localDate);
         LocalDate Datelocal = Datepiker_devolutionDate.getValue();
@@ -381,9 +381,9 @@ public class FXMLLoansController implements Initializable {
  */
     @FXML
     private void search(KeyEvent event) {
-       /* Prestamo loan = new Prestamo();
+       /* Loan loan = new Loan();
         loan.search(txt_search, tbw_libros);*/
-        FilteredList<Prestamo> filterData = new FilteredList<>(Prestamos, 
+        FilteredList<Loan> filterData = new FilteredList<>(Prestamos, 
                 p -> true);
         txt_search.textProperty().addListener((obsevable, oldvalue, newvalue)
                 -> {
@@ -424,7 +424,7 @@ public class FXMLLoansController implements Initializable {
                 }
                 return false;
             });
-            SortedList<Prestamo> sortedList = new SortedList<>(filterData);
+            SortedList<Loan> sortedList = new SortedList<>(filterData);
             sortedList.comparatorProperty().bind(
                     tbw_libros.comparatorProperty());
             tbw_libros.setItems(sortedList);

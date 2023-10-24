@@ -6,8 +6,8 @@
  */
 package conexionDB;
 
-import clases.Prestamo;
-import static conexionDB.ConexionLibros.conn;
+import clases.Loan;
+import static conexionDB.ConexionBooks.conn;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -54,9 +54,9 @@ public class ConexionLoans {
         }
     }
     
-    public static ObservableList<Prestamo> getDataLoanAndNote() {
+    public static ObservableList<Loan> getDataLoanAndNote() {
         Connection conn = conn(); 
-        ObservableList<Prestamo> list = FXCollections.observableArrayList();
+        ObservableList<Loan> list = FXCollections.observableArrayList();
         
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT id_loan,"
@@ -76,11 +76,11 @@ public class ConexionLoans {
         return list;
     }
 
-    private static void addLoanToList(ResultSet rs, ObservableList<Prestamo> 
+    private static void addLoanToList(ResultSet rs, ObservableList<Loan> 
             list) throws SQLException {
         if (rs.next()) 
              {
-                list.add(new Prestamo(Integer.parseInt(rs.getString("id_loan")),
+                list.add(new Loan(Integer.parseInt(rs.getString("id_loan")),
                         rs.getDate("loan_date"),
                         rs.getString("exemplars"), 
                         rs.getDate("devolution_date"),

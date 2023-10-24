@@ -4,7 +4,7 @@
  */
 package controller;
 
-import conexionDB.ConexionUsuarios;
+import conexionDB.ConexionUser;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -63,7 +63,7 @@ public class FXMLNewPasswordController implements Initializable {
         if (txtNuContra.getText().equals(txtVerifContra.getText())) {
 
             try {
-                Connection conn = ConexionUsuarios.getConnection();
+                Connection conn = ConexionUser.getConnection();
                 String value1 = txtUserName.getText();
                 String value2 = txtNuContra.getText();
 

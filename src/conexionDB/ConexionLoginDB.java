@@ -5,7 +5,7 @@
  */
 package conexionDB;
 
-import clases.Usuario;
+import clases.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -38,10 +38,10 @@ public class ConexionLoginDB {
 
     }
 
-    public static ObservableList<Usuario> getDataUsuario() {
+    public static ObservableList<User> getDataUsuario() {
 
         Connection conn = conn();
-        ObservableList<Usuario> list = FXCollections.observableArrayList();
+        ObservableList<User> list = FXCollections.observableArrayList();
 
         try {
             PreparedStatement ps = conn.prepareStatement(
@@ -59,9 +59,9 @@ public class ConexionLoginDB {
     }
 
     private static void addLoginToList(ResultSet rs,
-            ObservableList<Usuario> list) throws SQLException {
+            ObservableList<User> list) throws SQLException {
         if (rs.next()) {
-            list.add(new Usuario(Integer.parseInt(rs.getString("id_person")),
+            list.add(new User(Integer.parseInt(rs.getString("id_person")),
                     rs.getDate("birth_date"),
                     rs.getString("identification"),
                     rs.getString("name"),

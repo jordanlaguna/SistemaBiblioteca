@@ -5,8 +5,8 @@
  */
 package controller;
 
-import clases.Libro;
-import conexionDB.ConexionLibros;
+import clases.Book;
+import conexionDB.ConexionBooks;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -58,26 +58,26 @@ public class FXMLBooksController implements Initializable {
     @FXML
     private Button btn_delete;
     @FXML
-    private TableView<Libro> tbw_libros;
+    private TableView<Book> tbw_libros;
     @FXML
-    private TableColumn<Libro, Integer> column_isbn;
+    private TableColumn<Book, Integer> column_isbn;
     @FXML
-    private TableColumn<Libro, String> column_title;
+    private TableColumn<Book, String> column_title;
     @FXML
-    private TableColumn<Libro, String> column_author;
+    private TableColumn<Book, String> column_author;
     @FXML
-    private TableColumn<Libro, String> column_editorial;
+    private TableColumn<Book, String> column_editorial;
     @FXML
-    private TableColumn<Libro, java.sql.Date> column_year;
+    private TableColumn<Book, java.sql.Date> column_year;
     @FXML
-    private TableColumn<Libro, String> column_available;
+    private TableColumn<Book, String> column_available;
     @FXML
     private TextField txt_search;
     private TextField txt_cantidad;
 
-    private ObservableList<Libro> Libro = FXCollections.observableArrayList();
+    private ObservableList<Book> Libro = FXCollections.observableArrayList();
 
-    private ObservableList<Libro> Libros;
+    private ObservableList<Book> Libros;
     String idAux;
     Integer index;
     Connection conn = null;
@@ -94,7 +94,7 @@ public class FXMLBooksController implements Initializable {
     }
 
     public String validation() throws SQLException {
-        conn = ConexionLibros.conn();
+        conn = ConexionBooks.conn();
 
         String valueAux = txt_isbn.getText();
         String sqlAux = "SELECT DISTINCT isbn FROM book WHERE isbn = ?";
@@ -131,7 +131,7 @@ public class FXMLBooksController implements Initializable {
     @FXML
     private void add(ActionEvent event) throws SQLException {
         validation();
-        conn = ConexionLibros.conn();
+        conn = ConexionBooks.conn();
         if (idAux == "0") {
             String sql = "insert into book(isbn, title, authorBook,"
                     + " editorial, available, releaseDate)values(?,?,?,?,?,?)";
@@ -168,7 +168,7 @@ public class FXMLBooksController implements Initializable {
     @FXML
     private void update(ActionEvent event) {
         try {
-            conn = ConexionLibros.conn();
+            conn = ConexionBooks.conn();
             String value1 = txt_isbn.getText();
             String value2 = txt_title.getText();
             String value3 = txt_author.getText();
@@ -253,25 +253,25 @@ public class FXMLBooksController implements Initializable {
     }
 
     private void loadData() {
-        this.column_isbn.setCellValueFactory(new PropertyValueFactory<Libro,
+        this.column_isbn.setCellValueFactory(new PropertyValueFactory<Book,
                 Integer>("isbn"));
-        this.column_title.setCellValueFactory(new PropertyValueFactory<Libro,
+        this.column_title.setCellValueFactory(new PropertyValueFactory<Book,
                 String>("title"));
-        this.column_author.setCellValueFactory(new PropertyValueFactory<Libro,
+        this.column_author.setCellValueFactory(new PropertyValueFactory<Book,
                 String>("authorBook"));
         this.column_editorial.setCellValueFactory(new PropertyValueFactory<
-                Libro, String>("editorial"));
-        this.column_year.setCellValueFactory(new PropertyValueFactory<Libro, 
+                Book, String>("editorial"));
+        this.column_year.setCellValueFactory(new PropertyValueFactory<Book, 
                 java.sql.Date>("releaseDate"));
         this.column_available.setCellValueFactory(new PropertyValueFactory<
-                Libro, String>("available"));
-        Libros = ConexionLibros.getDataBook();
+                Book, String>("available"));
+        Libros = ConexionBooks.getDataBook();
         tbw_libros.setItems(Libros);
     }
 
     @FXML
     private void buscar(KeyEvent ke) {
-        Libro book = new Libro();
+        Book book = new Book();
         book.searchBook(txt_search, tbw_libros);
     }
 

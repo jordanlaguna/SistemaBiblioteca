@@ -5,7 +5,7 @@
  */
 package controller;
 
-import clases.Usuario;
+import clases.User;
 import conexionDB.ConexionLoginDB;
 import java.io.IOException;
 import java.net.URL;
@@ -230,9 +230,9 @@ public class FXMLLoginController implements Initializable {
         String password = passwordLogin.getText();
         String type = (String) cmbBox.getValue();
 
-        Usuario usuario = new Usuario(0,null, null, null, null, null,0, 0, email,
+        User user = new User(0,null, null, null, null, null,0, 0, email,
                 password, type);
-        boolean loginSuccessful = usuario.login(email, password, type);
+        boolean loginSuccessful = user.login(email, password, type);
         try {
             if (loginSuccessful) {
                 buttonInicio.getScene().getWindow().hide();
@@ -272,11 +272,11 @@ public class FXMLLoginController implements Initializable {
     private void registrarUser(ActionEvent event) throws SQLException {
         LocalDate localDate = birthDay.getValue();
         Date dateOfBirth = Date.valueOf(localDate);
-        Usuario usuario = new Usuario(0,dateOfBirth, identification.getText(),
+        User user = new User(0,dateOfBirth, identification.getText(),
                 name.getText(), lastName.getText(), secondName.getText(),
                 Integer.parseInt(telephone.getText()),0, userName.getText(),
                 passwordRegis.getText(), cmbType.getValue().toString());
-        usuario.registatrarse();
+        user.registrarse();
         cleanData();
     }
     /**{

@@ -5,9 +5,9 @@
  */
 package controller;
 
-import clases.Computadora;
-import clases.Libro;
-import conexionDB.ConexionLibros;
+import clases.Computer;
+import clases.Book;
+import conexionDB.ConexionBooks;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -54,17 +54,17 @@ public class FXMLComputerController implements Initializable {
     @FXML
     private ComboBox cmbBox;
     @FXML
-    private TableView<Computadora> tbw_computer;
+    private TableView<Computer> tbw_computer;
     @FXML
-    private TableColumn<Computadora, Integer> column_id;
+    private TableColumn<Computer, Integer> column_id;
     @FXML
-    private TableColumn<Computadora, String> column_brand;
+    private TableColumn<Computer, String> column_brand;
     @FXML
-    private TableColumn<Computadora, String> column_quantity;
+    private TableColumn<Computer, String> column_quantity;
     @FXML
-    private TableColumn<Computadora, String> column_available;
+    private TableColumn<Computer, String> column_available;
 
-    private ObservableList<Computadora> Computer = FXCollections.observableArrayList();
+    private ObservableList<Computer> Computer = FXCollections.observableArrayList();
 
 
     String aux;
@@ -87,21 +87,21 @@ public class FXMLComputerController implements Initializable {
     }
 
     private void LoadDate() {
-        this.column_id.setCellValueFactory(new PropertyValueFactory<Computadora,
+        this.column_id.setCellValueFactory(new PropertyValueFactory<Computer,
                 Integer>("id"));
         this.column_brand.setCellValueFactory(new PropertyValueFactory<
-                Computadora, String>("trademark"));
+                Computer, String>("trademark"));
         this.column_quantity.setCellValueFactory(new PropertyValueFactory<
-                Computadora, String>("ubication"));
+                Computer, String>("ubication"));
         this.column_available.setCellValueFactory(new PropertyValueFactory<
-                Computadora, String>("available"));
-        Computer = ConexionLibros.getDataComputer();
+                Computer, String>("available"));
+        Computer = ConexionBooks.getDataComputer();
         tbw_computer.setItems(Computer);
     }
 
     @FXML
     private void add(ActionEvent event) {
-        Computadora computer = new Computadora();
+        Computer computer = new Computer();
         computer.setTrademark(txt_brand.getText());
         computer.setUbication(txt_quantity.getText());
         computer.setAvailable((String) cmbBox.getValue());
@@ -118,7 +118,7 @@ public class FXMLComputerController implements Initializable {
 
     @FXML
     private void update(ActionEvent event) {
-        Computadora computer = new Computadora();
+        Computer computer = new Computer();
         computer.setId(Integer.parseInt(id.getText()));
         computer.setTrademark(txt_brand.getText());
         computer.setUbication(txt_quantity.getText());
@@ -130,7 +130,7 @@ public class FXMLComputerController implements Initializable {
 
     @FXML
     private void delete(ActionEvent event) {
-        Computadora computer = new Computadora();
+        Computer computer = new Computer();
         computer.setId(Integer.parseInt(id.getText()));
         computer.delete();
         LoadDate();
@@ -153,7 +153,7 @@ public class FXMLComputerController implements Initializable {
 
     @FXML
     private void buscarComputer(KeyEvent ke) {
-        Computadora computer = new Computadora();
+        Computer computer = new Computer();
         computer.unitSearch(txt_search, tbw_computer);
     }
 

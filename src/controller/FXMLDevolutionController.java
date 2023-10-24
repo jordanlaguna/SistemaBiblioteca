@@ -5,8 +5,8 @@
  */
 package controller;
 
-import clases.Devolucion;
-import clases.Prestamo;
+import clases.Devolution;
+import clases.Loan;
 import clases.Tablet;
 import conexionDB.ConexionLoans;
 import java.net.URL;
@@ -45,24 +45,24 @@ public class FXMLDevolutionController implements Initializable {
     @FXML
     private TextField searchDevolution;
     @FXML
-    private TableColumn<Devolucion, String> column_user;
+    private TableColumn<Devolution, String> column_user;
     @FXML
-    private TableColumn<Devolucion, String> column_exemplars;
+    private TableColumn<Devolution, String> column_exemplars;
     @FXML
-    private TableColumn<Devolucion, java.sql.Date> column_date;
+    private TableColumn<Devolution, java.sql.Date> column_date;
     @FXML
-    private TableColumn<Devolucion, java.sql.Date> column_deliverDate;
+    private TableColumn<Devolution, java.sql.Date> column_deliverDate;
     @FXML
-    private TableView<Devolucion> tbw_devolutions;
+    private TableView<Devolution> tbw_devolutions;
 
-    private ObservableList<Devolucion> devolutions = FXCollections.
+    private ObservableList<Devolution> devolutions = FXCollections.
             observableArrayList();
     @FXML
-    private TableColumn<Devolucion, String> column_action;
+    private TableColumn<Devolution, String> column_action;
     @FXML
-    private TableColumn<Devolucion, String> column_userEmail;
+    private TableColumn<Devolution, String> column_userEmail;
     @FXML
-    private TableColumn<Devolucion, Integer> column_id;
+    private TableColumn<Devolution, Integer> column_id;
     @FXML
     private TextField txt_id;
     Integer index;
@@ -82,15 +82,15 @@ public class FXMLDevolutionController implements Initializable {
         column_action.setCellValueFactory(new PropertyValueFactory<>
         ("deleteButton"));
 
-        Callback<TableColumn<Devolucion, String>, TableCell<Devolucion, String>>
+        Callback<TableColumn<Devolution, String>, TableCell<Devolution, String>>
                 cellFactory
-                = new Callback<TableColumn<Devolucion, String>, TableCell
-                        <Devolucion, String>>() {
+                = new Callback<TableColumn<Devolution, String>, TableCell
+                        <Devolution, String>>() {
             @Override
-            public TableCell<Devolucion, String> call(final TableColumn
-                    <Devolucion, String> param) {
-                final TableCell<Devolucion, String> cell = new TableCell
-                        <Devolucion, String>() {
+            public TableCell<Devolution, String> call(final TableColumn
+                    <Devolution, String> param) {
+                final TableCell<Devolution, String> cell = new TableCell
+                        <Devolution, String>() {
 
                     final Button btn = new Button();
 
@@ -110,7 +110,7 @@ public class FXMLDevolutionController implements Initializable {
                             imageView.getStyleClass().add("image-view");
 
                             btn.setOnAction(event -> {
-                                Devolucion devolucion = getTableView().
+                                Devolution devolucion = getTableView().
                                         getItems().get(getIndex());
                                 eliminarDevolucion(devolucion.getId_loan());
                             });
@@ -151,7 +151,7 @@ public class FXMLDevolutionController implements Initializable {
                 alert.showAndWait();
 
                 // 
-                Devolucion devolucionToRemove = devolutions.stream()
+                Devolution devolucionToRemove = devolutions.stream()
                         .filter(devolucion -> devolucion.getId_loan() == id_loan)
                         .findFirst()
                         .orElse(null);
@@ -162,7 +162,7 @@ public class FXMLDevolutionController implements Initializable {
                 }
 
                 
-                Prestamo prestamo = new Prestamo();
+                Loan prestamo = new Loan();
                 prestamo.setExemplars(devolucionToRemove.getExemplars());
                 prestamo.availableBook();
                 prestamo.availableComputer();
@@ -180,8 +180,8 @@ public class FXMLDevolutionController implements Initializable {
 
     @FXML
     private void searchDevolution(KeyEvent event) {
-        Devolucion devolution = new Devolucion();
-        Devolucion.search(searchDevolution, tbw_devolutions);
+        Devolution devolution = new Devolution();
+        Devolution.search(searchDevolution, tbw_devolutions);
     }
 
     @FXML
@@ -194,10 +194,10 @@ public class FXMLDevolutionController implements Initializable {
         txt_id.setText(String.valueOf(idValue));
     }
 
-    private void loadData(List<Prestamo> prestamos, int index) {
+    private void loadData(List<Loan> prestamos, int index) {
         if (index < prestamos.size()) {
-            Prestamo prestamo = prestamos.get(index);
-            Devolucion devolution = new Devolucion();
+            Loan prestamo = prestamos.get(index);
+            Devolution devolution = new Devolution();
             devolution.setDate(prestamo.getDateLoan());
             devolution.setId_loan(prestamo.getId_loan());
             devolution.setDeliverDate(prestamo.getDateReturn());
@@ -208,18 +208,18 @@ public class FXMLDevolutionController implements Initializable {
             devolutions.add(devolution);
             loadData(prestamos, index + 1); 
         } else {
-            column_id.setCellValueFactory(new PropertyValueFactory<Devolucion,
+            column_id.setCellValueFactory(new PropertyValueFactory<Devolution,
                     Integer>("id_loan"));
-            column_user.setCellValueFactory(new PropertyValueFactory<Devolucion,
+            column_user.setCellValueFactory(new PropertyValueFactory<Devolution,
                     String>("user"));
             column_userEmail.setCellValueFactory(new PropertyValueFactory<
-                    Devolucion, String>("userEmail"));
+                    Devolution, String>("userEmail"));
             column_exemplars.setCellValueFactory(new PropertyValueFactory<
-                    Devolucion, String>("exemplars"));
+                    Devolution, String>("exemplars"));
             column_date.setCellValueFactory(new PropertyValueFactory<
-                    Devolucion, java.sql.Date>("date"));
+                    Devolution, java.sql.Date>("date"));
             column_deliverDate.setCellValueFactory(new PropertyValueFactory<
-                    Devolucion, java.sql.Date>("deliverDate"));
+                    Devolution, java.sql.Date>("deliverDate"));
 
             tbw_devolutions.setItems(devolutions);
         }

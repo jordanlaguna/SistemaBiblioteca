@@ -22,9 +22,9 @@
                   <TableColumn fx:id="column_user" prefWidth="155.0" text="Usuario" />
                   <TableColumn fx:id="column_userEmail" prefWidth="165.0" text="Email" />
                   <TableColumn fx:id="column_exemplars" minWidth="0.0" prefWidth="162.0" text="Ejemplar" />
-                  <TableColumn fx:id="column_date" minWidth="0.0" prefWidth="104.0" text="Fecha prestamo" />
+                  <TableColumn fx:id="column_date" minWidth="0.0" prefWidth="104.0" text="Fecha préstamo" />
                   <TableColumn fx:id="column_deliverDate" prefWidth="105.0" text="Fecha devolución" />
-                  <TableColumn fx:id="column_action" prefWidth="71.0" text="Accion" />
+                  <TableColumn fx:id="column_action" prefWidth="71.0" text="Acción" />
                </columns>
             </TableView>
          </children>
